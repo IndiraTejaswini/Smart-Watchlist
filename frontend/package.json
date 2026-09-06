@@ -1,0 +1,41 @@
+{
+  "name": "smart-market-watchlist-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "check:prohibitions": "node scripts/check-prohibitions.mjs",
+    "gen:calendar": "node scripts/generate-mock-calendar.mjs",
+    "test:unit": "node --test \"src/**/*.test.js\"",
+    "test": "npm run check:prohibitions && npm run lint && npm run test:unit",
+    "verify": "node scripts/verify-submission.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.1.0",
+    "@fontsource-variable/jetbrains-mono": "^5.1.1",
+    "@fontsource-variable/source-serif-4": "^5.1.0",
+    "@tanstack/react-query": "^5.62.7",
+    "@tanstack/react-virtual": "^3.11.2",
+    "lightweight-charts": "^4.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "zod": "^3.24.1",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.14.0",
+    "tailwindcss": "^4.0.0",
+    "vite": "^6.0.5"
+  }
+}

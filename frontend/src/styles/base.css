@@ -1,0 +1,99 @@
+/*
+ * base.css — global element defaults. Everything here is a consequence of a
+ * rule in FRONTEND_SPEC.md §2; nothing here is taste applied on top.
+ */
+
+@layer base {
+  html {
+    background-color: var(--color-abyss);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-abyss);
+    color: var(--color-chalk);
+    font-family: var(--font-ui);
+    font-size: var(--text-ui);
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* §2.2 — every numeral in the application is JetBrains Mono, and without a
+   * fixed advance width a table of live prices jitters on every tick. */
+  .num {
+    font-family: var(--font-num);
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+  }
+
+  /* §7 — a visible --flare focus ring on every interactive element. This is one
+   * of the three sanctioned uses of amber: it marks where you are. */
+  :focus-visible {
+    outline: 2px solid var(--color-flare);
+    outline-offset: 2px;
+    border-radius: var(--radius-edge);
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background-color: var(--color-panel-hi);
+    color: var(--color-chalk);
+  }
+
+  /* Hairline scrollbars — the app is dense and a 15px grey slab from the OS
+   * reads as a component nobody designed. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-hairline) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-hairline);
+    border: 3px solid var(--color-abyss);
+    border-radius: 999px;
+  }
+}
+
+/* §2.4 — prefers-reduced-motion collapses every duration to 0ms. The landing
+ * hero sequence checks this flag separately and renders its end state. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}

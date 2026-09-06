@@ -1,0 +1,1032 @@
+2026-09-06 11:41:19,476 INFO    backfill backfill 2025-09-11 to 2026-09-06, sources=bhavcopy,delivery, from_cache_only=False
+2026-09-06 11:41:19,477 INFO    app.ingest.nse_client curl_cffi not installed, falling back to httpx (tier 1)
+2026-09-06 11:41:20,866 INFO    httpx HTTP Request: GET https://www.nseindia.com "HTTP/1.1 200 OK"
+2026-09-06 11:41:21,277 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250911_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:21,379 INFO    backfill bhavcopy 2025-09-11 ok, 177059 bytes
+2026-09-06 11:41:21,992 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_11092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:22,015 INFO    backfill delivery 2025-09-11 ok, 340269 bytes
+2026-09-06 11:41:22,791 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250912_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:22,831 INFO    backfill bhavcopy 2025-09-12 ok, 177112 bytes
+2026-09-06 11:41:23,609 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_12092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:23,626 INFO    backfill delivery 2025-09-12 ok, 340645 bytes
+2026-09-06 11:41:24,394 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250915_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:24,414 INFO    backfill bhavcopy 2025-09-15 ok, 178399 bytes
+2026-09-06 11:41:25,193 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_15092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:25,206 INFO    backfill delivery 2025-09-15 ok, 344434 bytes
+2026-09-06 11:41:26,013 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250916_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:26,045 INFO    backfill bhavcopy 2025-09-16 ok, 177616 bytes
+2026-09-06 11:41:26,799 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_16092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:26,831 INFO    backfill delivery 2025-09-16 ok, 340522 bytes
+2026-09-06 11:41:27,598 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250917_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:27,616 INFO    backfill bhavcopy 2025-09-17 ok, 179185 bytes
+2026-09-06 11:41:28,400 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_17092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:28,416 INFO    backfill delivery 2025-09-17 ok, 343954 bytes
+2026-09-06 11:41:29,210 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250918_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:29,225 INFO    backfill bhavcopy 2025-09-18 ok, 183831 bytes
+2026-09-06 11:41:29,996 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_18092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:30,010 INFO    backfill delivery 2025-09-18 ok, 341125 bytes
+2026-09-06 11:41:30,799 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250919_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:30,812 INFO    backfill bhavcopy 2025-09-19 ok, 176597 bytes
+2026-09-06 11:41:31,636 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_19092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:31,646 INFO    backfill delivery 2025-09-19 ok, 340917 bytes
+2026-09-06 11:41:32,401 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250922_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:32,417 INFO    backfill bhavcopy 2025-09-22 ok, 179967 bytes
+2026-09-06 11:41:33,207 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_22092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:33,223 INFO    backfill delivery 2025-09-22 ok, 347242 bytes
+2026-09-06 11:41:33,999 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250923_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:34,014 INFO    backfill bhavcopy 2025-09-23 ok, 176417 bytes
+2026-09-06 11:41:34,804 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_23092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:34,817 INFO    backfill delivery 2025-09-23 ok, 341033 bytes
+2026-09-06 11:41:35,612 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250924_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:35,626 INFO    backfill bhavcopy 2025-09-24 ok, 176393 bytes
+2026-09-06 11:41:36,400 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_24092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:36,416 INFO    backfill delivery 2025-09-24 ok, 341600 bytes
+2026-09-06 11:41:37,235 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250925_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:37,243 INFO    backfill bhavcopy 2025-09-25 ok, 176121 bytes
+2026-09-06 11:41:38,054 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_25092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:38,067 INFO    backfill delivery 2025-09-25 ok, 340357 bytes
+2026-09-06 11:41:38,801 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250926_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:38,818 INFO    backfill bhavcopy 2025-09-26 ok, 177333 bytes
+2026-09-06 11:41:39,606 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_26092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:39,616 INFO    backfill delivery 2025-09-26 ok, 342398 bytes
+2026-09-06 11:41:40,404 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250929_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:40,420 INFO    backfill bhavcopy 2025-09-29 ok, 178582 bytes
+2026-09-06 11:41:41,245 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_29092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:41,256 INFO    backfill delivery 2025-09-29 ok, 344762 bytes
+2026-09-06 11:41:42,006 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20250930_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:42,019 INFO    backfill bhavcopy 2025-09-30 ok, 175937 bytes
+2026-09-06 11:41:42,804 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_30092025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:42,816 INFO    backfill delivery 2025-09-30 ok, 340762 bytes
+2026-09-06 11:41:43,668 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251001_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:43,686 INFO    backfill bhavcopy 2025-10-01 ok, 177223 bytes
+2026-09-06 11:41:44,425 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_01102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:44,437 INFO    backfill delivery 2025-10-01 ok, 343000 bytes
+2026-09-06 11:41:45,209 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251002_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:41:45,210 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251002_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:41:46,001 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_02102025.csv "HTTP/1.1 404 Not Found"
+2026-09-06 11:41:46,002 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_02102025.csv (HTTP 404)
+2026-09-06 11:41:46,807 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251003_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:46,842 INFO    backfill bhavcopy 2025-10-03 ok, 179272 bytes
+2026-09-06 11:41:47,609 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_03102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:47,623 INFO    backfill delivery 2025-10-03 ok, 346737 bytes
+2026-09-06 11:41:48,408 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251006_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:48,442 INFO    backfill bhavcopy 2025-10-06 ok, 180835 bytes
+2026-09-06 11:41:49,212 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_06102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:49,242 INFO    backfill delivery 2025-10-06 ok, 347622 bytes
+2026-09-06 11:41:50,007 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251007_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:50,037 INFO    backfill bhavcopy 2025-10-07 ok, 179702 bytes
+2026-09-06 11:41:50,817 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_07102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:50,836 INFO    backfill delivery 2025-10-07 ok, 344969 bytes
+2026-09-06 11:41:51,613 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251008_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:51,628 INFO    backfill bhavcopy 2025-10-08 ok, 180066 bytes
+2026-09-06 11:41:52,413 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_08102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:52,423 INFO    backfill delivery 2025-10-08 ok, 345541 bytes
+2026-09-06 11:41:53,214 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251009_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:53,247 INFO    backfill bhavcopy 2025-10-09 ok, 179308 bytes
+2026-09-06 11:41:54,013 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_09102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:54,043 INFO    backfill delivery 2025-10-09 ok, 345309 bytes
+2026-09-06 11:41:54,811 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251010_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:54,843 INFO    backfill bhavcopy 2025-10-10 ok, 178546 bytes
+2026-09-06 11:41:55,626 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_10102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:55,637 INFO    backfill delivery 2025-10-10 ok, 344553 bytes
+2026-09-06 11:41:56,437 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251013_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:56,460 INFO    backfill bhavcopy 2025-10-13 ok, 179804 bytes
+2026-09-06 11:41:57,221 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_13102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:57,236 INFO    backfill delivery 2025-10-13 ok, 346406 bytes
+2026-09-06 11:41:58,018 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251014_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:58,026 INFO    backfill bhavcopy 2025-10-14 ok, 180274 bytes
+2026-09-06 11:41:58,811 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_14102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:41:58,823 INFO    backfill delivery 2025-10-14 ok, 347720 bytes
+2026-09-06 11:41:59,614 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251015_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:41:59,644 INFO    backfill bhavcopy 2025-10-15 ok, 179173 bytes
+2026-09-06 11:42:00,413 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_15102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:00,424 INFO    backfill delivery 2025-10-15 ok, 346310 bytes
+2026-09-06 11:42:01,222 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251016_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:01,252 INFO    backfill bhavcopy 2025-10-16 ok, 179700 bytes
+2026-09-06 11:42:02,014 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_16102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:02,025 INFO    backfill delivery 2025-10-16 ok, 347483 bytes
+2026-09-06 11:42:02,821 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251017_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:02,854 INFO    backfill bhavcopy 2025-10-17 ok, 178052 bytes
+2026-09-06 11:42:03,614 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_17102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:03,626 INFO    backfill delivery 2025-10-17 ok, 345007 bytes
+2026-09-06 11:42:04,418 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251020_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:04,452 INFO    backfill bhavcopy 2025-10-20 ok, 181436 bytes
+2026-09-06 11:42:05,218 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_20102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:05,230 INFO    backfill delivery 2025-10-20 ok, 349322 bytes
+2026-09-06 11:42:06,023 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251021_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:06,051 INFO    backfill bhavcopy 2025-10-21 ok, 168246 bytes
+2026-09-06 11:42:06,846 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_21102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:06,861 INFO    backfill delivery 2025-10-21 ok, 332840 bytes
+2026-09-06 11:42:07,615 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251022_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:42:07,616 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251022_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:42:08,422 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_22102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:08,437 INFO    backfill delivery 2025-10-22 ok, 332840 bytes
+2026-09-06 11:42:09,225 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251023_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:09,252 INFO    backfill bhavcopy 2025-10-23 ok, 180544 bytes
+2026-09-06 11:42:10,039 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_23102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:10,077 INFO    backfill delivery 2025-10-23 ok, 348660 bytes
+2026-09-06 11:42:10,819 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251024_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:10,851 INFO    backfill bhavcopy 2025-10-24 ok, 178412 bytes
+2026-09-06 11:42:11,627 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_24102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:11,643 INFO    backfill delivery 2025-10-24 ok, 346275 bytes
+2026-09-06 11:42:12,418 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251027_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:12,433 INFO    backfill bhavcopy 2025-10-27 ok, 181905 bytes
+2026-09-06 11:42:13,224 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_27102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:13,237 INFO    backfill delivery 2025-10-27 ok, 351378 bytes
+2026-09-06 11:42:14,024 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251028_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:14,058 INFO    backfill bhavcopy 2025-10-28 ok, 181222 bytes
+2026-09-06 11:42:14,829 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_28102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:14,843 INFO    backfill delivery 2025-10-28 ok, 348516 bytes
+2026-09-06 11:42:15,622 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251029_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:15,652 INFO    backfill bhavcopy 2025-10-29 ok, 179862 bytes
+2026-09-06 11:42:16,437 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_29102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:16,448 INFO    backfill delivery 2025-10-29 ok, 346676 bytes
+2026-09-06 11:42:17,224 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251030_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:17,259 INFO    backfill bhavcopy 2025-10-30 ok, 178296 bytes
+2026-09-06 11:42:18,026 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_30102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:18,038 INFO    backfill delivery 2025-10-30 ok, 346075 bytes
+2026-09-06 11:42:18,832 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251031_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:18,862 INFO    backfill bhavcopy 2025-10-31 ok, 178902 bytes
+2026-09-06 11:42:19,643 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_31102025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:19,655 INFO    backfill delivery 2025-10-31 ok, 346483 bytes
+2026-09-06 11:42:20,438 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251103_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:20,469 INFO    backfill bhavcopy 2025-11-03 ok, 180608 bytes
+2026-09-06 11:42:21,236 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_03112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:21,248 INFO    backfill delivery 2025-11-03 ok, 348333 bytes
+2026-09-06 11:42:22,026 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251104_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:22,041 INFO    backfill bhavcopy 2025-11-04 ok, 178597 bytes
+2026-09-06 11:42:22,865 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_04112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:22,875 INFO    backfill delivery 2025-11-04 ok, 346827 bytes
+2026-09-06 11:42:23,634 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251105_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:42:23,636 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251105_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:42:24,429 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_05112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:24,441 INFO    backfill delivery 2025-11-05 ok, 346827 bytes
+2026-09-06 11:42:25,232 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251106_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:25,258 INFO    backfill bhavcopy 2025-11-06 ok, 179682 bytes
+2026-09-06 11:42:26,027 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_06112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:26,043 INFO    backfill delivery 2025-11-06 ok, 347802 bytes
+2026-09-06 11:42:26,825 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251107_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:26,855 INFO    backfill bhavcopy 2025-11-07 ok, 180274 bytes
+2026-09-06 11:42:27,647 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_07112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:27,664 INFO    backfill delivery 2025-11-07 ok, 346220 bytes
+2026-09-06 11:42:28,437 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251110_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:28,464 INFO    backfill bhavcopy 2025-11-10 ok, 181759 bytes
+2026-09-06 11:42:29,246 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_10112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:29,257 INFO    backfill delivery 2025-11-10 ok, 349773 bytes
+2026-09-06 11:42:30,035 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251111_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:30,062 INFO    backfill bhavcopy 2025-11-11 ok, 180125 bytes
+2026-09-06 11:42:30,855 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_11112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:30,867 INFO    backfill delivery 2025-11-11 ok, 347993 bytes
+2026-09-06 11:42:31,633 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251112_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:31,648 INFO    backfill bhavcopy 2025-11-12 ok, 180073 bytes
+2026-09-06 11:42:32,435 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_12112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:32,451 INFO    backfill delivery 2025-11-12 ok, 348391 bytes
+2026-09-06 11:42:33,236 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251113_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:33,266 INFO    backfill bhavcopy 2025-11-13 ok, 179753 bytes
+2026-09-06 11:42:34,075 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_13112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:34,090 INFO    backfill delivery 2025-11-13 ok, 347555 bytes
+2026-09-06 11:42:34,839 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251114_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:34,857 INFO    backfill bhavcopy 2025-11-14 ok, 179520 bytes
+2026-09-06 11:42:35,636 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_14112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:35,650 INFO    backfill delivery 2025-11-14 ok, 347976 bytes
+2026-09-06 11:42:36,438 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251117_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:36,466 INFO    backfill bhavcopy 2025-11-17 ok, 182894 bytes
+2026-09-06 11:42:37,248 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_17112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:37,260 INFO    backfill delivery 2025-11-17 ok, 352421 bytes
+2026-09-06 11:42:38,033 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251118_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:38,049 INFO    backfill bhavcopy 2025-11-18 ok, 181039 bytes
+2026-09-06 11:42:38,825 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_18112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:38,836 INFO    backfill delivery 2025-11-18 ok, 347853 bytes
+2026-09-06 11:42:39,643 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251119_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:39,671 INFO    backfill bhavcopy 2025-11-19 ok, 180767 bytes
+2026-09-06 11:42:40,427 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_19112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:40,443 INFO    backfill delivery 2025-11-19 ok, 347776 bytes
+2026-09-06 11:42:41,242 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251120_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:41,271 INFO    backfill bhavcopy 2025-11-20 ok, 179790 bytes
+2026-09-06 11:42:42,028 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_20112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:42,066 INFO    backfill delivery 2025-11-20 ok, 347424 bytes
+2026-09-06 11:42:42,837 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251121_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:42,852 INFO    backfill bhavcopy 2025-11-21 ok, 178405 bytes
+2026-09-06 11:42:43,638 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_21112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:43,651 INFO    backfill delivery 2025-11-21 ok, 346248 bytes
+2026-09-06 11:42:44,436 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251124_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:44,467 INFO    backfill bhavcopy 2025-11-24 ok, 180983 bytes
+2026-09-06 11:42:45,229 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_24112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:45,242 INFO    backfill delivery 2025-11-24 ok, 350250 bytes
+2026-09-06 11:42:46,040 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251125_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:46,071 INFO    backfill bhavcopy 2025-11-25 ok, 180014 bytes
+2026-09-06 11:42:46,832 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_25112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:46,844 INFO    backfill delivery 2025-11-25 ok, 347240 bytes
+2026-09-06 11:42:47,671 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251126_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:47,696 INFO    backfill bhavcopy 2025-11-26 ok, 178947 bytes
+2026-09-06 11:42:48,441 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_26112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:48,453 INFO    backfill delivery 2025-11-26 ok, 346992 bytes
+2026-09-06 11:42:49,253 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251127_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:49,268 INFO    backfill bhavcopy 2025-11-27 ok, 179446 bytes
+2026-09-06 11:42:50,040 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_27112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:50,052 INFO    backfill delivery 2025-11-27 ok, 347041 bytes
+2026-09-06 11:42:50,881 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251128_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:50,912 INFO    backfill bhavcopy 2025-11-28 ok, 178829 bytes
+2026-09-06 11:42:51,632 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_28112025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:51,667 INFO    backfill delivery 2025-11-28 ok, 347334 bytes
+2026-09-06 11:42:52,448 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251201_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:52,480 INFO    backfill bhavcopy 2025-12-01 ok, 181133 bytes
+2026-09-06 11:42:53,245 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_01122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:53,257 INFO    backfill delivery 2025-12-01 ok, 351128 bytes
+2026-09-06 11:42:54,077 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251202_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:54,099 INFO    backfill bhavcopy 2025-12-02 ok, 179747 bytes
+2026-09-06 11:42:54,836 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_02122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:54,848 INFO    backfill delivery 2025-12-02 ok, 347244 bytes
+2026-09-06 11:42:55,644 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251203_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:55,674 INFO    backfill bhavcopy 2025-12-03 ok, 180396 bytes
+2026-09-06 11:42:56,453 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_03122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:56,465 INFO    backfill delivery 2025-12-03 ok, 349445 bytes
+2026-09-06 11:42:57,246 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251204_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:57,279 INFO    backfill bhavcopy 2025-12-04 ok, 180169 bytes
+2026-09-06 11:42:58,043 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_04122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:58,056 INFO    backfill delivery 2025-12-04 ok, 348063 bytes
+2026-09-06 11:42:58,851 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251205_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:42:58,867 INFO    backfill bhavcopy 2025-12-05 ok, 179322 bytes
+2026-09-06 11:42:59,636 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_05122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:42:59,650 INFO    backfill delivery 2025-12-05 ok, 345661 bytes
+2026-09-06 11:43:00,449 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251208_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:00,479 INFO    backfill bhavcopy 2025-12-08 ok, 182528 bytes
+2026-09-06 11:43:01,242 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_08122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:01,254 INFO    backfill delivery 2025-12-08 ok, 353541 bytes
+2026-09-06 11:43:02,050 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251209_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:02,065 INFO    backfill bhavcopy 2025-12-09 ok, 181459 bytes
+2026-09-06 11:43:02,838 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_09122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:02,853 INFO    backfill delivery 2025-12-09 ok, 349948 bytes
+2026-09-06 11:43:03,652 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251210_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:03,681 INFO    backfill bhavcopy 2025-12-10 ok, 180557 bytes
+2026-09-06 11:43:04,443 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_10122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:04,455 INFO    backfill delivery 2025-12-10 ok, 347378 bytes
+2026-09-06 11:43:05,259 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251211_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:05,266 INFO    backfill bhavcopy 2025-12-11 ok, 179779 bytes
+2026-09-06 11:43:06,044 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_11122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:06,055 INFO    backfill delivery 2025-12-11 ok, 346661 bytes
+2026-09-06 11:43:06,905 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251212_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:06,921 INFO    backfill bhavcopy 2025-12-12 ok, 179283 bytes
+2026-09-06 11:43:07,639 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_12122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:07,651 INFO    backfill delivery 2025-12-12 ok, 347429 bytes
+2026-09-06 11:43:08,458 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251215_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:08,489 INFO    backfill bhavcopy 2025-12-15 ok, 181177 bytes
+2026-09-06 11:43:09,244 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_15122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:09,255 INFO    backfill delivery 2025-12-15 ok, 349903 bytes
+2026-09-06 11:43:10,074 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251216_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:10,082 INFO    backfill bhavcopy 2025-12-16 ok, 179276 bytes
+2026-09-06 11:43:10,853 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_16122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:10,869 INFO    backfill delivery 2025-12-16 ok, 348022 bytes
+2026-09-06 11:43:11,668 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251217_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:11,685 INFO    backfill bhavcopy 2025-12-17 ok, 180510 bytes
+2026-09-06 11:43:12,443 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_17122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:12,462 INFO    backfill delivery 2025-12-17 ok, 349033 bytes
+2026-09-06 11:43:13,255 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251218_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:13,274 INFO    backfill bhavcopy 2025-12-18 ok, 179960 bytes
+2026-09-06 11:43:14,051 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_18122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:14,065 INFO    backfill delivery 2025-12-18 ok, 347897 bytes
+2026-09-06 11:43:14,860 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251219_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:14,874 INFO    backfill bhavcopy 2025-12-19 ok, 180317 bytes
+2026-09-06 11:43:15,652 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_19122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:15,668 INFO    backfill delivery 2025-12-19 ok, 348544 bytes
+2026-09-06 11:43:16,472 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251222_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:16,489 INFO    backfill bhavcopy 2025-12-22 ok, 183687 bytes
+2026-09-06 11:43:17,249 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_22122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:17,261 INFO    backfill delivery 2025-12-22 ok, 353551 bytes
+2026-09-06 11:43:18,059 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251223_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:18,076 INFO    backfill bhavcopy 2025-12-23 ok, 182581 bytes
+2026-09-06 11:43:18,852 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_23122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:18,871 INFO    backfill delivery 2025-12-23 ok, 352187 bytes
+2026-09-06 11:43:19,680 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251224_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:19,698 INFO    backfill bhavcopy 2025-12-24 ok, 181842 bytes
+2026-09-06 11:43:20,457 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_24122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:20,472 INFO    backfill delivery 2025-12-24 ok, 351438 bytes
+2026-09-06 11:43:21,343 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251225_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:43:21,343 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251225_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:43:22,074 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_25122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:22,095 INFO    backfill delivery 2025-12-25 ok, 351438 bytes
+2026-09-06 11:43:22,870 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251226_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:22,880 INFO    backfill bhavcopy 2025-12-26 ok, 181892 bytes
+2026-09-06 11:43:23,652 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_26122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:23,671 INFO    backfill delivery 2025-12-26 ok, 351511 bytes
+2026-09-06 11:43:24,494 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251229_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:24,510 INFO    backfill bhavcopy 2025-12-29 ok, 184722 bytes
+2026-09-06 11:43:25,257 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_29122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:25,274 INFO    backfill delivery 2025-12-29 ok, 355129 bytes
+2026-09-06 11:43:26,073 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251230_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:26,086 INFO    backfill bhavcopy 2025-12-30 ok, 181669 bytes
+2026-09-06 11:43:26,856 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_30122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:26,875 INFO    backfill delivery 2025-12-30 ok, 351758 bytes
+2026-09-06 11:43:27,664 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20251231_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:27,681 INFO    backfill bhavcopy 2025-12-31 ok, 181894 bytes
+2026-09-06 11:43:28,456 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_31122025.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:28,475 INFO    backfill delivery 2025-12-31 ok, 351513 bytes
+2026-09-06 11:43:29,267 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260101_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:29,285 INFO    backfill bhavcopy 2026-01-01 ok, 179766 bytes
+2026-09-06 11:43:30,062 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_01012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:30,081 INFO    backfill delivery 2026-01-01 ok, 348845 bytes
+2026-09-06 11:43:30,876 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260102_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:30,894 INFO    backfill bhavcopy 2026-01-02 ok, 182111 bytes
+2026-09-06 11:43:31,657 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_02012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:31,677 INFO    backfill delivery 2026-01-02 ok, 349931 bytes
+2026-09-06 11:43:32,489 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260105_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:32,507 INFO    backfill bhavcopy 2026-01-05 ok, 182924 bytes
+2026-09-06 11:43:33,261 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_05012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:33,277 INFO    backfill delivery 2026-01-05 ok, 353349 bytes
+2026-09-06 11:43:34,086 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260106_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:34,103 INFO    backfill bhavcopy 2026-01-06 ok, 181443 bytes
+2026-09-06 11:43:34,865 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_06012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:34,879 INFO    backfill delivery 2026-01-06 ok, 350300 bytes
+2026-09-06 11:43:35,688 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260107_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:35,703 INFO    backfill bhavcopy 2026-01-07 ok, 181839 bytes
+2026-09-06 11:43:36,456 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_07012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:36,469 INFO    backfill delivery 2026-01-07 ok, 351557 bytes
+2026-09-06 11:43:37,287 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260108_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:37,303 INFO    backfill bhavcopy 2026-01-08 ok, 182123 bytes
+2026-09-06 11:43:38,057 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_08012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:38,068 INFO    backfill delivery 2026-01-08 ok, 352479 bytes
+2026-09-06 11:43:38,877 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260109_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:38,893 INFO    backfill bhavcopy 2026-01-09 ok, 182355 bytes
+2026-09-06 11:43:39,658 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_09012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:39,671 INFO    backfill delivery 2026-01-09 ok, 351036 bytes
+2026-09-06 11:43:40,467 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260112_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:40,487 INFO    backfill bhavcopy 2026-01-12 ok, 182465 bytes
+2026-09-06 11:43:41,268 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_12012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:41,282 INFO    backfill delivery 2026-01-12 ok, 352294 bytes
+2026-09-06 11:43:42,070 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260113_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:42,094 INFO    backfill bhavcopy 2026-01-13 ok, 182018 bytes
+2026-09-06 11:43:42,864 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_13012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:42,876 INFO    backfill delivery 2026-01-13 ok, 350079 bytes
+2026-09-06 11:43:43,679 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260114_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:43,686 INFO    backfill bhavcopy 2026-01-14 ok, 181452 bytes
+2026-09-06 11:43:44,474 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_14012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:44,485 INFO    backfill delivery 2026-01-14 ok, 349993 bytes
+2026-09-06 11:43:45,273 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260115_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:43:45,274 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260115_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:43:46,075 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_15012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:46,088 INFO    backfill delivery 2026-01-15 ok, 349993 bytes
+2026-09-06 11:43:46,877 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260116_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:46,962 INFO    backfill bhavcopy 2026-01-16 ok, 183408 bytes
+2026-09-06 11:43:47,666 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_16012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:47,680 INFO    backfill delivery 2026-01-16 ok, 352472 bytes
+2026-09-06 11:43:48,610 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260119_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:48,725 INFO    backfill bhavcopy 2026-01-19 ok, 183732 bytes
+2026-09-06 11:43:49,265 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_19012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:49,282 INFO    backfill delivery 2026-01-19 ok, 353808 bytes
+2026-09-06 11:43:50,077 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260120_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:50,110 INFO    backfill bhavcopy 2026-01-20 ok, 185846 bytes
+2026-09-06 11:43:50,863 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_20012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:50,896 INFO    backfill delivery 2026-01-20 ok, 355897 bytes
+2026-09-06 11:43:51,685 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260121_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:51,738 INFO    backfill bhavcopy 2026-01-21 ok, 186160 bytes
+2026-09-06 11:43:52,466 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_21012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:52,484 INFO    backfill delivery 2026-01-21 ok, 355921 bytes
+2026-09-06 11:43:53,313 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260122_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:53,322 INFO    backfill bhavcopy 2026-01-22 ok, 182856 bytes
+2026-09-06 11:43:54,175 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_22012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:54,186 INFO    backfill delivery 2026-01-22 ok, 352384 bytes
+2026-09-06 11:43:54,985 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260123_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:54,992 INFO    backfill bhavcopy 2026-01-23 ok, 182501 bytes
+2026-09-06 11:43:55,669 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_23012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:55,684 INFO    backfill delivery 2026-01-23 ok, 352669 bytes
+2026-09-06 11:43:56,552 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260126_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:43:56,553 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260126_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:43:57,269 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_26012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:57,282 INFO    backfill delivery 2026-01-26 ok, 352669 bytes
+2026-09-06 11:43:58,103 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260127_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:58,118 INFO    backfill bhavcopy 2026-01-27 ok, 185735 bytes
+2026-09-06 11:43:58,883 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_27012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:43:58,893 INFO    backfill delivery 2026-01-27 ok, 355793 bytes
+2026-09-06 11:43:59,766 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260128_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:43:59,779 INFO    backfill bhavcopy 2026-01-28 ok, 183639 bytes
+2026-09-06 11:44:00,469 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_28012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:00,479 INFO    backfill delivery 2026-01-28 ok, 352974 bytes
+2026-09-06 11:44:01,293 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260129_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:01,317 INFO    backfill bhavcopy 2026-01-29 ok, 185059 bytes
+2026-09-06 11:44:02,083 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_29012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:02,094 INFO    backfill delivery 2026-01-29 ok, 355168 bytes
+2026-09-06 11:44:02,945 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260130_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:02,965 INFO    backfill bhavcopy 2026-01-30 ok, 183505 bytes
+2026-09-06 11:44:03,675 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_30012026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:03,687 INFO    backfill delivery 2026-01-30 ok, 353417 bytes
+2026-09-06 11:44:04,500 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260202_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:04,517 INFO    backfill bhavcopy 2026-02-02 ok, 183920 bytes
+2026-09-06 11:44:05,271 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_02022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:05,285 INFO    backfill delivery 2026-02-02 ok, 352360 bytes
+2026-09-06 11:44:06,152 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260203_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:06,181 INFO    backfill bhavcopy 2026-02-03 ok, 186387 bytes
+2026-09-06 11:44:06,980 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_03022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:06,987 INFO    backfill delivery 2026-02-03 ok, 357071 bytes
+2026-09-06 11:44:07,740 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260204_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:07,756 INFO    backfill bhavcopy 2026-02-04 ok, 184767 bytes
+2026-09-06 11:44:08,494 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_04022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:08,508 INFO    backfill delivery 2026-02-04 ok, 353946 bytes
+2026-09-06 11:44:09,373 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260205_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:09,385 INFO    backfill bhavcopy 2026-02-05 ok, 181713 bytes
+2026-09-06 11:44:10,078 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_05022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:10,089 INFO    backfill delivery 2026-02-05 ok, 350963 bytes
+2026-09-06 11:44:10,891 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260206_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:10,923 INFO    backfill bhavcopy 2026-02-06 ok, 181220 bytes
+2026-09-06 11:44:11,689 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_06022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:11,700 INFO    backfill delivery 2026-02-06 ok, 348962 bytes
+2026-09-06 11:44:12,495 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260209_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:12,525 INFO    backfill bhavcopy 2026-02-09 ok, 185819 bytes
+2026-09-06 11:44:13,282 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_09022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:13,295 INFO    backfill delivery 2026-02-09 ok, 356710 bytes
+2026-09-06 11:44:14,088 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260210_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:14,104 INFO    backfill bhavcopy 2026-02-10 ok, 183756 bytes
+2026-09-06 11:44:14,880 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_10022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:14,890 INFO    backfill delivery 2026-02-10 ok, 354576 bytes
+2026-09-06 11:44:15,746 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260211_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:15,765 INFO    backfill bhavcopy 2026-02-11 ok, 182496 bytes
+2026-09-06 11:44:16,502 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_11022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:16,514 INFO    backfill delivery 2026-02-11 ok, 352518 bytes
+2026-09-06 11:44:17,323 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260212_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:17,353 INFO    backfill bhavcopy 2026-02-12 ok, 182597 bytes
+2026-09-06 11:44:18,093 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_12022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:18,100 INFO    backfill delivery 2026-02-12 ok, 353112 bytes
+2026-09-06 11:44:18,988 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260213_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:19,013 INFO    backfill bhavcopy 2026-02-13 ok, 182130 bytes
+2026-09-06 11:44:19,687 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_13022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:19,703 INFO    backfill delivery 2026-02-13 ok, 351817 bytes
+2026-09-06 11:44:20,576 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260216_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:20,597 INFO    backfill bhavcopy 2026-02-16 ok, 182989 bytes
+2026-09-06 11:44:21,315 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_16022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:21,333 INFO    backfill delivery 2026-02-16 ok, 354118 bytes
+2026-09-06 11:44:22,166 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260217_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:22,198 INFO    backfill bhavcopy 2026-02-17 ok, 181865 bytes
+2026-09-06 11:44:22,944 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_17022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:22,956 INFO    backfill delivery 2026-02-17 ok, 351780 bytes
+2026-09-06 11:44:23,693 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260218_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:23,725 INFO    backfill bhavcopy 2026-02-18 ok, 183380 bytes
+2026-09-06 11:44:24,563 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_18022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:24,574 INFO    backfill delivery 2026-02-18 ok, 354490 bytes
+2026-09-06 11:44:25,303 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260219_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:25,336 INFO    backfill bhavcopy 2026-02-19 ok, 182237 bytes
+2026-09-06 11:44:26,159 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_19022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:26,173 INFO    backfill delivery 2026-02-19 ok, 353361 bytes
+2026-09-06 11:44:26,975 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260220_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:26,985 INFO    backfill bhavcopy 2026-02-20 ok, 181947 bytes
+2026-09-06 11:44:27,694 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_20022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:27,705 INFO    backfill delivery 2026-02-20 ok, 351849 bytes
+2026-09-06 11:44:28,517 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260223_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:28,529 INFO    backfill bhavcopy 2026-02-23 ok, 183854 bytes
+2026-09-06 11:44:29,319 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_23022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:29,335 INFO    backfill delivery 2026-02-23 ok, 355159 bytes
+2026-09-06 11:44:30,248 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260224_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:30,269 INFO    backfill bhavcopy 2026-02-24 ok, 183024 bytes
+2026-09-06 11:44:30,972 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_24022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:30,979 INFO    backfill delivery 2026-02-24 ok, 354567 bytes
+2026-09-06 11:44:31,761 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260225_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:31,794 INFO    backfill bhavcopy 2026-02-25 ok, 183972 bytes
+2026-09-06 11:44:32,517 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_25022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:32,530 INFO    backfill delivery 2026-02-25 ok, 355088 bytes
+2026-09-06 11:44:33,328 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260226_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:33,361 INFO    backfill bhavcopy 2026-02-26 ok, 182525 bytes
+2026-09-06 11:44:34,105 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_26022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:34,119 INFO    backfill delivery 2026-02-26 ok, 353330 bytes
+2026-09-06 11:44:34,920 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260227_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:34,935 INFO    backfill bhavcopy 2026-02-27 ok, 181455 bytes
+2026-09-06 11:44:35,724 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_27022026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:35,735 INFO    backfill delivery 2026-02-27 ok, 350782 bytes
+2026-09-06 11:44:36,521 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260302_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:36,552 INFO    backfill bhavcopy 2026-03-02 ok, 185707 bytes
+2026-09-06 11:44:37,301 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_02032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:37,313 INFO    backfill delivery 2026-03-02 ok, 358102 bytes
+2026-09-06 11:44:38,204 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260303_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:44:38,204 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260303_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:44:38,904 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_03032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:38,916 INFO    backfill delivery 2026-03-03 ok, 358102 bytes
+2026-09-06 11:44:39,704 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260304_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:39,719 INFO    backfill bhavcopy 2026-03-04 ok, 187306 bytes
+2026-09-06 11:44:40,503 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_04032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:40,516 INFO    backfill delivery 2026-03-04 ok, 358654 bytes
+2026-09-06 11:44:41,309 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260305_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:41,340 INFO    backfill bhavcopy 2026-03-05 ok, 186683 bytes
+2026-09-06 11:44:42,102 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_05032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:42,114 INFO    backfill delivery 2026-03-05 ok, 357064 bytes
+2026-09-06 11:44:42,914 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260306_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:42,923 INFO    backfill bhavcopy 2026-03-06 ok, 184579 bytes
+2026-09-06 11:44:43,707 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_06032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:43,729 INFO    backfill delivery 2026-03-06 ok, 354838 bytes
+2026-09-06 11:44:44,514 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260309_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:44,526 INFO    backfill bhavcopy 2026-03-09 ok, 188225 bytes
+2026-09-06 11:44:45,317 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_09032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:45,332 INFO    backfill delivery 2026-03-09 ok, 359290 bytes
+2026-09-06 11:44:46,106 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260310_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:46,141 INFO    backfill bhavcopy 2026-03-10 ok, 185478 bytes
+2026-09-06 11:44:46,910 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_10032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:46,923 INFO    backfill delivery 2026-03-10 ok, 355426 bytes
+2026-09-06 11:44:47,712 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260311_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:47,728 INFO    backfill bhavcopy 2026-03-11 ok, 185083 bytes
+2026-09-06 11:44:48,519 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_11032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:48,534 INFO    backfill delivery 2026-03-11 ok, 356057 bytes
+2026-09-06 11:44:49,308 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260312_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:49,343 INFO    backfill bhavcopy 2026-03-12 ok, 185931 bytes
+2026-09-06 11:44:50,109 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_12032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:50,124 INFO    backfill delivery 2026-03-12 ok, 357038 bytes
+2026-09-06 11:44:50,911 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260313_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:50,942 INFO    backfill bhavcopy 2026-03-13 ok, 186645 bytes
+2026-09-06 11:44:51,712 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_13032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:51,725 INFO    backfill delivery 2026-03-13 ok, 358025 bytes
+2026-09-06 11:44:52,515 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260316_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:52,552 INFO    backfill bhavcopy 2026-03-16 ok, 189674 bytes
+2026-09-06 11:44:53,319 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_16032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:53,326 INFO    backfill delivery 2026-03-16 ok, 361404 bytes
+2026-09-06 11:44:54,128 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260317_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:54,151 INFO    backfill bhavcopy 2026-03-17 ok, 186702 bytes
+2026-09-06 11:44:54,926 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_17032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:54,938 INFO    backfill delivery 2026-03-17 ok, 357764 bytes
+2026-09-06 11:44:55,716 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260318_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:55,748 INFO    backfill bhavcopy 2026-03-18 ok, 187172 bytes
+2026-09-06 11:44:56,516 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_18032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:56,527 INFO    backfill delivery 2026-03-18 ok, 359771 bytes
+2026-09-06 11:44:57,313 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260319_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:57,349 INFO    backfill bhavcopy 2026-03-19 ok, 185811 bytes
+2026-09-06 11:44:58,130 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_19032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:58,143 INFO    backfill delivery 2026-03-19 ok, 357304 bytes
+2026-09-06 11:44:58,918 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260320_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:44:58,955 INFO    backfill bhavcopy 2026-03-20 ok, 186495 bytes
+2026-09-06 11:44:59,717 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_20032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:44:59,728 INFO    backfill delivery 2026-03-20 ok, 359779 bytes
+2026-09-06 11:45:00,517 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260323_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:00,530 INFO    backfill bhavcopy 2026-03-23 ok, 191743 bytes
+2026-09-06 11:45:01,321 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_23032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:01,355 INFO    backfill delivery 2026-03-23 ok, 365949 bytes
+2026-09-06 11:45:02,143 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260324_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:02,148 INFO    backfill bhavcopy 2026-03-24 ok, 190009 bytes
+2026-09-06 11:45:02,934 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_24032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:02,968 INFO    backfill delivery 2026-03-24 ok, 363136 bytes
+2026-09-06 11:45:03,738 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260325_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:03,751 INFO    backfill bhavcopy 2026-03-25 ok, 189830 bytes
+2026-09-06 11:45:04,523 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_25032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:04,537 INFO    backfill delivery 2026-03-25 ok, 363891 bytes
+2026-09-06 11:45:05,322 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260326_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:45:05,323 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260326_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:45:06,111 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_26032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:06,123 INFO    backfill delivery 2026-03-26 ok, 363891 bytes
+2026-09-06 11:45:06,975 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260327_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:06,984 INFO    backfill bhavcopy 2026-03-27 ok, 191112 bytes
+2026-09-06 11:45:07,721 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_27032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:07,737 INFO    backfill delivery 2026-03-27 ok, 366610 bytes
+2026-09-06 11:45:08,533 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260330_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:08,560 INFO    backfill bhavcopy 2026-03-30 ok, 192223 bytes
+2026-09-06 11:45:09,334 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_30032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:09,368 INFO    backfill delivery 2026-03-30 ok, 368166 bytes
+2026-09-06 11:45:10,205 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260331_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:45:10,206 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260331_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:45:10,911 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_31032026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:10,925 INFO    backfill delivery 2026-03-31 ok, 368166 bytes
+2026-09-06 11:45:11,734 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260401_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:11,805 INFO    backfill bhavcopy 2026-04-01 ok, 185967 bytes
+2026-09-06 11:45:12,543 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_01042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:12,557 INFO    backfill delivery 2026-04-01 ok, 358382 bytes
+2026-09-06 11:45:13,326 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260402_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:13,349 INFO    backfill bhavcopy 2026-04-02 ok, 186192 bytes
+2026-09-06 11:45:14,126 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_02042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:14,138 INFO    backfill delivery 2026-04-02 ok, 357316 bytes
+2026-09-06 11:45:14,923 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260403_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:45:14,924 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260403_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:45:15,715 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_03042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:15,730 INFO    backfill delivery 2026-04-03 ok, 357316 bytes
+2026-09-06 11:45:16,525 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260406_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:16,543 INFO    backfill bhavcopy 2026-04-06 ok, 187905 bytes
+2026-09-06 11:45:17,337 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_06042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:17,350 INFO    backfill delivery 2026-04-06 ok, 359867 bytes
+2026-09-06 11:45:18,129 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260407_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:18,148 INFO    backfill bhavcopy 2026-04-07 ok, 185935 bytes
+2026-09-06 11:45:18,929 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_07042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:18,941 INFO    backfill delivery 2026-04-07 ok, 357878 bytes
+2026-09-06 11:45:19,733 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260408_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:19,747 INFO    backfill bhavcopy 2026-04-08 ok, 189924 bytes
+2026-09-06 11:45:20,532 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_08042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:20,547 INFO    backfill delivery 2026-04-08 ok, 365276 bytes
+2026-09-06 11:45:21,332 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260409_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:21,365 INFO    backfill bhavcopy 2026-04-09 ok, 186532 bytes
+2026-09-06 11:45:22,150 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_09042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:22,168 INFO    backfill delivery 2026-04-09 ok, 357779 bytes
+2026-09-06 11:45:22,958 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260410_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:22,989 INFO    backfill bhavcopy 2026-04-10 ok, 187705 bytes
+2026-09-06 11:45:23,733 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_10042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:23,748 INFO    backfill delivery 2026-04-10 ok, 360444 bytes
+2026-09-06 11:45:24,529 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260413_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:24,568 INFO    backfill bhavcopy 2026-04-13 ok, 187396 bytes
+2026-09-06 11:45:25,330 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_13042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:25,345 INFO    backfill delivery 2026-04-13 ok, 358864 bytes
+2026-09-06 11:45:26,131 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260414_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:45:26,132 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260414_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:45:26,931 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_14042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:26,946 INFO    backfill delivery 2026-04-14 ok, 358864 bytes
+2026-09-06 11:45:27,731 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260415_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:27,763 INFO    backfill bhavcopy 2026-04-15 ok, 189208 bytes
+2026-09-06 11:45:28,534 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_15042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:28,544 INFO    backfill delivery 2026-04-15 ok, 362563 bytes
+2026-09-06 11:45:29,334 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260416_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:29,414 INFO    backfill bhavcopy 2026-04-16 ok, 187794 bytes
+2026-09-06 11:45:30,137 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_16042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:30,146 INFO    backfill delivery 2026-04-16 ok, 360345 bytes
+2026-09-06 11:45:30,946 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260417_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:30,956 INFO    backfill bhavcopy 2026-04-17 ok, 189094 bytes
+2026-09-06 11:45:31,747 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_17042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:31,762 INFO    backfill delivery 2026-04-17 ok, 361601 bytes
+2026-09-06 11:45:32,538 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260420_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:32,570 INFO    backfill bhavcopy 2026-04-20 ok, 192475 bytes
+2026-09-06 11:45:33,341 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_20042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:33,350 INFO    backfill delivery 2026-04-20 ok, 371096 bytes
+2026-09-06 11:45:34,135 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260421_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:34,158 INFO    backfill bhavcopy 2026-04-21 ok, 192728 bytes
+2026-09-06 11:45:34,934 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_21042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:34,947 INFO    backfill delivery 2026-04-21 ok, 370630 bytes
+2026-09-06 11:45:35,736 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260422_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:35,769 INFO    backfill bhavcopy 2026-04-22 ok, 191315 bytes
+2026-09-06 11:45:36,540 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_22042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:36,553 INFO    backfill delivery 2026-04-22 ok, 368060 bytes
+2026-09-06 11:45:37,348 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260423_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:37,368 INFO    backfill bhavcopy 2026-04-23 ok, 190860 bytes
+2026-09-06 11:45:38,138 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_23042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:38,153 INFO    backfill delivery 2026-04-23 ok, 368711 bytes
+2026-09-06 11:45:38,938 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260424_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:38,970 INFO    backfill bhavcopy 2026-04-24 ok, 191470 bytes
+2026-09-06 11:45:39,773 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_24042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:39,779 INFO    backfill delivery 2026-04-24 ok, 368593 bytes
+2026-09-06 11:45:40,539 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260427_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:40,572 INFO    backfill bhavcopy 2026-04-27 ok, 193520 bytes
+2026-09-06 11:45:41,338 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_27042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:41,353 INFO    backfill delivery 2026-04-27 ok, 370872 bytes
+2026-09-06 11:45:42,137 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260428_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:42,168 INFO    backfill bhavcopy 2026-04-28 ok, 190314 bytes
+2026-09-06 11:45:42,941 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_28042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:42,951 INFO    backfill delivery 2026-04-28 ok, 366935 bytes
+2026-09-06 11:45:43,751 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260429_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:43,758 INFO    backfill bhavcopy 2026-04-29 ok, 191321 bytes
+2026-09-06 11:45:44,549 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_29042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:44,563 INFO    backfill delivery 2026-04-29 ok, 366927 bytes
+2026-09-06 11:45:45,376 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260430_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:45,398 INFO    backfill bhavcopy 2026-04-30 ok, 189870 bytes
+2026-09-06 11:45:46,140 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_30042026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:46,158 INFO    backfill delivery 2026-04-30 ok, 365181 bytes
+2026-09-06 11:45:46,966 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260501_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:45:46,967 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260501_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:45:47,730 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_01052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:47,742 INFO    backfill delivery 2026-05-01 ok, 365181 bytes
+2026-09-06 11:45:48,546 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260504_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:48,579 INFO    backfill bhavcopy 2026-05-04 ok, 192957 bytes
+2026-09-06 11:45:49,341 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_04052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:49,354 INFO    backfill delivery 2026-05-04 ok, 370728 bytes
+2026-09-06 11:45:50,140 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260505_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:50,171 INFO    backfill bhavcopy 2026-05-05 ok, 190712 bytes
+2026-09-06 11:45:50,942 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_05052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:50,956 INFO    backfill delivery 2026-05-05 ok, 368666 bytes
+2026-09-06 11:45:51,745 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260506_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:51,780 INFO    backfill bhavcopy 2026-05-06 ok, 190715 bytes
+2026-09-06 11:45:52,551 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_06052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:52,564 INFO    backfill delivery 2026-05-06 ok, 367798 bytes
+2026-09-06 11:45:53,364 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260507_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:53,394 INFO    backfill bhavcopy 2026-05-07 ok, 191533 bytes
+2026-09-06 11:45:54,190 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_07052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:54,202 INFO    backfill delivery 2026-05-07 ok, 370232 bytes
+2026-09-06 11:45:54,945 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260508_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:54,977 INFO    backfill bhavcopy 2026-05-08 ok, 190808 bytes
+2026-09-06 11:45:55,888 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_08052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:55,905 INFO    backfill delivery 2026-05-08 ok, 368476 bytes
+2026-09-06 11:45:56,601 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260511_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:56,617 INFO    backfill bhavcopy 2026-05-11 ok, 192707 bytes
+2026-09-06 11:45:57,349 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_11052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:57,358 INFO    backfill delivery 2026-05-11 ok, 370887 bytes
+2026-09-06 11:45:58,149 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260512_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:58,165 INFO    backfill bhavcopy 2026-05-12 ok, 191674 bytes
+2026-09-06 11:45:59,111 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_12052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:45:59,124 INFO    backfill delivery 2026-05-12 ok, 368460 bytes
+2026-09-06 11:45:59,805 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260513_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:45:59,819 INFO    backfill bhavcopy 2026-05-13 ok, 190366 bytes
+2026-09-06 11:46:00,609 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_13052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:00,623 INFO    backfill delivery 2026-05-13 ok, 367187 bytes
+2026-09-06 11:46:01,819 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260514_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:01,864 INFO    backfill bhavcopy 2026-05-14 ok, 190508 bytes
+2026-09-06 11:46:02,204 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_14052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:02,219 INFO    backfill delivery 2026-05-14 ok, 366382 bytes
+2026-09-06 11:46:03,001 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260515_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:03,019 INFO    backfill bhavcopy 2026-05-15 ok, 189305 bytes
+2026-09-06 11:46:03,770 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_15052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:03,784 INFO    backfill delivery 2026-05-15 ok, 365988 bytes
+2026-09-06 11:46:04,602 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260518_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:04,615 INFO    backfill bhavcopy 2026-05-18 ok, 191619 bytes
+2026-09-06 11:46:05,343 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_18052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:05,356 INFO    backfill delivery 2026-05-18 ok, 369831 bytes
+2026-09-06 11:46:06,161 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260519_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:06,320 INFO    backfill bhavcopy 2026-05-19 ok, 188103 bytes
+2026-09-06 11:46:07,058 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_19052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:07,069 INFO    backfill delivery 2026-05-19 ok, 364315 bytes
+2026-09-06 11:46:07,803 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260520_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:07,837 INFO    backfill bhavcopy 2026-05-20 ok, 189146 bytes
+2026-09-06 11:46:08,610 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_20052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:08,621 INFO    backfill delivery 2026-05-20 ok, 364537 bytes
+2026-09-06 11:46:09,405 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260521_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:09,435 INFO    backfill bhavcopy 2026-05-21 ok, 190118 bytes
+2026-09-06 11:46:10,206 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_21052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:10,220 INFO    backfill delivery 2026-05-21 ok, 366667 bytes
+2026-09-06 11:46:10,968 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260522_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:10,983 INFO    backfill bhavcopy 2026-05-22 ok, 189303 bytes
+2026-09-06 11:46:11,769 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_22052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:11,782 INFO    backfill delivery 2026-05-22 ok, 366835 bytes
+2026-09-06 11:46:12,605 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260525_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:12,640 INFO    backfill bhavcopy 2026-05-25 ok, 192372 bytes
+2026-09-06 11:46:13,462 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_25052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:13,557 INFO    backfill delivery 2026-05-25 ok, 371897 bytes
+2026-09-06 11:46:14,233 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260526_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:14,266 INFO    backfill bhavcopy 2026-05-26 ok, 192497 bytes
+2026-09-06 11:46:15,010 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_26052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:15,022 INFO    backfill delivery 2026-05-26 ok, 370499 bytes
+2026-09-06 11:46:15,807 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260527_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:15,838 INFO    backfill bhavcopy 2026-05-27 ok, 191926 bytes
+2026-09-06 11:46:16,616 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_27052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:16,627 INFO    backfill delivery 2026-05-27 ok, 370384 bytes
+2026-09-06 11:46:17,405 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260528_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:46:17,406 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260528_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:46:18,150 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_28052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:18,162 INFO    backfill delivery 2026-05-28 ok, 370384 bytes
+2026-09-06 11:46:19,021 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260529_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:19,043 INFO    backfill bhavcopy 2026-05-29 ok, 193536 bytes
+2026-09-06 11:46:19,772 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_29052026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:19,787 INFO    backfill delivery 2026-05-29 ok, 373839 bytes
+2026-09-06 11:46:20,622 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260601_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:20,628 INFO    backfill bhavcopy 2026-06-01 ok, 194302 bytes
+2026-09-06 11:46:21,414 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_01062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:21,428 INFO    backfill delivery 2026-06-01 ok, 373878 bytes
+2026-09-06 11:46:22,212 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260602_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:22,244 INFO    backfill bhavcopy 2026-06-02 ok, 192788 bytes
+2026-09-06 11:46:22,976 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_02062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:22,985 INFO    backfill delivery 2026-06-02 ok, 371003 bytes
+2026-09-06 11:46:23,825 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260603_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:23,847 INFO    backfill bhavcopy 2026-06-03 ok, 190915 bytes
+2026-09-06 11:46:24,626 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_03062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:24,639 INFO    backfill delivery 2026-06-03 ok, 369233 bytes
+2026-09-06 11:46:25,411 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260604_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:25,441 INFO    backfill bhavcopy 2026-06-04 ok, 190679 bytes
+2026-09-06 11:46:26,214 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_04062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:26,228 INFO    backfill delivery 2026-06-04 ok, 369283 bytes
+2026-09-06 11:46:27,011 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260605_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:27,044 INFO    backfill bhavcopy 2026-06-05 ok, 191409 bytes
+2026-09-06 11:46:27,838 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_05062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:27,845 INFO    backfill delivery 2026-06-05 ok, 368981 bytes
+2026-09-06 11:46:28,577 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260608_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:28,606 INFO    backfill bhavcopy 2026-06-08 ok, 191508 bytes
+2026-09-06 11:46:29,376 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_08062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:29,389 INFO    backfill delivery 2026-06-08 ok, 367132 bytes
+2026-09-06 11:46:30,178 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260609_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:30,214 INFO    backfill bhavcopy 2026-06-09 ok, 190188 bytes
+2026-09-06 11:46:31,016 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_09062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:31,029 INFO    backfill delivery 2026-06-09 ok, 367047 bytes
+2026-09-06 11:46:31,825 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260610_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:31,850 INFO    backfill bhavcopy 2026-06-10 ok, 189917 bytes
+2026-09-06 11:46:32,581 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_10062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:32,592 INFO    backfill delivery 2026-06-10 ok, 367826 bytes
+2026-09-06 11:46:33,416 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260611_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:33,431 INFO    backfill bhavcopy 2026-06-11 ok, 189223 bytes
+2026-09-06 11:46:34,218 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_11062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:34,229 INFO    backfill delivery 2026-06-11 ok, 365381 bytes
+2026-09-06 11:46:35,021 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260612_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:35,051 INFO    backfill bhavcopy 2026-06-12 ok, 190709 bytes
+2026-09-06 11:46:35,779 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_12062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:35,793 INFO    backfill delivery 2026-06-12 ok, 368301 bytes
+2026-09-06 11:46:36,621 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260615_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:36,652 INFO    backfill bhavcopy 2026-06-15 ok, 194444 bytes
+2026-09-06 11:46:37,390 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_15062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:37,401 INFO    backfill delivery 2026-06-15 ok, 373867 bytes
+2026-09-06 11:46:38,183 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260616_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:38,217 INFO    backfill bhavcopy 2026-06-16 ok, 192013 bytes
+2026-09-06 11:46:39,020 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_16062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:39,030 INFO    backfill delivery 2026-06-16 ok, 369789 bytes
+2026-09-06 11:46:39,820 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260617_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:39,838 INFO    backfill bhavcopy 2026-06-17 ok, 192928 bytes
+2026-09-06 11:46:40,621 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_17062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:40,633 INFO    backfill delivery 2026-06-17 ok, 370954 bytes
+2026-09-06 11:46:41,392 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260618_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:41,418 INFO    backfill bhavcopy 2026-06-18 ok, 190643 bytes
+2026-09-06 11:46:42,225 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_18062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:42,232 INFO    backfill delivery 2026-06-18 ok, 368896 bytes
+2026-09-06 11:46:43,025 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260619_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:43,034 INFO    backfill bhavcopy 2026-06-19 ok, 191944 bytes
+2026-09-06 11:46:43,828 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_19062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:43,841 INFO    backfill delivery 2026-06-19 ok, 369337 bytes
+2026-09-06 11:46:44,623 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260622_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:44,637 INFO    backfill bhavcopy 2026-06-22 ok, 194179 bytes
+2026-09-06 11:46:45,430 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_22062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:45,441 INFO    backfill delivery 2026-06-22 ok, 374552 bytes
+2026-09-06 11:46:46,188 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260623_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:46,327 INFO    backfill bhavcopy 2026-06-23 ok, 191810 bytes
+2026-09-06 11:46:47,032 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_23062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:47,044 INFO    backfill delivery 2026-06-23 ok, 370426 bytes
+2026-09-06 11:46:47,791 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260624_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:47,806 INFO    backfill bhavcopy 2026-06-24 ok, 192019 bytes
+2026-09-06 11:46:48,625 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_24062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:48,640 INFO    backfill delivery 2026-06-24 ok, 369962 bytes
+2026-09-06 11:46:49,537 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260625_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:49,542 INFO    backfill bhavcopy 2026-06-25 ok, 192413 bytes
+2026-09-06 11:46:50,190 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_25062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:50,201 INFO    backfill delivery 2026-06-25 ok, 370291 bytes
+2026-09-06 11:46:50,982 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260626_F_0000.csv.zip "HTTP/1.1 404 Not Found"
+2026-09-06 11:46:50,982 INFO    app.ingest.nse_client no file published at https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260626_F_0000.csv.zip (HTTP 404)
+2026-09-06 11:46:51,827 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_26062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:51,838 INFO    backfill delivery 2026-06-26 ok, 370291 bytes
+2026-09-06 11:46:52,627 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260629_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:52,641 INFO    backfill bhavcopy 2026-06-29 ok, 194762 bytes
+2026-09-06 11:46:53,423 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_29062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:53,440 INFO    backfill delivery 2026-06-29 ok, 374047 bytes
+2026-09-06 11:46:54,192 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260630_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:54,205 INFO    backfill bhavcopy 2026-06-30 ok, 191928 bytes
+2026-09-06 11:46:55,002 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_30062026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:55,015 INFO    backfill delivery 2026-06-30 ok, 371254 bytes
+2026-09-06 11:46:55,817 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260701_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:55,827 INFO    backfill bhavcopy 2026-07-01 ok, 192507 bytes
+2026-09-06 11:46:56,626 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_01072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:56,638 INFO    backfill delivery 2026-07-01 ok, 370870 bytes
+2026-09-06 11:46:57,429 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260702_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:57,444 INFO    backfill bhavcopy 2026-07-02 ok, 194155 bytes
+2026-09-06 11:46:58,242 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_02072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:58,254 INFO    backfill delivery 2026-07-02 ok, 370960 bytes
+2026-09-06 11:46:58,987 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260703_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:46:59,002 INFO    backfill bhavcopy 2026-07-03 ok, 193878 bytes
+2026-09-06 11:46:59,794 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_03072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:46:59,807 INFO    backfill delivery 2026-07-03 ok, 372651 bytes
+2026-09-06 11:47:00,643 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260706_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:00,674 INFO    backfill bhavcopy 2026-07-06 ok, 194356 bytes
+2026-09-06 11:47:01,381 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_06072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:01,398 INFO    backfill delivery 2026-07-06 ok, 374056 bytes
+2026-09-06 11:47:02,247 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260707_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:02,280 INFO    backfill bhavcopy 2026-07-07 ok, 190553 bytes
+2026-09-06 11:47:02,999 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_07072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:03,013 INFO    backfill delivery 2026-07-07 ok, 366710 bytes
+2026-09-06 11:47:03,796 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260708_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:03,829 INFO    backfill bhavcopy 2026-07-08 ok, 193135 bytes
+2026-09-06 11:47:04,570 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_08072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:04,586 INFO    backfill delivery 2026-07-08 ok, 371488 bytes
+2026-09-06 11:47:05,379 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260709_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:05,410 INFO    backfill bhavcopy 2026-07-09 ok, 191679 bytes
+2026-09-06 11:47:06,179 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_09072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:06,191 INFO    backfill delivery 2026-07-09 ok, 369386 bytes
+2026-09-06 11:47:06,981 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260710_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:07,012 INFO    backfill bhavcopy 2026-07-10 ok, 191838 bytes
+2026-09-06 11:47:07,774 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_10072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:07,794 INFO    backfill delivery 2026-07-10 ok, 369269 bytes
+2026-09-06 11:47:08,642 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260713_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:08,656 INFO    backfill bhavcopy 2026-07-13 ok, 193691 bytes
+2026-09-06 11:47:09,369 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_13072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:09,383 INFO    backfill delivery 2026-07-13 ok, 371509 bytes
+2026-09-06 11:47:10,183 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260714_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:10,197 INFO    backfill bhavcopy 2026-07-14 ok, 191173 bytes
+2026-09-06 11:47:10,977 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_14072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:10,991 INFO    backfill delivery 2026-07-14 ok, 369023 bytes
+2026-09-06 11:47:11,805 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260715_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:11,821 INFO    backfill bhavcopy 2026-07-15 ok, 191001 bytes
+2026-09-06 11:47:12,572 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_15072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:12,584 INFO    backfill delivery 2026-07-15 ok, 368865 bytes
+2026-09-06 11:47:13,392 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260716_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:13,404 INFO    backfill bhavcopy 2026-07-16 ok, 192391 bytes
+2026-09-06 11:47:14,173 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_16072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:14,184 INFO    backfill delivery 2026-07-16 ok, 370595 bytes
+2026-09-06 11:47:15,062 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260717_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:15,077 INFO    backfill bhavcopy 2026-07-17 ok, 192147 bytes
+2026-09-06 11:47:15,775 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_17072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:15,788 INFO    backfill delivery 2026-07-17 ok, 369930 bytes
+2026-09-06 11:47:16,606 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260720_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:16,621 INFO    backfill bhavcopy 2026-07-20 ok, 190355 bytes
+2026-09-06 11:47:17,382 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_20072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:17,394 INFO    backfill delivery 2026-07-20 ok, 368145 bytes
+2026-09-06 11:47:18,219 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260721_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:18,228 INFO    backfill bhavcopy 2026-07-21 ok, 192006 bytes
+2026-09-06 11:47:18,980 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_21072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:18,996 INFO    backfill delivery 2026-07-21 ok, 369294 bytes
+2026-09-06 11:47:19,788 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260722_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:19,804 INFO    backfill bhavcopy 2026-07-22 ok, 190989 bytes
+2026-09-06 11:47:20,609 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_22072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:20,624 INFO    backfill delivery 2026-07-22 ok, 369153 bytes
+2026-09-06 11:47:21,408 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260723_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:21,422 INFO    backfill bhavcopy 2026-07-23 ok, 190382 bytes
+2026-09-06 11:47:22,192 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_23072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:22,206 INFO    backfill delivery 2026-07-23 ok, 367542 bytes
+2026-09-06 11:47:23,010 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260724_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:23,027 INFO    backfill bhavcopy 2026-07-24 ok, 192194 bytes
+2026-09-06 11:47:23,814 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_24072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:23,824 INFO    backfill delivery 2026-07-24 ok, 368649 bytes
+2026-09-06 11:47:24,616 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260727_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:24,634 INFO    backfill bhavcopy 2026-07-27 ok, 193141 bytes
+2026-09-06 11:47:25,411 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_27072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:25,421 INFO    backfill delivery 2026-07-27 ok, 372734 bytes
+2026-09-06 11:47:26,192 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260728_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:26,206 INFO    backfill bhavcopy 2026-07-28 ok, 191011 bytes
+2026-09-06 11:47:26,994 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_28072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:27,010 INFO    backfill delivery 2026-07-28 ok, 370088 bytes
+2026-09-06 11:47:27,798 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260729_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:27,812 INFO    backfill bhavcopy 2026-07-29 ok, 192521 bytes
+2026-09-06 11:47:28,626 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_29072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:28,641 INFO    backfill delivery 2026-07-29 ok, 370895 bytes
+2026-09-06 11:47:29,396 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260730_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:29,411 INFO    backfill bhavcopy 2026-07-30 ok, 191262 bytes
+2026-09-06 11:47:30,195 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_30072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:30,210 INFO    backfill delivery 2026-07-30 ok, 369680 bytes
+2026-09-06 11:47:31,016 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260731_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:31,031 INFO    backfill bhavcopy 2026-07-31 ok, 192421 bytes
+2026-09-06 11:47:31,794 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_31072026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:31,810 INFO    backfill delivery 2026-07-31 ok, 371072 bytes
+2026-09-06 11:47:32,593 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260803_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:32,607 INFO    backfill bhavcopy 2026-08-03 ok, 196614 bytes
+2026-09-06 11:47:33,415 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_03082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:33,432 INFO    backfill delivery 2026-08-03 ok, 375905 bytes
+2026-09-06 11:47:34,201 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260804_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:34,215 INFO    backfill bhavcopy 2026-08-04 ok, 192852 bytes
+2026-09-06 11:47:35,021 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_04082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:35,034 INFO    backfill delivery 2026-08-04 ok, 372428 bytes
+2026-09-06 11:47:35,797 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260805_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:35,817 INFO    backfill bhavcopy 2026-08-05 ok, 194298 bytes
+2026-09-06 11:47:36,617 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_05082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:36,633 INFO    backfill delivery 2026-08-05 ok, 373792 bytes
+2026-09-06 11:47:37,398 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260806_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:37,412 INFO    backfill bhavcopy 2026-08-06 ok, 194697 bytes
+2026-09-06 11:47:38,214 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_06082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:38,225 INFO    backfill delivery 2026-08-06 ok, 373499 bytes
+2026-09-06 11:47:39,001 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260807_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:39,018 INFO    backfill bhavcopy 2026-08-07 ok, 194665 bytes
+2026-09-06 11:47:39,815 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_07082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:39,830 INFO    backfill delivery 2026-08-07 ok, 374452 bytes
+2026-09-06 11:47:40,618 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260810_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:40,636 INFO    backfill bhavcopy 2026-08-10 ok, 198559 bytes
+2026-09-06 11:47:41,428 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_10082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:41,440 INFO    backfill delivery 2026-08-10 ok, 381405 bytes
+2026-09-06 11:47:42,217 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260811_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:42,230 INFO    backfill bhavcopy 2026-08-11 ok, 195005 bytes
+2026-09-06 11:47:43,000 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_11082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:43,021 INFO    backfill delivery 2026-08-11 ok, 376172 bytes
+2026-09-06 11:47:43,800 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260812_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:43,817 INFO    backfill bhavcopy 2026-08-12 ok, 194961 bytes
+2026-09-06 11:47:44,618 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_12082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:44,634 INFO    backfill delivery 2026-08-12 ok, 376187 bytes
+2026-09-06 11:47:45,417 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260813_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:45,432 INFO    backfill bhavcopy 2026-08-13 ok, 195750 bytes
+2026-09-06 11:47:46,203 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_13082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:46,214 INFO    backfill delivery 2026-08-13 ok, 375688 bytes
+2026-09-06 11:47:47,001 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260814_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:47,018 INFO    backfill bhavcopy 2026-08-14 ok, 193647 bytes
+2026-09-06 11:47:47,822 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_14082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:47,832 INFO    backfill delivery 2026-08-14 ok, 374122 bytes
+2026-09-06 11:47:48,610 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260817_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:48,621 INFO    backfill bhavcopy 2026-08-17 ok, 202715 bytes
+2026-09-06 11:47:49,423 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_17082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:49,440 INFO    backfill delivery 2026-08-17 ok, 391920 bytes
+2026-09-06 11:47:50,205 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260818_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:50,222 INFO    backfill bhavcopy 2026-08-18 ok, 200709 bytes
+2026-09-06 11:47:51,032 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_18082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:51,039 INFO    backfill delivery 2026-08-18 ok, 389391 bytes
+2026-09-06 11:47:51,815 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260819_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:51,829 INFO    backfill bhavcopy 2026-08-19 ok, 202128 bytes
+2026-09-06 11:47:52,621 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_19082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:52,638 INFO    backfill delivery 2026-08-19 ok, 390884 bytes
+2026-09-06 11:47:53,418 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260820_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:53,438 INFO    backfill bhavcopy 2026-08-20 ok, 203415 bytes
+2026-09-06 11:47:54,207 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_20082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:54,223 INFO    backfill delivery 2026-08-20 ok, 393028 bytes
+2026-09-06 11:47:55,022 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260821_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:55,039 INFO    backfill bhavcopy 2026-08-21 ok, 203755 bytes
+2026-09-06 11:47:55,806 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_21082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:55,818 INFO    backfill delivery 2026-08-21 ok, 394318 bytes
+2026-09-06 11:47:56,609 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260824_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:56,623 INFO    backfill bhavcopy 2026-08-24 ok, 205812 bytes
+2026-09-06 11:47:57,406 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_24082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:57,424 INFO    backfill delivery 2026-08-24 ok, 397581 bytes
+2026-09-06 11:47:58,207 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260825_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:58,223 INFO    backfill bhavcopy 2026-08-25 ok, 203526 bytes
+2026-09-06 11:47:59,015 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_25082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:47:59,036 INFO    backfill delivery 2026-08-25 ok, 393192 bytes
+2026-09-06 11:47:59,808 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260826_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:47:59,826 INFO    backfill bhavcopy 2026-08-26 ok, 203590 bytes
+2026-09-06 11:48:00,610 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_26082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:48:00,628 INFO    backfill delivery 2026-08-26 ok, 393606 bytes
+2026-09-06 11:48:01,419 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260827_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:48:01,431 INFO    backfill bhavcopy 2026-08-27 ok, 202542 bytes
+2026-09-06 11:48:02,217 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_27082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:48:02,229 INFO    backfill delivery 2026-08-27 ok, 391423 bytes
+2026-09-06 11:48:03,027 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260828_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:48:03,045 INFO    backfill bhavcopy 2026-08-28 ok, 202201 bytes
+2026-09-06 11:48:03,815 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_28082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:48:03,834 INFO    backfill delivery 2026-08-28 ok, 391621 bytes
+2026-09-06 11:48:04,623 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260831_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:48:04,643 INFO    backfill bhavcopy 2026-08-31 ok, 204131 bytes
+2026-09-06 11:48:05,415 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_31082026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:48:05,428 INFO    backfill delivery 2026-08-31 ok, 394397 bytes
+2026-09-06 11:48:06,225 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260901_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:48:06,244 INFO    backfill bhavcopy 2026-09-01 ok, 204810 bytes
+2026-09-06 11:48:07,031 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_01092026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:48:07,057 INFO    backfill delivery 2026-09-01 ok, 396242 bytes
+2026-09-06 11:48:07,815 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260902_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:48:07,832 INFO    backfill bhavcopy 2026-09-02 ok, 203453 bytes
+2026-09-06 11:48:08,613 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_02092026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:48:08,629 INFO    backfill delivery 2026-09-02 ok, 394524 bytes
+2026-09-06 11:48:09,468 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260903_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:48:09,482 INFO    backfill bhavcopy 2026-09-03 ok, 203909 bytes
+2026-09-06 11:48:10,204 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_03092026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:48:10,217 INFO    backfill delivery 2026-09-03 ok, 395114 bytes
+2026-09-06 11:48:10,997 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260904_F_0000.csv.zip "HTTP/1.1 200 OK"
+2026-09-06 11:48:11,013 INFO    backfill bhavcopy 2026-09-04 ok, 204364 bytes
+2026-09-06 11:48:11,832 INFO    httpx HTTP Request: GET https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_04092026.csv "HTTP/1.1 200 OK"
+2026-09-06 11:48:11,843 INFO    backfill delivery 2026-09-04 ok, 397073 bytes
+2026-09-06 11:48:11,853 INFO    backfill backfill finished: 499 downloaded, 0 already cached, 15 not published, 0 failed (transport=httpx, cache hit ratio 0.00)

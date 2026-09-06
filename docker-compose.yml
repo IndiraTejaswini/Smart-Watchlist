@@ -1,0 +1,70 @@
+# Smart Market Watchlist — ARCHITECTURE.md §19.3.
+#
+# `docker compose up` brings up postgres, redis, backend-api (which also serves
+# the built SPA), backend-worker and backend-feed. Phase 0 defines the two
+# infrastructure services; the three application services arrive with the code
+# they run (Phases 9, 10 and 14) rather than as empty shells now.
+#
+# Reproducibility for the jury is the point: one command, pinned images, named
+# volumes, and healthchecks so dependents wait for a database that is actually
+# accepting connections rather than one whose port merely opened.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: swl-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-swl}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-swl}
+      POSTGRES_DB: ${POSTGRES_DB:-swl}
+      # Deterministic collation. Ordering that shifts with the host locale would
+      # make a replay on one machine disagree with a replay on another.
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    command:
+      # Compute in UTC, display in Asia/Kolkata — §4.3. The server must never
+      # apply a local timezone of its own to a TIMESTAMPTZ.
+      - postgres
+      - -c
+      - timezone=UTC
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-swl} -d ${POSTGRES_DB:-swl}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    container_name: swl-redis
+    restart: unless-stopped
+    command:
+      # Redis holds quotes:latest, the tick stream, the cold-FactBundle cache,
+      # idempotency keys and the Brief cache — §3.1. Every one of those is
+      # rebuildable from Postgres, which is the source of truth, so persistence
+      # is off and eviction is allowed rather than letting a full instance
+      # start refusing writes.
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+      - --maxmemory
+      - ${REDIS_MAXMEMORY:-512mb}
+      - --maxmemory-policy
+      - allkeys-lru
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  postgres-data:

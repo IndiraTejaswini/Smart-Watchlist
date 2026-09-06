@@ -1,0 +1,97 @@
+/*
+ * tokens.css — FRONTEND_SPEC.md §2, mapped into the Tailwind v4 theme.
+ *
+ * Every namespace below is reset with `initial` before ours is declared. That is
+ * deliberate and it is the enforcement mechanism for §2.1: with the stock palette
+ * wiped, `bg-blue-500` is not a utility that exists, so the six structural and
+ * five semantic values are not a guideline anyone has to remember — they are the
+ * only colours the framework can emit. The same trick removes every box shadow
+ * (§2.3) and every border radius other than the machined 3px edge.
+ */
+
+@import "tailwindcss";
+
+@theme {
+  /* ── Colour · §2.1 ──────────────────────────────────────────────────────
+   * Six structural, five semantic. That is the entire palette.            */
+  --color-*: initial;
+
+  /* Structure */
+  --color-abyss: #080d14; /* page ground — blue-black, never neutral black */
+  --color-panel: #101927; /* raised surfaces, row bands, chart plot area */
+  --color-panel-hi: #162233; /* hover, selected row, active tab */
+  --color-hairline: #1e2a3d; /* every divider and border in the app */
+  --color-chalk: #e6eaf0; /* primary text */
+  --color-slate: #7d8da3; /* secondary text, metadata, axis labels */
+
+  /* Semantic — data confidence. The Brief and every provenance line. */
+  --color-final: #3dd8a0; /* exchange-final data */
+  --color-provis: #e8b04b; /* provisional, will be restated */
+  --color-stale: #566274; /* stale, absent, below liquidity floor */
+
+  /* Semantic — price direction. TERMINAL SURFACES ONLY. Never on the Brief.
+   * Enforced at runtime by the register context, not by convention. */
+  --color-up: #2fce8a;
+  --color-down: #ff5a52;
+
+  /* The accent. The cursor spine, the focus ring, the chart cursor marker.
+   * Three places. Nowhere else. */
+  --color-flare: #f0a500;
+
+  /* Utility passthroughs Tailwind expects to exist */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* ── Type · §2.2 ────────────────────────────────────────────────────── */
+  --font-*: initial;
+  --font-prose: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
+  --font-ui: "Archivo Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-num: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo,
+    monospace;
+
+  /* Scale, 16px root. Named by role so the role is chosen, not the pixel. */
+  --text-*: initial;
+  --text-micro: 0.75rem; /* 12px  axis labels, dense table metadata */
+  --text-micro--line-height: 1.3;
+  --text-dense: 0.8125rem; /* 13px  table body, form labels */
+  --text-dense--line-height: 1.3;
+  --text-ui: 0.875rem; /* 14px  UI default, nav, buttons */
+  --text-ui--line-height: 1.45;
+  --text-prose-sm: 1rem; /* 16px  secondary prose */
+  --text-prose-sm--line-height: 1.65;
+  --text-read: 1.25rem; /* 20px  Brief item prose — the reading size */
+  --text-read--line-height: 1.65;
+  --text-section: 1.75rem; /* 28px  section headings, cursor sentence */
+  --text-section--line-height: 1.25;
+  --text-section--letter-spacing: -0.02em;
+  --text-hero: 3rem; /* 48px  landing hero */
+  --text-hero--line-height: 1.15;
+  --text-hero--letter-spacing: -0.03em;
+
+  /* ── Shape · §2.3 ───────────────────────────────────────────────────────
+   * An instrument has machined edges, not pillows. One radius, 3px.        */
+  --radius-*: initial;
+  --radius-edge: 3px;
+
+  /* No box shadows anywhere. Separation is the hairline border and the
+   * --panel / --abyss value step. Wiping the namespace makes `shadow-md`
+   * a compile error rather than a code-review argument. */
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --text-shadow-*: initial;
+
+  /* ── Structural measurements · §3, §4 ──────────────────────────────── */
+  --spacing-nav: 52px; /* nav bar height */
+  --spacing-spine: 56px; /* cursor spine band height */
+  --spacing-strip: 28px; /* status strip height */
+  --spacing-measure: 62ch; /* prose measure cap, §2.2 */
+
+  /* ── Motion · §2.4 ──────────────────────────────────────────────────────
+   * Only ever a direct response to a user action, plus the one landing
+   * sequence. Collapsed to 0ms under prefers-reduced-motion in base.css.  */
+  --ease-*: initial;
+  --ease-cursor: cubic-bezier(0.2, 0, 0, 1);
+  --duration-restack: 220ms; /* cursor drag → items restack */
+  --duration-expand: 180ms; /* row expand */
+}

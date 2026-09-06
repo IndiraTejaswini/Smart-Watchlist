@@ -1,0 +1,63 @@
+[project]
+name = "smart-watchlist"
+version = "0.1.0"
+description = "Smart Market Watchlist — The Brief"
+requires-python = ">=3.11"
+
+dependencies = [
+  # API and server — ARCHITECTURE.md §3.2
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.32",
+  "pydantic>=2.9",
+  "pydantic-settings>=2.6",
+  # Durable store
+  "sqlalchemy>=2.0",
+  "alembic>=1.14",
+  "psycopg[binary]>=3.2",
+  # Cache, stream, latest value
+  "redis>=5.2",
+  # Numerical core: the market-model regression and rolling statistics
+  "pandas>=2.2",
+  "numpy>=2.0",
+  "statsmodels>=0.14",
+  # Ingest — §6.3 tier 1 and tier 3
+  "httpx>=0.27",
+  "curl_cffi>=0.7",
+  # Scheduling — §19.1, in-process for the timebox
+  "apscheduler>=3.10",
+  # ZoneInfo("Asia/Kolkata") must resolve on images with no system zoneinfo
+  "tzdata>=2024.2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3",
+  "pytest-asyncio>=0.24",
+  "anyio>=4.10,<4.15",
+  "httpx2>=0.1",
+  "ruff>=0.7",
+  "mypy>=1.13",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_ignores = true
+warn_redundant_casts = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

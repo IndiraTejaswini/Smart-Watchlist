@@ -1,0 +1,282 @@
+[
+ {
+  "purpose_raw": "Bonus 1:1",
+  "expected_action_type": "BONUS",
+  "symbol": "PIDILITIND",
+  "ex_date": "23-Sep-2025",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Bonus 2:1",
+  "expected_action_type": "BONUS",
+  "symbol": "PATANJALI",
+  "ex_date": "11-Sep-2025",
+  "face_value": "2",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Bonus 3:1",
+  "expected_action_type": "BONUS",
+  "symbol": "INFOBEAN",
+  "ex_date": "27-Feb-2026",
+  "face_value": "10",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Bonus 1:2",
+  "expected_action_type": "BONUS",
+  "symbol": "BESTAGRO",
+  "ex_date": "16-Jan-2026",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Bonus 2:5",
+  "expected_action_type": "BONUS",
+  "symbol": "HARDWYN",
+  "ex_date": "28-Jul-2026",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Bonus 5:7",
+  "expected_action_type": "BONUS",
+  "symbol": "RMDRIP",
+  "ex_date": "10-Apr-2026",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Bonus 10:1",
+  "expected_action_type": "BONUS",
+  "symbol": "KOTYARK",
+  "ex_date": "24-Jun-2026",
+  "face_value": "10",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Bonus 1:10",
+  "expected_action_type": "BONUS",
+  "symbol": "ORIENTTECH",
+  "ex_date": "05-Jan-2026",
+  "face_value": "10",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Scheme Of Arrangement - Bonus Ncrps 46:1",
+  "expected_action_type": "UNPARSED",
+  "symbol": "TVSHLTD",
+  "ex_date": "08-Sep-2026",
+  "face_value": "5",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Scheme Of Arrangement - Bonus Ncrps 3:1",
+  "expected_action_type": "UNPARSED",
+  "symbol": "SIYSIL",
+  "ex_date": "21-Aug-2026",
+  "face_value": "2",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Face Value Split (Sub-Division) - From Rs 10/- Per Share To Re 1/- Per Share",
+  "expected_action_type": "SPLIT",
+  "symbol": "PAVNAIND",
+  "ex_date": "01-Sep-2025",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Face Value Split (Sub-Division) - From Rs 10/- Per Share To Rs 2/- Per Share",
+  "expected_action_type": "SPLIT",
+  "symbol": "ZYDUSWELL",
+  "ex_date": "18-Sep-2025",
+  "face_value": "2",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Face Value Split (Sub-Division) - From Rs 10/- Per Share To Rs 5/- Per Share",
+  "expected_action_type": "SPLIT",
+  "symbol": "BEML",
+  "ex_date": "03-Nov-2025",
+  "face_value": "5",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Face Value Split (Sub-Division) - From Rs 5/- Per Share To Re 1/- Per Share",
+  "expected_action_type": "SPLIT",
+  "symbol": "AGIIL",
+  "ex_date": "10-Oct-2025",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Face Value Split (Sub-Division) - From Rs 2/- Per Share To Re 1/- Per Share",
+  "expected_action_type": "SPLIT",
+  "symbol": "GOKULAGRO",
+  "ex_date": "14-Oct-2025",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Rights 1:1 @ Premium Rs 0/-",
+  "expected_action_type": "RIGHTS",
+  "symbol": "MAHAPEXLTD",
+  "ex_date": "20-Mar-2026",
+  "face_value": "10",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Rights 1:2 @ Premium Rs 290/-",
+  "expected_action_type": "RIGHTS",
+  "symbol": "5PAISA",
+  "ex_date": "17-Mar-2026",
+  "face_value": "10",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Rights 11:5 @ Premium Rs 54/-",
+  "expected_action_type": "RIGHTS",
+  "symbol": "SICALLOG",
+  "ex_date": "18-Feb-2026",
+  "face_value": "10",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Rights - 7 Ccps And 7 Warrants:40",
+  "expected_action_type": "UNPARSED",
+  "symbol": "QUINT",
+  "ex_date": "25-Aug-2026",
+  "face_value": "10",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Demerger",
+  "expected_action_type": "DEMERGER",
+  "symbol": "SHANKARA",
+  "ex_date": "24-Sep-2025",
+  "face_value": "10",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Buy Back",
+  "expected_action_type": "UNPARSED",
+  "symbol": "BAJAJCON",
+  "ex_date": "04-Sep-2025",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Interest Payment",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "697GS2026",
+  "ex_date": "04-Sep-2025",
+  "face_value": "100",
+  "series": "GS"
+ },
+ {
+  "purpose_raw": "Dividend - Re 1 Per Share/Special Dividend - Rs 2 Per Share",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "AKUMS",
+  "ex_date": "03-Jul-2026",
+  "face_value": "2",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Interim Dividend - Rs  0.50 Per Share",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "TRIDENT",
+  "ex_date": "22-May-2026",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Dividend - Re  0.50 Per Share",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "RAJPALAYAM",
+  "ex_date": "21-Aug-2026",
+  "face_value": "10",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Interim Dividend - Re  1 Per Share",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "METROPOLIS",
+  "ex_date": "19-May-2026",
+  "face_value": "2",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Dividend - Rs 10 Per Share/Special Dividend - Rs 30 Per Share",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "INDOBORAX",
+  "ex_date": "21-Jul-2026",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Dividend - Rs 2 Per Share & Special Dividend - Rs 1.60 Per Share",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "FINPIPE",
+  "ex_date": "04-Sep-2025",
+  "face_value": "2",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Dividend - Rs 0.005 Per Share",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "FISCHER",
+  "ex_date": "22-Sep-2025",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Dividend - Re 0.005 Per Share",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "NAVKARURB",
+  "ex_date": "23-Sep-2025",
+  "face_value": "1",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Dividend - Re 0.21 Per Sh",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "NHPC",
+  "ex_date": "12-Aug-2026",
+  "face_value": "10",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Dividend - Rs1.25 Per Share",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "EMUDHRA",
+  "ex_date": "18-Jun-2026",
+  "face_value": "5",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Dividend - Rs 20 Per Share/Special Dividend - Rs 7.50",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "DLINKINDIA",
+  "ex_date": "10-Jul-2026",
+  "face_value": "2",
+  "series": "EQ"
+ },
+ {
+  "purpose_raw": "Distribution - Rs 2.50 Per Unit Consist Of Re 0.4141 Per Unit As Interest/ Rs 2.0828 Per Unit As Dividend/ Re 0.0031 Per Unit As Other Income",
+  "expected_action_type": "DIVIDEND",
+  "symbol": "ANANTAM",
+  "ex_date": "22-May-2026",
+  "face_value": "100",
+  "series": "IV"
+ },
+ {
+  "purpose_raw": "Rights 161:250 @ Premium Re 0.45 /-",
+  "expected_action_type": "RIGHTS",
+  "symbol": "ESSENTIA",
+  "ex_date": "20-May-2026",
+  "face_value": "1",
+  "series": "EQ"
+ }
+]
