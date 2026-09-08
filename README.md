@@ -3,9 +3,7 @@
 A watchlist that tells you what changed since you last looked, not what is
 blinking right now.
 
-`[ Live: not deployed — no cloud target was stood up for this submission.
-Runs locally from a clean clone with no API keys and no network: see "Run it".
-· No signup — the demo account opens with one click ]`
+`[ Live deployed Link : ]` https://smart-watchlist-36i3.onrender.com
 
 ![Dragging the reading cursor back three weeks on the Brief; items restack and the budget line updates](docs/media/brief.gif)
 
