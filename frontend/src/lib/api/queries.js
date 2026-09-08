@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { BRIEF_CACHE_TTL_SECONDS, POLL_INTERVAL_SECONDS } from "../constants.js";
 import {
   briefSchema,
@@ -10,6 +10,7 @@ import {
   evalFunnelSchema,
   evalCasesSchema,
   evalContinuationSchema,
+  watchlistItemsSchema,
 } from "../schemas.js";
 import { apiFetch } from "./client.js";
 
@@ -26,6 +27,7 @@ export const queryKeys = {
   signalMarks: (watchlistId, symbol) => ["signals", "marks", watchlistId, symbol ?? null],
   brief: (watchlistId, asOf) => ["brief", watchlistId, asOf],
   explain: (signalEventId) => ["brief", "explain", signalEventId],
+  watchlistItems: (watchlistId) => ["watchlist", watchlistId, "items"],
 };
 
 /** Who is signed in, and where their reading cursor sits. */
@@ -71,11 +73,59 @@ export function useSignalMarks(watchlistId, { symbol } = {}) {
     enabled: Boolean(watchlistId),
     queryKey: queryKeys.signalMarks(watchlistId, symbol),
     queryFn: ({ signal }) =>
-      apiFetch(`/watchlists/${watchlistId}/signals${suffix}`, {
+      apiFetch(`/watchlist/${watchlistId}/signals${suffix}`, {
         schema: signalMarksSchema,
         signal,
       }),
     staleTime: 60_000,
+  });
+}
+
+/** The live table's register (12.6): symbol and position, in list order. */
+export function useWatchlistItems(watchlistId) {
+  return useQuery({
+    enabled: Boolean(watchlistId),
+    queryKey: queryKeys.watchlistItems(watchlistId),
+    queryFn: ({ signal }) =>
+      apiFetch(`/watchlist/${watchlistId}`, { schema: watchlistItemsSchema, signal }),
+    staleTime: 30_000,
+  });
+}
+
+/**
+ * Drag-to-reorder (12.6). Optimistic: the row moves under the pointer
+ * immediately, and rolls back only if the write itself fails — waiting on
+ * the round trip would make the drag feel like it missed.
+ */
+export function useReorderWatchlistItem(watchlistId) {
+  const queryClient = useQueryClient();
+  const queryKey = queryKeys.watchlistItems(watchlistId);
+  return useMutation({
+    mutationFn: ({ symbol, afterSymbol, beforeSymbol }) =>
+      apiFetch(`/watchlist/items/${symbol}/position`, {
+        method: "PATCH",
+        body: { after_symbol: afterSymbol ?? null, before_symbol: beforeSymbol ?? null },
+      }),
+    onMutate: async ({ symbol, afterSymbol, beforeSymbol }) => {
+      await queryClient.cancelQueries({ queryKey });
+      const previous = queryClient.getQueryData(queryKey);
+      if (previous) {
+        const items = previous.items.filter((item) => item.symbol !== symbol);
+        const moved = previous.items.find((item) => item.symbol === symbol);
+        const anchorIndex = afterSymbol
+          ? items.findIndex((item) => item.symbol === afterSymbol) + 1
+          : beforeSymbol
+            ? items.findIndex((item) => item.symbol === beforeSymbol)
+            : items.length;
+        items.splice(anchorIndex, 0, moved);
+        queryClient.setQueryData(queryKey, { items });
+      }
+      return { previous };
+    },
+    onError: (_error, _variables, context) => {
+      if (context?.previous) queryClient.setQueryData(queryKey, context.previous);
+    },
+    onSettled: () => queryClient.invalidateQueries({ queryKey }),
   });
 }
 

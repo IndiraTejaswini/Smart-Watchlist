@@ -1,4 +1,4 @@
-"""Empirical CA factor verification — ARCHITECTURE.md §5.3, BUILD_PLAN task 1.4.
+"""Empirical CA factor verification — docs/BUILD_SPEC.md §5.3, BUILD_PLAN task 1.4.
 
 The morning job of §19.1, at 07:15, for yesterday's ex-dates — and the same
 code run over the whole backfilled history, which is what makes the factors

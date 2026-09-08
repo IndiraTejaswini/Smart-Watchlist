@@ -16,6 +16,8 @@ import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, relative, extname, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { BANNED_COPY } from "../src/lib/constants.js";
+
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const SRC = join(ROOT, "src");
 
@@ -91,11 +93,7 @@ if (existsSync(join(ROOT, "public", "manifest.json"))) {
 // scanned — string literals and JSX text nodes — because comments and this
 // project's own documentation must be able to name the words they forbid.
 
-const BANNED_WORDS = [
-  "buy", "sell", "should", "consider", "opportunity", "target price",
-  "undervalued", "overvalued", "bullish", "bearish", "act now",
-  "don't miss", "hurry",
-];
+const BANNED_WORDS = BANNED_COPY;
 
 /** Files permitted to contain the banned words, with the reason. */
 const COPY_ALLOWLIST = new Map([

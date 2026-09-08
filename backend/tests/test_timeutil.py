@@ -1,4 +1,4 @@
-"""Tests for the IST and calendar helpers — ARCHITECTURE.md §4.3 and §5.2.
+"""Tests for the IST and calendar helpers — docs/BUILD_SPEC.md §4.3 and §5.2.
 
 Written before the implementation. The two cases named in BUILD_PLAN task 0.6
 are `test_acceptance_*` below.

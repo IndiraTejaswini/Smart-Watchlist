@@ -72,8 +72,8 @@ export const SIGNAL_MARKS = AUTHORED.map(([session_date, symbol, surfaced]) => {
   if (!SESSION_DATES.has(session_date)) {
     throw new Error(
       `Mock signal for ${symbol} is dated ${session_date}, which is not a ` +
-        "trading session in the generated calendar. Fixtures must sit on real " +
-        "sessions — re-run scripts/generate-mock-calendar.mjs or fix the date.",
+        "trading session in the generated calendar. Fixtures are required to sit on " +
+        "real sessions — re-run scripts/generate-mock-calendar.mjs or fix the date.",
     );
   }
   if (!BY_SYMBOL[symbol]) {

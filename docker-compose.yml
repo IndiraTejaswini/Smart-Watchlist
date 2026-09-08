@@ -1,4 +1,4 @@
-# Smart Market Watchlist — ARCHITECTURE.md §19.3.
+# Smart Market Watchlist — docs/BUILD_SPEC.md §19.3.
 #
 # `docker compose up` brings up postgres, redis, backend-api (which also serves
 # the built SPA), backend-worker and backend-feed. Phase 0 defines the two

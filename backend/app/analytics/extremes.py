@@ -9,8 +9,10 @@ from typing import Any
 import pandas as pd
 import sqlalchemy as sa
 
-EXTREME_WINDOW = 252
-ADV_WINDOW = 20
+from app.constants import EXTREME_WINDOW_DAYS, VOL_WINDOW_DAYS
+
+EXTREME_WINDOW = EXTREME_WINDOW_DAYS
+ADV_WINDOW = VOL_WINDOW_DAYS
 
 
 def estimate_extremes_and_adv(bars: pd.DataFrame) -> pd.DataFrame:
@@ -35,7 +37,7 @@ def estimate_extremes_and_adv(bars: pd.DataFrame) -> pd.DataFrame:
     ordered = bars.sort_values(["symbol", "date"])
     prices = ordered.pivot(index="date", columns="symbol", values="adj_close")
     turnover = ordered.pivot(index="date", columns="symbol", values="turnover")
-    rolling_prices = prices.rolling(EXTREME_WINDOW, min_periods=20)
+    rolling_prices = prices.rolling(EXTREME_WINDOW, min_periods=ADV_WINDOW)
     high = rolling_prices.max()
     low = rolling_prices.min()
     n_obs = rolling_prices.count()
@@ -61,7 +63,7 @@ def estimate_extremes_and_adv(bars: pd.DataFrame) -> pd.DataFrame:
     )
     result["n_obs_52w"] = result["n_obs_52w"].round().astype("Int64")
     return result.loc[
-        result["n_obs_52w"].ge(20) & result["adv_20d"].notna()
+        result["n_obs_52w"].ge(ADV_WINDOW) & result["adv_20d"].notna()
     ].reset_index(drop=True)
 
 

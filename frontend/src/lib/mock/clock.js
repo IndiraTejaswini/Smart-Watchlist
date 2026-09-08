@@ -2,7 +2,7 @@
  * clock.js — the demo clock.
  *
  * Every mock payload is anchored to one fixed instant, taken from the
- * `generated_at` in the ARCHITECTURE.md §16 example so that the mock and the
+ * `generated_at` in the docs/BUILD_SPEC.md §16 example so that the mock and the
  * contract example describe the same moment.
  *
  * That instant is Saturday 5 September 2026 at 10:14 IST — the market shut, the

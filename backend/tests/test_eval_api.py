@@ -1,4 +1,4 @@
-"""`/api/eval/unparsed-actions` — BUILD_PLAN task 1.4, ARCHITECTURE.md §16.
+"""`/api/eval/unparsed-actions` — BUILD_PLAN task 1.4, docs/BUILD_SPEC.md §16.
 
 The second half of task 1.4's acceptance: "every DISCREPANCY is listed at
 /api/eval/unparsed-actions". Also the end-to-end check on the verification job
@@ -25,7 +25,7 @@ MINIMUM_VERIFIED_RATIO = 0.85
 
 @pytest.fixture(scope="module")
 def engine():
-    engine = sa.create_engine(get_settings().database_url)
+    engine = sa.create_engine(get_settings().database_url, connect_args={"connect_timeout": 5})
     try:
         with engine.connect():
             pass

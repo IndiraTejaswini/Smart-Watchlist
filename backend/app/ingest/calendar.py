@@ -1,4 +1,4 @@
-"""Trading calendar ingest — ARCHITECTURE.md §5.2, BUILD_PLAN task 1.2.
+"""Trading calendar ingest — docs/BUILD_SPEC.md §5.2, BUILD_PLAN task 1.2.
 
 Populates `trading_calendar` over the history window plus 90 days forward, as a
 session state machine rather than a boolean. §5.2's reason: pre-open equilibrium
@@ -72,6 +72,7 @@ from typing import Any
 
 import sqlalchemy as sa
 
+from app.constants import CALENDAR_FORWARD_DAYS
 from app.db import get_engine
 from app.ingest import runs
 from app.ingest.nse_client import (
@@ -115,9 +116,8 @@ HOLIDAY_CACHE = "nse_holidays_{year}.json"
 HOLIDAYS_PAGE_CACHE = "nse_holidays_page.html"
 WEEKEND_PROBE_CACHE = "weekend_sessions.json"
 
-# BUILD_PLAN 1.2, "plus 90 days forward". A load window, not a business
-# threshold — the same distinction `backfill.py` draws for `--months 12`.
-FORWARD_DAYS = 90
+# BUILD_PLAN 1.2, "plus 90 days forward" — R1: sourced from the registry.
+FORWARD_DAYS = CALENDAR_FORWARD_DAYS
 
 BHAVCOPY_CACHE_DIR = "bhavcopy"
 BHAVCOPY_URL = (

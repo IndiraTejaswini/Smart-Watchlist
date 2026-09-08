@@ -4,9 +4,11 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+from app.constants import POSITION_KEY_MAX_LEN
+
 DEFAULT_POSITION = Decimal("1000.0000000000000000")
 POSITION_STEP = Decimal("100.0000000000000000")
-POSITION_MAX_STR_LEN = 32
+POSITION_MAX_STR_LEN = POSITION_KEY_MAX_LEN
 
 
 def generate_midpoint_position(

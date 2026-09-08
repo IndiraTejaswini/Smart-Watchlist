@@ -28,7 +28,9 @@ def quotes(
 
         raise HTTPException(status_code=400, detail="Maximum 100 symbols permitted per request.")
     now = datetime.now(UTC)
-    redis_client = Redis.from_url(get_settings().REDIS_URL, decode_responses=False)
+    redis_client = Redis.from_url(
+        get_settings().REDIS_URL, decode_responses=False, socket_connect_timeout=2
+    )
     with get_engine().connect() as conn:
         from app.timeutil import TradingCalendar
 

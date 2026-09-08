@@ -30,7 +30,7 @@ export default function SpineRegion() {
   const acknowledged = me?.cursor?.acknowledged_through ?? null;
 
   useEffect(() => {
-    if (acknowledged) hydrate(acknowledged);
+    if (acknowledged) hydrate();
   }, [acknowledged, hydrate]);
 
   // A session date is what the spine yields. It is widened to an instant at the

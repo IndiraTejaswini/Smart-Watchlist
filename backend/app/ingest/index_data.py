@@ -1,4 +1,4 @@
-"""Index EOD ingest pipeline -- ARCHITECTURE.md §6, BUILD_PLAN task 2.3.
+"""Index EOD ingest pipeline -- docs/BUILD_SPEC.md §6, BUILD_PLAN task 2.3.
 
 This module ingests NSE index daily closing data (ind_close_all_DDMMYYYY.csv)
 into `index_bars`.

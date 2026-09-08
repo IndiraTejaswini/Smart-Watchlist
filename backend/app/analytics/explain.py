@@ -15,7 +15,11 @@ from app.analytics.constants import (
     BOOST_RECENTLY_ADDED,
 )
 from app.analytics.mpm import MPMResult
-from app.analytics.ranker import PersonalContext, compute_personal_multiplier
+from app.analytics.ranker import (
+    PersonalContext,
+    classification_multiplier,
+    compute_personal_multiplier,
+)
 from app.constants import (
     DECAY_TAU_SESSIONS,
     PERSONAL_CAP,
@@ -95,7 +99,8 @@ def build_score_audit(
     turnover = max(0.0, candidate.turnover_z or 0.0)
     delivery = max(0.0, candidate.delivery_z or 0.0)
     extreme = any(family.value == "EXTREME_52W" for family in candidate.signal_families)
-    base_sum = (
+    class_mult = classification_multiplier(candidate)
+    base_sum = class_mult * (
         abs(candidate.sar) * W_SCAR
         + turnover * W_TURNOVER
         + delivery * W_DELIVERY
@@ -104,18 +109,20 @@ def build_score_audit(
     base = BaseScoreBreakdown(
         sar_raw=candidate.sar,
         sar_weight=W_SCAR,
-        sar_contribution=abs(candidate.sar) * W_SCAR,
+        sar_contribution=class_mult * abs(candidate.sar) * W_SCAR,
         turnover_z_raw=candidate.turnover_z,
         turnover_z_clamped=turnover,
         turnover_z_weight=W_TURNOVER,
-        turnover_z_contribution=turnover * W_TURNOVER,
+        turnover_z_contribution=class_mult * turnover * W_TURNOVER,
         delivery_z_raw=candidate.delivery_z,
         delivery_z_clamped=delivery,
         delivery_z_weight=W_DELIVERY,
-        delivery_z_contribution=delivery * W_DELIVERY,
+        delivery_z_contribution=class_mult * delivery * W_DELIVERY,
         material_filing_active=extreme,
         material_filing_weight=W_EXTREME,
-        material_filing_contribution=W_EXTREME if extreme else 0.0,
+        material_filing_contribution=class_mult * (W_EXTREME if extreme else 0.0),
+        classification="EXPLAINED" if candidate.is_explained else "UNEXPLAINED",
+        classification_multiplier=class_mult,
         base_score_sum=base_sum,
     )
     decay_multiplier = exp(-sessions / DECAY_TAU_SESSIONS)

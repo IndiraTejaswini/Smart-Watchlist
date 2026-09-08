@@ -1,4 +1,4 @@
-"""Announcement category resolution — ARCHITECTURE.md §9.2.
+"""Announcement category resolution — docs/BUILD_SPEC.md §9.2.
 
 Only the category resolver lives here so far. The full announcement ingest —
 polling `ANNOUNCEMENT_POLL_SECONDS`, the content-hash dedup, the historical
@@ -24,16 +24,16 @@ maintains (*Financial Results*, *Change in Directorate*, *Credit Rating* ...),
 and it is a far better signal than anything recoverable from free text. Regex
 is the fallback, not the primary path.
 
-─── Why `CATEGORY_FROM_DESC` is empty here ──────────────────────────────────
+─── How `CATEGORY_FROM_DESC` was populated ──────────────────────────────────
 
 §9.2 is explicit about how it gets built: run the announcement backfill (task
 2.8), then `SELECT raw_json->>'desc', count(*) GROUP BY 1 ORDER BY 2 DESC` and
-hand-map the top ~30 values. That is empirical work over real filings — R3
-forbids guessing market-data semantics, and a hand-typed guess at what NSE's
-`desc` values are and mean would be exactly that guess. So the table starts
-empty and every announcement falls through to the regex fallback until task 2.8
-populates it from real data. The coverage report says so honestly rather than
-padding the "resolved by desc" bucket with invented entries.
+hand-map the top ~30 values. That query has now run against the real
+177,779-row backfill; the mapping below is its output, not a guess made ahead
+of the data — R3 still applies, so a `desc` value whose real-world category is
+genuinely ambiguous (e.g. "General Updates", "Trading Window", a compliance
+certificate) is deliberately left unmapped and falls through to OTHER rather
+than being forced into one of the nine buckets on a guess.
 
 `CATEGORY_PATTERNS`, by contrast, is copied verbatim from §9.2 — it is already
 the empirical output of that section's own worked example (the review's
@@ -47,9 +47,38 @@ import re
 from dataclasses import dataclass
 
 # ─── Step 1: the exchange's own controlled vocabulary ───────────────────────
-# {normalised desc: category}. Populated empirically by BUILD_PLAN task 2.8 —
-# see the module docstring for why it must not be guessed at here.
-CATEGORY_FROM_DESC: dict[str, str] = {}
+# {normalised desc: category}. Task 2.8's own acceptance: run the backfill,
+# `SELECT raw_json->>'desc', count(*) GROUP BY 1 ORDER BY 2 DESC`, hand-map the
+# top ~30. This is that query's real output against the 177,779-row backfill
+# (2025-09-11..2026-09-07), mapped against NSE's own well-documented disclosure
+# categories — not a guess at what an unfamiliar value might mean. A `desc`
+# whose real-world meaning is genuinely ambiguous (a compliance certificate, a
+# generic "Updates") is left to fall through to OTHER rather than forced into
+# one of the nine buckets it does not clearly belong to (R3/R6).
+CATEGORY_FROM_DESC: dict[str, str] = {
+    "OUTCOME OF BOARD MEETING": "BOARD_MEETING",
+    "DISCLOSURE UNDER SEBI TAKEOVER REGULATIONS": "MNA",
+    "ACQUISITION": "MNA",
+    "APPOINTMENT": "KMP_CHANGE",
+    "CHANGE IN MANAGEMENT": "KMP_CHANGE",
+    "RESIGNATION": "KMP_CHANGE",
+    "CHANGE IN DIRECTOR(S)": "KMP_CHANGE",
+    "RESIGNATION OF DIRECTOR/KMP/SMP": "KMP_CHANGE",
+    "CESSATION": "KMP_CHANGE",
+    "RECORD DATE": "CORP_ACTION",
+    "DIVIDEND": "CORP_ACTION",
+    "CREDIT RATING": "RATING",
+    "BAGGING/RECEIVING OF ORDERS/CONTRACTS": "ORDER_WIN",
+    "ALLOTMENT OF SECURITIES": "FUND_RAISE",
+    "STATEMENT OF DEVIATION(S) OR VARIATION(S) UNDER REG. 32": "FUND_RAISE",
+    "ACTION(S) TAKEN OR ORDERS PASSED": "LITIGATION",
+    "PENDENCY OF LITIGATION(S)/DISPUTE(S) OR THE OUTCOME IMPACTING THE COMPANY": (
+        "LITIGATION"
+    ),
+    "CORPORATE INSOLVENCY RESOLUTION PROCESS": "LITIGATION",
+    "REPLY TO CLARIFICATION- FINANCIAL RESULTS": "RESULTS",
+    "CLARIFICATION - FINANCIAL RESULTS": "RESULTS",
+}
 
 # ─── Step 2: the regex fallback — §9.2, verbatim ────────────────────────────
 # Anchored patterns, not substring matching: revision 1's case-insensitive

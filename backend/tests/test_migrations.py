@@ -28,7 +28,7 @@ from app.constants import BRIEF_MAX_ITEMS
 
 BACKEND = Path(__file__).resolve().parents[1]
 
-# Every table in ARCHITECTURE.md §5, §6, §7, §9, §12 and §20, including the
+# Every table in docs/BUILD_SPEC.md §5, §6, §7, §9, §12 and §20, including the
 # five the build plan names explicitly as [R2] additions.
 EXPECTED_TABLES = {
     "announcements",
@@ -36,6 +36,7 @@ EXPECTED_TABLES = {
     "brief_cursor_states",
     "candidates",
     "corporate_actions",
+    "corporate_action_notices",
     "daily_bars",
     "delivery_stats",
     "delivery_baselines",
@@ -69,7 +70,7 @@ def _engine():
         url = _ensure_scratch_database()
     except Exception as exc:  # noqa: BLE001 — any connection failure is a skip
         pytest.skip(f"postgres unreachable ({type(exc).__name__}); run `make up`")
-    return sa.create_engine(url)
+    return sa.create_engine(url, connect_args={"connect_timeout": 5})
 
 
 def _ensure_scratch_database() -> str:
@@ -88,7 +89,8 @@ def _ensure_scratch_database() -> str:
     # CREATE DATABASE cannot run inside a transaction, hence AUTOCOMMIT, and it
     # cannot run from the database being created, hence the maintenance one.
     maintenance = sa.create_engine(
-        configured.set(database="postgres"), isolation_level="AUTOCOMMIT"
+        configured.set(database="postgres"), isolation_level="AUTOCOMMIT",
+        connect_args={"connect_timeout": 5},
     )
     with maintenance.connect() as conn:
         exists = conn.execute(

@@ -1,4 +1,4 @@
-"""Bhavcopy ingest orchestrator -- ARCHITECTURE.md §6.2, BUILD_PLAN task 2.1.
+"""Bhavcopy ingest orchestrator -- docs/BUILD_SPEC.md §6.2, BUILD_PLAN task 2.1.
 
 This module owns the full §6.2 ingest contract for the UDiFF bhavcopy.
 The parser (bhavcopy.py) converts bytes to typed Bar objects and is unchanged.
@@ -43,6 +43,7 @@ import sqlalchemy as sa
 
 from app.constants import (
     ACTIVE_ROW_FLOOR_FRAC,
+    BHAVCOPY_ROW_COUNT_MEDIAN_WINDOW,
     QUARANTINE_ABORT_FRAC,
     ROW_COUNT_DEVIATION,
 )
@@ -71,11 +72,13 @@ BHAVCOPY_CSV_URL = (
     + "/products/content/sec_bhavdata_full_{date:%d%m%Y}.csv"
 )
 CACHE_DIR = "bhavcopy"
-CACHE_FILE = "{date:%Y%m%d}.zip"
+# Must match the real NSE archive filename — it is what scripts/backfill.py
+# (Task 0.1) actually writes to disk, and the two must agree on the same
+# cache convention or --from-cache-only can never find what was downloaded.
+CACHE_FILE = "BhavCopy_NSE_CM_0_0_0_{date:%Y%m%d}_F_0000.csv.zip"
 
-# Window for the rolling median row-count check.  Not a business threshold --
-# it is a statistical window size for a diagnostic, not a signal parameter.
-MEDIAN_WINDOW = 5
+# Window for the rolling median row-count check — R1: sourced from the registry.
+MEDIAN_WINDOW = BHAVCOPY_ROW_COUNT_MEDIAN_WINDOW
 
 # Session types that suppress the two-sided count check (§6.2 note, §6.1).
 _SUPPRESS_COUNT_CHECK: frozenset[str] = frozenset({"MUHURAT", "HALF_DAY"})

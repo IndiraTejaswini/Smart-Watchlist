@@ -3,9 +3,13 @@
 ## Product thesis
 
 This product chooses subtraction over attention-manufacturing. It turns a raw
-feed of 41 changes into 4 prioritized signals by removing corporate-action
-artefacts, market-wide repetition, sector duplicates, and candidates below the
-attention cap. The output is a reading register, not a stream of prompts.
+feed of candidate signals into at most `BRIEF_MAX_ITEMS` prioritized ones by
+removing corporate-action artefacts, market-wide repetition, sector
+duplicates, and candidates below the attention cap. The output is a reading
+register, not a stream of prompts. Live conservation of that funnel — how
+many candidates were evaluated versus surfaced, computed from the real
+persisted replay window, not a fixed example — is at `/eval` and
+`GET /api/eval/funnel`.
 
 ## Register architecture
 
@@ -26,9 +30,10 @@ direction colours.
   arithmetic.
 - Muhurat and special sessions widen day membership through 23:59:59 IST. This
   respects circular-governed session dates without inventing a close time.
-- The funnel conserves every candidate:
-
-  `41 detected - 37 suppressed (2 corporate action + 11 market-wide + 4 sector + 20 below cap) = 4 surfaced`
+- The funnel conserves every candidate: evaluated − (corporate action +
+  market-wide + sector-wide + below-cap) = surfaced, enforced by
+  `DeliveryBudgetBlock.verify_invariants()` on every request and replayed
+  across the full evaluation window by `app/eval/replay_runner.py`.
 
 ## Evaluator zero-friction flow
 

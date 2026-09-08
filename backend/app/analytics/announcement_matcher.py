@@ -4,13 +4,14 @@ from __future__ import annotations
 
 import re
 from dataclasses import replace
-from datetime import date, datetime, time
+from datetime import date, datetime, timedelta
 from enum import StrEnum
 from zoneinfo import ZoneInfo
 
 from app.analytics.candidates import Candidate
+from app.constants import ANNOUNCEMENT_TAIL_MINUTES
 from app.ingest.announcement_ingest import Announcement
-from app.timeutil import TradingCalendar, previous_trading_day
+from app.timeutil import CLOSE_TIME, TradingCalendar, previous_trading_day
 
 IST = ZoneInfo("Asia/Kolkata")
 
@@ -87,9 +88,12 @@ def get_announcement_window(
     target_date: date, calendar: TradingCalendar
 ) -> tuple[datetime, datetime]:
     previous = previous_trading_day(target_date, calendar)
+    window_end = datetime.combine(target_date, CLOSE_TIME, tzinfo=IST) + timedelta(
+        minutes=ANNOUNCEMENT_TAIL_MINUTES
+    )
     return (
-        datetime.combine(previous, time(15, 30), tzinfo=IST),
-        datetime.combine(target_date, time(18, 30), tzinfo=IST),
+        datetime.combine(previous, CLOSE_TIME, tzinfo=IST),
+        window_end,
     )
 
 

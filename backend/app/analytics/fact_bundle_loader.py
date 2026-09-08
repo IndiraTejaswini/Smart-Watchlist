@@ -18,8 +18,9 @@ from app.analytics.fact_bundle import (
     Snapshot0930Fact,
     TurnoverBaselineFact,
 )
+from app.constants import FACT_BUNDLE_COLD_TTL_SECONDS
 
-TTL_SECONDS = 86_400
+TTL_SECONDS = FACT_BUNDLE_COLD_TTL_SECONDS
 
 
 def _decimal(value: Any) -> Decimal:

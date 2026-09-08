@@ -15,6 +15,9 @@ from app.analytics.constants import (
 )
 from app.constants import (
     DECAY_TAU_SESSIONS,
+    MULT_EXPLAINED_A,
+    MULT_EXPLAINED_B,
+    MULT_UNEXPLAINED,
     PERSONAL_CAP,
     W_DELIVERY,
     W_EXTREME,
@@ -22,6 +25,27 @@ from app.constants import (
     W_TURNOVER,
 )
 from app.timeutil import TradingCalendar, sessions_between
+
+# AnnouncementCategory.priority: 1=FINANCIAL_RESULTS, 2=REGULATORY_ACTION,
+# 3=MA_ACQUISITION are the categories a reasonable reader would call decisive
+# evidence; ORDER_WIN/MANAGEMENT_CHANGE/GENERAL still explain the move but
+# more weakly. Below the tier-A cutoff -> MULT_EXPLAINED_B.
+_EXPLAINED_A_CATEGORIES = frozenset({"FINANCIAL_RESULTS", "REGULATORY_ACTION", "MA_ACQUISITION"})
+
+
+def classification_multiplier(candidate: Candidate) -> float:
+    """MULT_EXPLAINED_A/B/UNEXPLAINED — §21 Ranking.
+
+    SECTOR_WIDE, MARKET_WIDE and CORPORATE_ACTION candidates never reach the
+    ranker: they are collapsed into one rollup line or suppressed into a
+    notice before scoring (Tasks 6.1-6.3), so their multipliers have no
+    individually-ranked item to apply to.
+    """
+    if not candidate.is_explained:
+        return MULT_UNEXPLAINED
+    if candidate.primary_category in _EXPLAINED_A_CATEGORIES:
+        return MULT_EXPLAINED_A
+    return MULT_EXPLAINED_B
 
 
 @dataclass(frozen=True)
@@ -50,11 +74,12 @@ def compute_base_score(
     turnover_z: float | None,
     delivery_z: float | None,
     has_extreme: bool,
+    classification_mult: float = 1.0,
 ) -> float:
     z_t = max(0.0, turnover_z) if turnover_z is not None else 0.0
     z_d = max(0.0, delivery_z) if delivery_z is not None else 0.0
     extreme_term = 1.0 if has_extreme else 0.0
-    return (
+    return classification_mult * (
         W_SCAR * abs(sar)
         + W_TURNOVER * z_t
         + W_DELIVERY * z_d
@@ -91,6 +116,7 @@ def rank_candidate(
         candidate.turnover_z,
         candidate.delivery_z,
         any(family.value == "EXTREME_52W" for family in candidate.signal_families),
+        classification_multiplier(candidate),
     )
     raw_boost, effective_boost = compute_personal_multiplier(context)
     final_score = base_score * decay_multiplier * effective_boost

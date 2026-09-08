@@ -24,6 +24,20 @@ export const useQuoteStore = create((set) => ({
   applyTick: (symbol, tick) => set((state) => ({
     quotes: { ...state.quotes, [symbol]: { ...state.quotes[symbol], ...tick } },
   })),
+  // Merges in quotes for symbols the store does not have yet, without
+  // touching ones already ticking (a re-seed on remount must not reset a
+  // live price back to its opening synthetic value).
+  seedQuotes: (quotesBySymbol) => set((state) => {
+    let changed = false;
+    const next = { ...state.quotes };
+    for (const [symbol, quote] of Object.entries(quotesBySymbol)) {
+      if (!next[symbol]) {
+        next[symbol] = quote;
+        changed = true;
+      }
+    }
+    return changed ? { quotes: next } : {};
+  }),
   setSubscriptions: (symbols) => set({ subscribedSymbols: symbols }),
   setFeedState: (feedState) => set({ feedState }),
 }));

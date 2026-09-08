@@ -5,7 +5,7 @@ description = "Smart Market Watchlist — The Brief"
 requires-python = ">=3.11"
 
 dependencies = [
-  # API and server — ARCHITECTURE.md §3.2
+  # API and server — docs/BUILD_SPEC.md §3.2
   "fastapi>=0.115",
   "uvicorn[standard]>=0.32",
   "pydantic>=2.9",
@@ -23,6 +23,8 @@ dependencies = [
   # Ingest — §6.3 tier 1 and tier 3
   "httpx>=0.27",
   "curl_cffi>=0.7",
+  # BROWSER_HEADERS advertises Accept-Encoding: br; httpx needs this to decode it
+  "brotli>=1.1",
   # Scheduling — §19.1, in-process for the timebox
   "apscheduler>=3.10",
   # ZoneInfo("Asia/Kolkata") must resolve on images with no system zoneinfo

@@ -1,4 +1,4 @@
-"""Delivery data ingest acceptance -- BUILD_PLAN task 2.2, ARCHITECTURE.md §6, §8.3.
+"""Delivery data ingest acceptance -- BUILD_PLAN task 2.2, docs/BUILD_SPEC.md §6, §8.3.
 
 Acceptance criteria:
   - Core Row Invariant: deliverable_qty <= traded_qty for 100% of committed rows.
@@ -183,7 +183,8 @@ def _make_engine() -> sa.Engine:
         url = sa.engine.make_url(get_settings().database_url)
         test_url = url.set(database=f"{url.database}_delivtest")
         maint = sa.create_engine(
-            url.set(database="postgres"), isolation_level="AUTOCOMMIT"
+            url.set(database="postgres"), isolation_level="AUTOCOMMIT",
+            connect_args={"connect_timeout": 5},
         )
         with maint.connect() as conn:
             exists = conn.execute(
@@ -193,7 +194,9 @@ def _make_engine() -> sa.Engine:
             if not exists:
                 conn.execute(sa.text(f'CREATE DATABASE "{test_url.database}"'))
         maint.dispose()
-        return sa.create_engine(test_url.render_as_string(hide_password=False))
+        return sa.create_engine(
+            test_url.render_as_string(hide_password=False), connect_args={"connect_timeout": 5}
+        )
     except Exception as exc:  # noqa: BLE001
         pytest.skip(f"postgres unreachable ({type(exc).__name__}); run `make up`")
 

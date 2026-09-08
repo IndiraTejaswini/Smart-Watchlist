@@ -22,10 +22,21 @@ export const useCursorStore = create((set, get) => ({
   /** True once the server's acknowledged cursor has been loaded. */
   hydrated: false,
 
-  /** Seed from /api/me. Does not overwrite a cursor the user has already moved. */
-  hydrate(acknowledgedThrough) {
+  /**
+   * Seed the query cursor once /api/me resolves. Does not overwrite a cursor
+   * the user has already moved.
+   *
+   * Deliberately defaults `cursorIso` to now rather than to the caller's
+   * acknowledged-through argument: the Brief's query window is
+   * (acknowledged_through, cursorIso], so hydrating the query cursor to the
+   * same instant the server already treats as the lower bound always yields
+   * an empty window on first paint, no matter how far back acknowledged_through
+   * is. `acknowledgedIso` (read separately from /api/me by the spine, not
+   * from this store) still carries that value for the "last read" marker.
+   */
+  hydrate() {
     if (get().hydrated) return;
-    set({ cursorIso: acknowledgedThrough, hydrated: true });
+    set({ cursorIso: new Date().toISOString(), hydrated: true });
   },
 
   /** Called continuously during a drag. Cheap, and does not refetch anything. */

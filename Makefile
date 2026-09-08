@@ -1,8 +1,8 @@
-# Smart Market Watchlist — ARCHITECTURE.md §4.1.
+# Smart Market Watchlist — docs/BUILD_SPEC.md §4.1.
 #
-# Targets arrive with the phase that implements them. Phase 0 provides the
-# infrastructure and the backfill; seed, eval and ingest-retry land in Phases
-# 2, 13 and 14 with the code they drive.
+# `make seed` (Task 14.2) is the offline path: everything it runs reads only
+# from data/cache/ and the database, no network. The individual targets above
+# it are its building blocks, useful on their own when iterating on one stage.
 
 PY := python
 BACKFILL := $(PY) backend/scripts/backfill.py
@@ -10,7 +10,7 @@ BACKFILL := $(PY) backend/scripts/backfill.py
 # the path rather than as scripts.
 BACKEND := PYTHONPATH=backend $(PY) -m
 
-.PHONY: help up down logs backfill backfill-verify symbols symbols-verify calendar calendar-verify actions actions-verify verify-actions infer-actions coverage api env
+.PHONY: help up down logs backfill backfill-verify symbols symbols-verify calendar calendar-verify actions actions-verify verify-actions infer-actions coverage api env seed pipeline
 
 help:
 	@echo "up              start postgres and redis"
@@ -27,7 +27,10 @@ help:
 	@echo "verify-actions  check parsed CA factors against the ex-date price gap"
 	@echo "infer-actions   recover factors for the unparsed tail from that gap"
 	@echo "coverage        print + write parser coverage numbers into README.md"
-	@echo "api             run the API (so far: /api/eval/unparsed-actions)"
+	@echo "seed            offline: symbols, calendar, actions, bhavcopy/delivery/index,"
+	@echo "                announcements, baselines and candidates, all from data/cache/"
+	@echo "pipeline        recompute baselines and candidates only (DB already ingested)"
+	@echo "api             run the full API"
 	@echo "env             create .env from .env.example if it is absent"
 
 up:
@@ -71,6 +74,12 @@ infer-actions:
 
 coverage:
 	$(BACKEND) app.ingest.coverage
+
+seed:
+	$(PY) backend/scripts/seed.py
+
+pipeline:
+	$(PY) backend/scripts/run_full_pipeline.py
 
 api:
 	cd backend && $(PY) -m uvicorn app.main:app --reload

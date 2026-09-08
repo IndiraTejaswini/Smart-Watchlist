@@ -9,13 +9,14 @@ from zoneinfo import ZoneInfo
 
 import sqlalchemy as sa
 
+from app.constants import ESCALATION_HOUR, ESCALATION_MAX_POLL_ATTEMPTS, ESCALATION_MINUTE
 from app.db import get_engine
 from app.ingest import runs
 from app.ingest.bhavcopy import BHAVCOPY_SOURCE
 
 SOURCE = BHAVCOPY_SOURCE
-MAX_ATTEMPTS = 4
-ESCALATION_TIME = time(20, 30)
+MAX_ATTEMPTS = ESCALATION_MAX_POLL_ATTEMPTS
+ESCALATION_TIME = time(ESCALATION_HOUR, ESCALATION_MINUTE)
 IST = ZoneInfo("Asia/Kolkata")
 
 

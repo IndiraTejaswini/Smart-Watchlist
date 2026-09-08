@@ -1,4 +1,4 @@
-"""Evaluation endpoints — ARCHITECTURE.md §16, §18.
+"""Evaluation endpoints — docs/BUILD_SPEC.md §16, §18.
 
 Only `/api/eval/unparsed-actions` exists so far. It is here rather than in
 Phase 13 because BUILD_PLAN task 1.4 makes it part of that task's acceptance:
@@ -20,6 +20,7 @@ from typing import Annotated, Any
 import sqlalchemy as sa
 from fastapi import APIRouter, Depends, Query
 
+from app.constants import EVAL_UNPARSED_DEFAULT_LIMIT, EVAL_UNPARSED_MAX_LIMIT
 from app.db import get_engine
 from app.eval.replay_runner import replay_runner
 from app.ingest import ca_verify
@@ -28,8 +29,8 @@ router = APIRouter(prefix="/api/eval", tags=["eval"])
 
 # §16: cursor pagination elsewhere; this list is bounded by how much a parser
 # failed to read, which is small by construction and shrinking.
-DEFAULT_LIMIT = 200
-MAX_LIMIT = 1000
+DEFAULT_LIMIT = EVAL_UNPARSED_DEFAULT_LIMIT
+MAX_LIMIT = EVAL_UNPARSED_MAX_LIMIT
 
 
 def connection() -> Iterator[sa.Connection]:

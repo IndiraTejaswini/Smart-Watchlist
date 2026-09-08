@@ -1,4 +1,4 @@
-"""Canonical JSON and inputs_hash — ARCHITECTURE.md §4.2.
+"""Canonical JSON and inputs_hash — docs/BUILD_SPEC.md §4.2.
 
 `json.dumps` cannot serialise numpy scalars, `Decimal` or `datetime`, and
 unrounded float repr is not stable across platforms. Since `inputs_hash`

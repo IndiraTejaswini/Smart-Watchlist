@@ -28,7 +28,7 @@ from app.ingest import coverage as cov
 
 @pytest.fixture(scope="module")
 def engine():
-    engine = sa.create_engine(get_settings().database_url)
+    engine = sa.create_engine(get_settings().database_url, connect_args={"connect_timeout": 5})
     try:
         with engine.connect():
             pass
@@ -235,10 +235,17 @@ def test_fabricated_announcements_are_categorised_correctly(engine):
     """Inserted and rolled back — this proves the categorisation query works
     end to end without depending on task 2.8's ingest or leaving the database
     changed. `raw_json->>'desc'` is read exactly as the real ingest will store
-    it (§9.1: the payload verbatim in `raw_json`)."""
+    it (§9.1: the payload verbatim in `raw_json`).
+
+    Asserted as a delta over a baseline: a populated database (2.8's real
+    backfill has run) already has its own totals, and this fixture's three
+    rows must move each bucket by exactly the amount they contribute, not
+    stand as the database's only content.
+    """
     connection = engine.connect()
     transaction = connection.begin()
     try:
+        baseline = cov.announcement_coverage(connection)
         rows = [
             ("FAB1", "Financial Results for Q1", "Financial Results"),
             ("FAB2", "Board approves Bonus Issue", None),
@@ -262,13 +269,15 @@ def test_fabricated_announcements_are_categorised_correctly(engine):
                 },
             )
         report = cov.announcement_coverage(connection)
-        assert report.total == 3
+        assert report.total - baseline.total == 3
         assert report.ingested
         # FAB1's desc ("Financial Results") is not in CATEGORY_FROM_DESC (it is
         # empty until task 2.8), so it falls through to the regex, same as FAB2.
-        assert report.by_regex == 2, "FAB1 and FAB2 both resolve via the subject regex"
-        assert report.other == 1, "FAB3 matches no specific pattern"
-        assert report.by_desc == 0
+        assert report.by_regex - baseline.by_regex == 2, (
+            "FAB1 and FAB2 both resolve via the subject regex"
+        )
+        assert report.other - baseline.other == 1, "FAB3 matches no specific pattern"
+        assert report.by_desc == baseline.by_desc
     finally:
         transaction.rollback()
         connection.close()
@@ -280,6 +289,7 @@ def test_a_populated_desc_map_is_reflected_in_by_desc(engine):
     transaction = connection.begin()
     ann.CATEGORY_FROM_DESC["FINANCIAL RESULTS"] = "RESULTS"
     try:
+        baseline = cov.announcement_coverage(connection)
         connection.execute(
             sa.text(
                 "INSERT INTO announcements "
@@ -291,7 +301,7 @@ def test_a_populated_desc_map_is_reflected_in_by_desc(engine):
             {"raw": json.dumps({"desc": "Financial Results"}), "hash": "1" * 64},
         )
         report = cov.announcement_coverage(connection)
-        assert report.by_desc == 1
+        assert report.by_desc - baseline.by_desc == 1
     finally:
         ann.CATEGORY_FROM_DESC.clear()
         transaction.rollback()

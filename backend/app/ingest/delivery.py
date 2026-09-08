@@ -1,4 +1,4 @@
-"""Delivery data ingest pipeline -- ARCHITECTURE.md §6, §8.3, BUILD_PLAN task 2.2.
+"""Delivery data ingest pipeline -- docs/BUILD_SPEC.md §6, §8.3, BUILD_PLAN task 2.2.
 
 This module owns the ingestion of NSE's Security-wise deliverable positions file
 (sec_bhavdata_full_{DDMMYYYY}.csv) into `delivery_stats`.

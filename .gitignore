@@ -31,3 +31,7 @@ Thumbs.db
 
 # Large local caches (if applicable)
 data/cache/bhavcopy/*.csv
+
+# Database seed dumps — never commit
+*.dump
+seed.dump

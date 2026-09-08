@@ -1,4 +1,4 @@
-"""Corporate-action ingest — ARCHITECTURE.md §5.3, BUILD_PLAN task 1.3.
+"""Corporate-action ingest — docs/BUILD_SPEC.md §5.3, BUILD_PLAN task 1.3.
 
 Fetches NSE's corporate-action feed over the calendar window, reads each
 `purpose_raw` through `ca_parser`, and writes `corporate_actions` with the
@@ -54,6 +54,7 @@ from typing import Any
 
 import sqlalchemy as sa
 
+from app.constants import CA_INGEST_CHUNK_DAYS
 from app.db import get_engine
 from app.ingest import ca_parser, runs
 from app.ingest.calendar import FORWARD_DAYS, earliest_cached_session
@@ -80,9 +81,8 @@ CA_REFERER = NSE_HOME + "/companies-listing/corporate-filings-actions"
 CA_CACHE = "corporate_actions_{start:%Y%m%d}_{end:%Y%m%d}.json"
 
 # The endpoint honours its date range but returns a bounded page, so the window
-# is walked in chunks. 60 days keeps every observed chunk well inside the cap —
-# the busiest returned 738 rows. A pagination size, not a business threshold.
-CHUNK_DAYS = 60
+# is walked in chunks — R1: sourced from the registry.
+CHUNK_DAYS = CA_INGEST_CHUNK_DAYS
 
 NSE_DATE_FORMAT = "%d-%b-%Y"
 

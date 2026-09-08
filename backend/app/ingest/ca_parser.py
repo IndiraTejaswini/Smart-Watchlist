@@ -1,4 +1,4 @@
-"""Corporate-action purpose parser — ARCHITECTURE.md §5.3, BUILD_PLAN task 1.3.
+"""Corporate-action purpose parser — docs/BUILD_SPEC.md §5.3, BUILD_PLAN task 1.3.
 
 Turns a free-text NSE `subject` into an action type and a price factor. Pure:
 no clock, no network, no database, so the same string is the same factor in the

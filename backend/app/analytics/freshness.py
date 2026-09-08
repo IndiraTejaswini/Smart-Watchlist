@@ -1,7 +1,7 @@
 """Quote freshness state machines."""
 
 from dataclasses import dataclass, field
-from datetime import date, datetime, time
+from datetime import date, datetime
 from enum import StrEnum
 from zoneinfo import ZoneInfo
 
@@ -12,8 +12,17 @@ from app.analytics.constants import (
     FRESHNESS_LIVE_MAX_AGE_MS,
     FRESHNESS_THIN_SILENCE_MS,
 )
+from app.constants import FRESHNESS_SIMPLE_STALE_MAX_AGE_MS
 from app.schemas.quote import FreshnessState as QuoteFreshnessState
-from app.timeutil import IST, SessionPhase, TradingCalendar, session_phase
+from app.timeutil import (
+    CLOSE_TIME,
+    IST,
+    OPEN_TIME,
+    PRE_OPEN_START_TIME,
+    SessionPhase,
+    TradingCalendar,
+    session_phase,
+)
 
 
 class FreshnessState(StrEnum):
@@ -57,9 +66,9 @@ def evaluate_freshness_state(
                 FreshnessState.STALE_EOD,
                 f"Bhavcopy date {ctx.symbol_date} precedes expected session {expected}",
             )
-    if eval_time < time(9, 0) or eval_time >= time(15, 30):
+    if eval_time < PRE_OPEN_START_TIME or eval_time >= CLOSE_TIME:
         return FreshnessState.CLOSED, "Outside official exchange hours"
-    if time(9, 0) <= eval_time < time(9, 15):
+    if PRE_OPEN_START_TIME <= eval_time < OPEN_TIME:
         return FreshnessState.PRE_OPEN, "Pre-open auction window"
 
     delta_sym_ms = _age_ms(eval_ts, ctx.symbol_tick_ts)
@@ -107,8 +116,8 @@ def evaluate_freshness(
         return QuoteFreshnessState.CLOSED, age_ms
     if is_circuit_locked:
         return QuoteFreshnessState.HALTED, age_ms
-    if age_ms < 5000:
+    if age_ms < FRESHNESS_LIVE_MAX_AGE_MS:
         return QuoteFreshnessState.LIVE, age_ms
-    if age_ms <= 60000:
+    if age_ms <= FRESHNESS_SIMPLE_STALE_MAX_AGE_MS:
         return QuoteFreshnessState.STALE, age_ms
     return QuoteFreshnessState.CLOSED, age_ms

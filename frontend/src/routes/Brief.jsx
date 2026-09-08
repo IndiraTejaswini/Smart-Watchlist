@@ -44,7 +44,7 @@ export default function Brief() {
 
   useEffect(() => {
     if (me?.cursor?.acknowledged_through) {
-      useCursorStore.getState().hydrate(me.cursor.acknowledged_through);
+      useCursorStore.getState().hydrate();
     }
   }, [me]);
 

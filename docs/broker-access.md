@@ -10,7 +10,7 @@ the polling fallback. This is that decision.
 
 `QUOTE_SOURCE=POLLING` is the shipped default. `PollingSource` is the quote
 source the demo runs on. `BrokerWebSocketSource` remains in the design and
-behind the same `QuoteSource` protocol (ARCHITECTURE.md §14.1), so a broker feed
+behind the same `QuoteSource` protocol (docs/BUILD_SPEC.md §14.1), so a broker feed
 is a configuration change if credentials appear later.
 
 ## Why

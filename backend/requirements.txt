@@ -1,0 +1,34 @@
+# Runtime dependencies for the container image — mirrors the [project]
+# dependencies in pyproject.toml. Kept as a separate file so the Docker build
+# can install dependencies in a cached layer before the source is copied.
+# Dev/test extras (pytest, ruff, mypy) are deliberately absent.
+
+# API and server — docs/BUILD_SPEC.md §3.2
+fastapi>=0.115
+uvicorn[standard]>=0.32
+pydantic>=2.9
+pydantic-settings>=2.6
+
+# Durable store
+sqlalchemy>=2.0
+alembic>=1.14
+psycopg[binary]>=3.2
+
+# Cache, stream, latest value
+redis>=5.2
+
+# Numerical core: the market-model regression and rolling statistics
+pandas>=2.2
+numpy>=2.0
+statsmodels>=0.14
+
+# Ingest — §6.3 tier 1 and tier 3
+httpx>=0.27
+curl_cffi>=0.7
+brotli>=1.1
+
+# Scheduling — §19.1, in-process for the timebox
+apscheduler>=3.10
+
+# ZoneInfo("Asia/Kolkata") must resolve on images with no system zoneinfo
+tzdata>=2024.2

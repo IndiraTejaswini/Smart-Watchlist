@@ -8,7 +8,7 @@ from typing import Annotated, Any
 from uuid import uuid4
 
 import sqlalchemy as sa
-from fastapi import APIRouter, Depends, Header, HTTPException, Request, Response, status
+from fastapi import APIRouter, Depends, Header, HTTPException, Query, Request, Response, status
 from pydantic import BaseModel
 
 from app.analytics.fractional_index import (
@@ -43,6 +43,11 @@ class WatchlistItemRequest(BaseModel):
 
 class WatchlistUpdateRequest(BaseModel):
     name: str
+
+
+class WatchlistItemReorderRequest(BaseModel):
+    after_symbol: str | None = None
+    before_symbol: str | None = None
 
 
 def parse_if_match_header(if_match: str | None = Header(None)) -> int:
@@ -129,6 +134,55 @@ def get_watchlist_by_id(
     )
 
 
+@router.get("/{watchlist_id}/signals")
+def watchlist_signals(
+    watchlist_id: str,
+    conn: Connection,
+    symbol: str | None = None,
+    from_: Annotated[str | None, Query(alias="from")] = None,
+    to: str | None = None,
+) -> dict[str, Any]:
+    """Signal marks for the cursor spine (§3) — one row per candidate day.
+
+    "surfaced" means a real candidate existed for that symbol-date (it
+    cleared the MPM gate and abnormality thresholds), not that a specific
+    Brief delivered it — there is no per-user, per-item delivery ledger to
+    read that back from.
+    """
+    symbols_row = conn.execute(
+        sa.text("SELECT symbol FROM watchlist_items WHERE watchlist_id = :watchlist_id"),
+        {"watchlist_id": watchlist_id},
+    ).scalars()
+    symbols = [symbol] if symbol else list(symbols_row)
+    if not symbols:
+        return {"watchlist_id": watchlist_id, "marks": []}
+
+    clauses = ["symbol = ANY(:symbols)"]
+    params: dict[str, Any] = {"symbols": symbols}
+    if from_:
+        clauses.append("date >= :from_date")
+        params["from_date"] = from_
+    if to:
+        clauses.append("date <= :to_date")
+        params["to_date"] = to
+    rows = conn.execute(
+        sa.text(
+            "SELECT id, date, symbol FROM candidates WHERE " + " AND ".join(clauses)
+        ),
+        params,
+    ).mappings()
+    marks = [
+        {
+            "signal_event_id": row["id"] or f"{row['date']}:{row['symbol']}",
+            "session_date": str(row["date"]),
+            "symbol": row["symbol"],
+            "surfaced": True,
+        }
+        for row in rows
+    ]
+    return {"watchlist_id": watchlist_id, "marks": marks}
+
+
 @router.put("/{watchlist_id}")
 def update_watchlist_endpoint(
     watchlist_id: str,
@@ -209,6 +263,55 @@ def add_watchlist_item(
         status_code=201,
         media_type="application/json",
     )
+
+
+@router.patch("/items/{symbol}/position")
+def reorder_watchlist_item(
+    symbol: str,
+    payload: WatchlistItemReorderRequest,
+    conn: Connection,
+    x_user_id: Annotated[str | None, Header()] = None,
+    redis_client: Any | None = None,
+) -> dict[str, str]:
+    """Drag-to-reorder (12.6, Task 7.3/7.4's fractional index applied to a
+    move rather than an insert): re-key one existing item between two others,
+    rewriting nothing else in the list."""
+    user_id = _user_id(x_user_id)
+    watchlist_id = _watchlist(conn, user_id)
+    owns_symbol = conn.execute(
+        sa.text(
+            "SELECT 1 FROM watchlist_items WHERE watchlist_id = :watchlist_id AND symbol = :symbol"
+        ),
+        {"watchlist_id": watchlist_id, "symbol": symbol},
+    ).first()
+    if owns_symbol is None:
+        raise HTTPException(status_code=404, detail="Symbol not on this watchlist")
+
+    def _position_of(other_symbol: str | None) -> Decimal | None:
+        if not other_symbol:
+            return None
+        value = conn.execute(
+            sa.text(
+                "SELECT position FROM watchlist_items "
+                "WHERE watchlist_id = :watchlist_id AND symbol = :symbol"
+            ),
+            {"watchlist_id": watchlist_id, "symbol": other_symbol},
+        ).scalar()
+        return Decimal(str(value)) if value is not None else None
+
+    position = generate_midpoint_position(
+        _position_of(payload.after_symbol), _position_of(payload.before_symbol)
+    )
+    conn.execute(
+        sa.text(
+            "UPDATE watchlist_items SET position = :position "
+            "WHERE watchlist_id = :watchlist_id AND symbol = :symbol"
+        ),
+        {"position": str(position), "watchlist_id": watchlist_id, "symbol": symbol},
+    )
+    if should_trigger_rebalance(position) and redis_client is not None:
+        rebalance_watchlist(conn, redis_client, watchlist_id)
+    return {"symbol": symbol, "position": str(position)}
 
 
 @router.delete("/items/{symbol}")

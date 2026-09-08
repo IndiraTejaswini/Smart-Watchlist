@@ -28,7 +28,10 @@ def upgrade() -> None:
             op.add_column("candidates", sa.Column(name, column, nullable=True))
             if default is not None:
                 op.execute(sa.text(f"UPDATE candidates SET {name} = {default}"))
-            op.alter_column("candidates", name, nullable=False)
+                op.alter_column("candidates", name, nullable=False)
+            # superseded_by_id has no default: NULL *is* its meaning ("not
+            # superseded"), and idx_active_candidates below filters on that,
+            # so it must stay nullable.
     op.alter_column("candidates", "delivery_z", nullable=True)
     if "delivery_fraction" in columns:
         op.alter_column("candidates", "delivery_fraction", nullable=True)

@@ -7,6 +7,11 @@ from datetime import date, datetime, timedelta
 from typing import Any
 
 from app.analytics.candidates import Candidate
+from app.constants import (
+    REFRACTORY_ESCALATION,
+    REFRACTORY_MEMORY_TTL_DAYS,
+    REFRACTORY_WINDOW_SESSIONS,
+)
 from app.timeutil import TradingCalendar, sessions_between
 
 
@@ -31,7 +36,7 @@ class RefractoryState:
     last_emitted_at: datetime | date
     direction: int
     anchor_magnitude: float
-    window_sessions: int = 3
+    window_sessions: int = REFRACTORY_WINDOW_SESSIONS
 
 
 class RefractoryStore:
@@ -53,10 +58,11 @@ class RefractoryStore:
 
     def set(self, state: RefractoryState) -> None:
         key = f"refractory:{state.symbol}"
+        ttl = timedelta(days=REFRACTORY_MEMORY_TTL_DAYS)
         if self._redis is not None:
-            self._redis.setex(key, 5 * 24 * 60 * 60, state)
+            self._redis.setex(key, int(ttl.total_seconds()), state)
         else:
-            self._memory[key] = (state, datetime.now() + timedelta(days=5))
+            self._memory[key] = (state, datetime.now() + ttl)
 
     def delete(self, symbol: str) -> None:
         key = f"refractory:{symbol}"
@@ -92,9 +98,9 @@ def evaluate_refractory_filter(
             current_event.occurred_at,
             direction,
             magnitude,
-            state.window_sessions if state else 3,
+            state.window_sessions if state else REFRACTORY_WINDOW_SESSIONS,
         )
-    if magnitude >= 1.60 * state.anchor_magnitude:
+    if magnitude >= (1.0 + REFRACTORY_ESCALATION) * state.anchor_magnitude:
         return True, RefractoryState(
             state.symbol,
             current_event.occurred_at,

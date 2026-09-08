@@ -20,6 +20,8 @@ class BaseScoreBreakdown(BaseModel):
     material_filing_active: bool
     material_filing_weight: float
     material_filing_contribution: float
+    classification: str
+    classification_multiplier: float
     base_score_sum: float
 
 

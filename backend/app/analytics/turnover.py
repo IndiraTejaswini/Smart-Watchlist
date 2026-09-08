@@ -10,9 +10,11 @@ import numpy as np
 import pandas as pd
 import sqlalchemy as sa
 
-WINDOW = 20
-MIN_SHORT = 10
-STD_FLOOR = 0.05
+from app.constants import BASELINE_MIN_SHORT_OBS, LOG_TO_SD_FLOOR, VOL_WINDOW_DAYS
+
+WINDOW = VOL_WINDOW_DAYS
+MIN_SHORT = BASELINE_MIN_SHORT_OBS
+STD_FLOOR = LOG_TO_SD_FLOOR
 
 
 def estimate_turnover_baselines(wide_turnover: pd.DataFrame) -> pd.DataFrame:

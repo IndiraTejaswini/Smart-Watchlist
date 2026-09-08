@@ -1,6 +1,6 @@
 """001: full schema
 
-Every table in ARCHITECTURE.md §5, §6, §7, §9, §12 and §20.
+Every table in docs/BUILD_SPEC.md §5, §6, §7, §9, §12 and §20.
 
 Written as explicit DDL, in the order the foreign keys require, and dropped in
 the reverse order so `downgrade base` is a clean teardown.

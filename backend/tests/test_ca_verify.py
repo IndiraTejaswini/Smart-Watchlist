@@ -1,4 +1,4 @@
-"""Empirical CA factor verification — BUILD_PLAN task 1.4, ARCHITECTURE.md §5.3.
+"""Empirical CA factor verification — BUILD_PLAN task 1.4, docs/BUILD_SPEC.md §5.3.
 
 Written before the implementation, with every expectation computed by hand
 (R11). §5.3 calls this the substitute for a second vendor feed: a parsed factor

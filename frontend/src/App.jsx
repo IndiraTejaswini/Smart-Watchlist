@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import AppShell from "./components/shell/AppShell.jsx";
 import TokensPage from "./pages/TokensPage.jsx";
 import Brief from "./routes/Brief.jsx";
@@ -9,6 +9,7 @@ import Watchlist from "./routes/Watchlist.jsx";
 import Symbol from "./routes/Symbol.jsx";
 import Eval from "./routes/Eval.jsx";
 import Settings from "./routes/Settings.jsx";
+import NotFound from "./routes/NotFound.jsx";
 
 /**
  * App.jsx — the route table.
@@ -33,8 +34,7 @@ export default function App() {
         <Route path="/eval" element={<Eval />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
-      {/* Stage 5 replaces this with the landing page at "/". */}
-      <Route path="*" element={<Navigate to="/tokens" replace />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

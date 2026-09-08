@@ -1,4 +1,4 @@
-"""Tests for canonical JSON and inputs_hash — ARCHITECTURE.md §4.2.
+"""Tests for canonical JSON and inputs_hash — docs/BUILD_SPEC.md §4.2.
 
 Written before the implementation (R11). Every expected value below is
 hand-computed and written out literally; none of it is produced by calling the

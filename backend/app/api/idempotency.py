@@ -6,7 +6,9 @@ import json
 from dataclasses import dataclass
 from typing import Any
 
-TTL_SECONDS = 86400
+from app.constants import IDEMPOTENCY_TTL_SECONDS
+
+TTL_SECONDS = IDEMPOTENCY_TTL_SECONDS
 
 
 @dataclass(frozen=True)

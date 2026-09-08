@@ -1,4 +1,4 @@
-"""Symbol master ingest — ARCHITECTURE.md §5.1, BUILD_PLAN task 1.1.
+"""Symbol master ingest — docs/BUILD_SPEC.md §5.1, BUILD_PLAN task 1.1.
 
 Builds `instruments` from NSE's list of securities, resolves a sector for every
 row through the §5.1 fallback chain, records which tier answered in
@@ -78,7 +78,18 @@ from typing import Any
 
 import sqlalchemy as sa
 
-from app.constants import NSE_MAX_ATTEMPTS
+from app.constants import (
+    NSE_MAX_ATTEMPTS,
+)
+from app.constants import (
+    VENDOR_CHECKPOINT_EVERY as _VENDOR_CHECKPOINT_EVERY,
+)
+from app.constants import (
+    VENDOR_REQUEST_DELAY_S as _VENDOR_REQUEST_DELAY_S,
+)
+from app.constants import (
+    VENDOR_TIMEOUT_S as _VENDOR_TIMEOUT_S,
+)
 from app.db import get_engine
 from app.ingest import runs
 from app.ingest.nse_client import (
@@ -171,11 +182,10 @@ BSE_COMPANY_HEADER_URL = f"{BSE_API}/ComHeadernew/w?quotetype=EQ&scripcode={{cod
 VENDOR_SCRIP_LIST_CACHE = "bse_scrip_list.json"
 VENDOR_SECTOR_CACHE = "bse_sector_by_isin.json"
 
-# Transport mechanics, not business thresholds — the same distinction
-# `nse_client` draws for INTER_REQUEST_DELAY_S. The attempt cap is the §6.3 one.
-VENDOR_REQUEST_DELAY_S = 0.35
-VENDOR_TIMEOUT_S = 30.0
-VENDOR_CHECKPOINT_EVERY = 100
+# Transport mechanics — R1: sourced from the registry.
+VENDOR_REQUEST_DELAY_S = _VENDOR_REQUEST_DELAY_S
+VENDOR_TIMEOUT_S = _VENDOR_TIMEOUT_S
+VENDOR_CHECKPOINT_EVERY = _VENDOR_CHECKPOINT_EVERY
 
 # ─── Domain vocabulary ──────────────────────────────────────────────────────
 

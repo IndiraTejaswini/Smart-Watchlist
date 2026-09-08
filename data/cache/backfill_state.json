@@ -1513,6 +1513,12 @@
     "status": "OK",
     "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260904_F_0000.csv.zip"
   },
+  "bhavcopy/2026-09-07": {
+    "bytes": 207192,
+    "path": "data\\cache\\bhavcopy\\2026-09-07\\BhavCopy_NSE_CM_0_0_0_20260907_F_0000.csv.zip",
+    "status": "OK",
+    "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20260907_F_0000.csv.zip"
+  },
   "delivery/2025-09-11": {
     "bytes": 340269,
     "path": "data\\cache\\delivery\\2025-09-11\\sec_bhavdata_full_11092025.csv",
@@ -3052,5 +3058,11 @@
     "path": "data\\cache\\delivery\\2026-09-04\\sec_bhavdata_full_04092026.csv",
     "status": "OK",
     "url": "https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_04092026.csv"
+  },
+  "delivery/2026-09-07": {
+    "bytes": 399239,
+    "path": "data\\cache\\delivery\\2026-09-07\\sec_bhavdata_full_07092026.csv",
+    "status": "OK",
+    "url": "https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_07092026.csv"
   }
 }

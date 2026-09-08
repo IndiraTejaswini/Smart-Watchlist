@@ -11,6 +11,13 @@ from statistics import median
 
 from app.analytics.candidates import Candidate
 from app.analytics.fact_bundle import FactBundle
+from app.constants import (
+    MARKET_ATTRIB_RATIO,
+    MARKET_SAR_CEILING,
+    MARKET_WIDE_BENCHMARK_MOVE_MIN,
+    MARKET_WIDE_MIN_SYMBOLS,
+    SECTOR_MIN_PEERS,
+)
 
 
 class AttributionCategory(StrEnum):
@@ -64,7 +71,7 @@ def classify_market_attribution(
     candidate: Candidate,
     bundle: FactBundle,
     benchmark_return: Decimal,
-    market_sar_ceiling: float = 2.5,
+    market_sar_ceiling: float = MARKET_SAR_CEILING,
 ) -> AttributionResult:
     """Classify a candidate using its market-model residual decomposition."""
     model = bundle.market_model
@@ -103,9 +110,9 @@ def classify_market_attribution(
         )
 
     if (
-        abs(benchmark) >= 0.020
+        abs(benchmark) >= MARKET_WIDE_BENCHMARK_MOVE_MIN
         and _same_sign(total_return, benchmark)
-        and market_ratio >= 0.65
+        and market_ratio >= MARKET_ATTRIB_RATIO
     ):
         return AttributionResult(
             symbol=candidate.symbol,
@@ -147,7 +154,7 @@ def generate_market_wide_rollup(
             and attribution.is_rollup_eligible
         )
     ]
-    if len(rollup_group) < 3:
+    if len(rollup_group) < MARKET_WIDE_MIN_SYMBOLS:
         return candidates, None
 
     symbols = tuple(candidate.symbol for candidate in rollup_group)
@@ -184,29 +191,42 @@ def evaluate_sector_grouping(
     candidates: list[Candidate],
     symbol_sector_map: dict[str, str | None],
 ) -> tuple[list[Candidate], list[SectorWideRollup]]:
-    """Collapse sector peers with a directional quorum of three or more."""
-    groups: dict[tuple[str, int], list[Candidate]] = defaultdict(list)
+    """Collapse sector peers with a directional quorum of three or more.
+
+    Grouped by (sector, direction, date): candidates accumulate across the
+    whole cursor window (days or weeks), and a peer group that ignored date
+    would blend unrelated sessions into one summary — a Materials rally in
+    March and a Materials sell-off in June credited as the same event. Mirrors
+    the per-day grouping `_evaluate_market_wide` already uses.
+    """
+    groups: dict[tuple[str, int, date], list[Candidate]] = defaultdict(list)
     for candidate in candidates:
         sector = symbol_sector_map.get(candidate.symbol)
         if sector in (None, "", "UNASSIGNED"):
             continue
         value = _candidate_return(candidate)
         direction = 1 if value > 0 else -1 if value < 0 else 0
-        groups[(sector, direction)].append(candidate)
+        groups[(sector, direction, candidate.date)].append(candidate)
 
     rollups: list[SectorWideRollup] = []
-    for (sector, direction), group in groups.items():
+    # Keyed by (symbol, date), not symbol alone: a symbol trades most days in
+    # the cursor window, and matching on symbol name would let one day's
+    # rollup silently suppress every other day that same symbol shows up as
+    # its own candidate — swallowing the whole Brief window over a peer group
+    # formed on a single unrelated session.
+    suppressed_keys: set[tuple[str, date]] = set()
+    for (sector, direction, group_date), group in groups.items():
         eligible = [
             candidate for candidate in group if candidate.material_announcements_count == 0
         ]
-        if len(group) < 3 or len(eligible) < 3 or direction == 0:
+        if len(group) < SECTOR_MIN_PEERS or len(eligible) < SECTOR_MIN_PEERS or direction == 0:
             continue
         symbols = tuple(candidate.symbol for candidate in eligible)
         returns = [_candidate_return(candidate) for candidate in eligible]
         rollups.append(
             SectorWideRollup(
                 sector=sector,
-                date=eligible[0].date,
+                date=group_date,
                 direction=direction,
                 affected_symbols=symbols,
                 symbol_count=len(eligible),
@@ -219,11 +239,9 @@ def evaluate_sector_grouping(
                 created_at=datetime.now(UTC),
             )
         )
-    suppressed = {
-        candidate.symbol
-        for rollup in rollups
-        for candidate in candidates
-        if candidate.symbol in rollup.affected_symbols
-    }
-    retained = [candidate for candidate in candidates if candidate.symbol not in suppressed]
+        suppressed_keys.update((candidate.symbol, candidate.date) for candidate in eligible)
+    retained = [
+        candidate for candidate in candidates
+        if (candidate.symbol, candidate.date) not in suppressed_keys
+    ]
     return retained, rollups

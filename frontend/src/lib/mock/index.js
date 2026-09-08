@@ -5,13 +5,14 @@ import { mockMe } from "./me.js";
 import { selectMarks } from "./signals.js";
 import { CALENDAR_WINDOW, TRADING_SESSIONS } from "./tradingCalendar.js";
 import { mockEvalCases, mockEvalContinuation, mockEvalFunnel } from "./eval.js";
+import { listWatchlistItems, reorderWatchlistItem } from "./watchlistState.js";
 
 /**
  * mock/index.js — the mock transport.
  *
  * This sits behind the identical function signature as the real fetch, so that
  * swapping `VITE_USE_MOCK` changes nothing above this line. Payloads match
- * ARCHITECTURE.md §16 exactly. When a screen needs a field the mock does not
+ * docs/BUILD_SPEC.md §16 exactly. When a screen needs a field the mock does not
  * have, the fix is to the mock, never to the component.
  *
  * Routes are registered as [method, RegExp, handler]. Handlers receive the URL
@@ -45,7 +46,7 @@ const ROUTES = [
 
   // Signal marks for the spine. `symbol` narrows it to one name, which is what
   // /symbol/:symbol needs (§3).
-  ["GET", /^\/watchlists\/([^/]+)\/signals$/, (match, query) => ({
+  ["GET", /^\/watchlist\/([^/]+)\/signals$/, (match, query) => ({
     watchlist_id: match[1],
     marks: selectMarks({
       from: query.from,
@@ -53,6 +54,11 @@ const ROUTES = [
       symbol: query.symbol,
     }),
   })],
+
+  // The live table's register (12.6) and its drag-to-reorder write.
+  ["GET", /^\/watchlist\/([^/]+)$/, (match) => listWatchlistItems(match[1])],
+  ["PATCH", /^\/watchlist\/items\/([^/]+)\/position$/, (match, _query, body) =>
+    reorderWatchlistItem(match[1], body ?? {})],
 ];
 
 /**

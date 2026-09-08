@@ -9,14 +9,22 @@ import hashlib
 import json
 from dataclasses import dataclass
 from datetime import datetime
+from decimal import Decimal
 from typing import Any
 
 import sqlalchemy as sa
 
-from app.analytics.attribution import MarketWideRollup, SectorWideRollup, evaluate_sector_grouping
-from app.analytics.candidates import Candidate, SignalFamily
+from app.analytics.attribution import (
+    MarketWideRollup,
+    SectorWideRollup,
+    classify_market_attribution,
+    evaluate_sector_grouping,
+    generate_market_wide_rollup,
+)
+from app.analytics.candidates import Candidate, candidate_from_row
 from app.analytics.constants import MAX_ITEMS_PER_SECTOR, SECTOR_DIVERSITY_SAR_OVERRIDE
 from app.analytics.corporate_action_notice import CorporateActionNotice
+from app.analytics.fact_bundle import FactBundle, MarketModelFact
 from app.analytics.ranker import PersonalContext, RankedDigestItem, rank_candidate
 from app.constants import BRIEF_MAX_ITEMS
 from app.crud.brief_cursor import EPOCH, get_brief_cursor, record_brief_served
@@ -96,25 +104,7 @@ class DeliveryBudgetBlock:
             raise ValueError("candidate funnel counts do not reconcile")
 
 
-def _candidate(row: Any) -> Candidate:
-    families = frozenset(
-        SignalFamily(value)
-        for value in (row.get("signal_families") or [row["primary_signal"]])
-    )
-    return Candidate(
-        symbol=str(row["symbol"]),
-        date=row["date"],
-        signal_families=families,
-        primary_signal=SignalFamily(str(row["primary_signal"])),
-        sar=float(row["sar"]),
-        turnover_z=None if row.get("turnover_z") is None else float(row["turnover_z"]),
-        delivery_z=None if row.get("delivery_z") is None else float(row["delivery_z"]),
-        material_announcements_count=int(
-            row.get("material_announcements_count", row.get("has_material_filing", 0))
-        ),
-        metadata=dict(row.get("metadata") or {}),
-        inputs_hash=str(row.get("inputs_hash", "")),
-    )
+_candidate = candidate_from_row
 
 
 def _hash_inputs(user_id: str, as_of_ts: datetime, candidates: list[Candidate]) -> str:
@@ -162,6 +152,77 @@ def _apply_sector_concentration(
     return qualified
 
 
+def _evaluate_market_wide(
+    db: Any, candidates: list[Candidate]
+) -> tuple[list[Candidate], list[MarketWideRollup]]:
+    """MARKET_WIDE attribution + rollup — Task 6.2, evaluated at read time.
+
+    Mirrors sector grouping: computed here, against whatever candidates are
+    in the current Brief window, rather than baked into the stored row at
+    ingest time (the same distinction the sector map already draws).
+    """
+    by_date: dict[Any, list[Candidate]] = {}
+    for candidate in candidates:
+        by_date.setdefault(candidate.date, []).append(candidate)
+
+    retained: list[Candidate] = []
+    rollups: list[MarketWideRollup] = []
+    for day, day_candidates in by_date.items():
+        symbols = [c.symbol for c in day_candidates]
+        rows = db.execute(
+            sa.text(
+                "SELECT symbol, alpha, beta, resid_sd, quality_flag "
+                "FROM market_model_parameters WHERE date = :date AND symbol = ANY(:symbols)"
+            ),
+            {"date": day, "symbols": symbols},
+        ).mappings()
+        model_by_symbol = {row["symbol"]: row for row in rows}
+        index_rows = list(
+            db.execute(
+                sa.text(
+                    "SELECT date, close FROM index_bars WHERE index_symbol = 'Nifty 50' "
+                    "AND date <= :date ORDER BY date DESC LIMIT 2"
+                ),
+                {"date": day},
+            ).mappings()
+        )
+        bench_ret = Decimal("0")
+        if len(index_rows) == 2 and index_rows[1]["close"]:
+            bench_ret = (
+                Decimal(str(index_rows[0]["close"])) - Decimal(str(index_rows[1]["close"]))
+            ) / Decimal(str(index_rows[1]["close"]))
+
+        attributions = []
+        attributed_candidates = []
+        for candidate in day_candidates:
+            model_row = model_by_symbol.get(candidate.symbol)
+            if model_row is None:
+                retained.append(candidate)
+                continue
+            bundle = FactBundle(
+                symbol=candidate.symbol,
+                date=day,
+                market_model=MarketModelFact(
+                    alpha=Decimal(str(model_row["alpha"])),
+                    beta=Decimal(str(model_row["beta"])),
+                    r2=None,
+                    resid_sd=Decimal(str(model_row["resid_sd"])),
+                    n_obs=0,
+                    quality_flag=model_row["quality_flag"],
+                ),
+            )
+            attributed_candidates.append(candidate)
+            attributions.append(classify_market_attribution(candidate, bundle, bench_ret))
+
+        day_retained, rollup = generate_market_wide_rollup(
+            attributed_candidates, attributions, "Nifty 50", bench_ret
+        )
+        retained.extend(day_retained)
+        if rollup is not None:
+            rollups.append(rollup)
+    return retained, rollups
+
+
 def build_digest(
     db: Any,
     user_id: str,
@@ -190,8 +251,10 @@ def build_digest(
     if "corporate_action_notices" in tables:
         notice_rows = db.execute(
             sa.text(
-                "SELECT * FROM corporate_action_notices "
-                "WHERE ex_date >= :as_of_date"
+                "SELECT symbol, ex_date, cum_date, action_type, as_traded_cum_close, "
+                "adjusted_prev_close, adjustment_factor, ratio_or_amount, headline, "
+                "detail_text, source_url, created_at "
+                "FROM corporate_action_notices WHERE ex_date >= :as_of_date"
             ),
             {"as_of_date": as_of_ts.date()},
         ).mappings()
@@ -199,12 +262,14 @@ def build_digest(
     muted = {notice.symbol for notice in notices if notice.ex_date == as_of_ts.date()}
     candidates = [candidate for candidate in candidates if candidate.symbol not in muted]
 
+    market_retained, market_rollups = _evaluate_market_wide(db, candidates)
+
     sector_map = {
         candidate.symbol: candidate.metadata.get("sector")
-        for candidate in candidates
+        for candidate in market_retained
         if candidate.metadata.get("sector") is not None
     }
-    retained, sector_rollups = evaluate_sector_grouping(candidates, sector_map)
+    retained, sector_rollups = evaluate_sector_grouping(market_retained, sector_map)
     scored = [
         rank_candidate(
             candidate,
@@ -227,11 +292,14 @@ def build_digest(
     diversity_suppressed = pre_concentration_count - len(scored)
     scored_items = tuple(scored[:BRIEF_MAX_ITEMS])
     truncated = len(scored) - len(scored_items)
-    rollup_suppressed = sum(len(rollup.affected_symbols) for rollup in sector_rollups)
+    market_suppressed = len(candidates) - len(market_retained)
+    sector_suppressed = sum(len(rollup.affected_symbols) for rollup in sector_rollups)
+    rollup_suppressed = market_suppressed + sector_suppressed
     corporate_suppressed = len(all_candidates) - len(candidates)
     brief_id = hashlib.sha256(f"{user_id}:{as_of_ts.isoformat()}".encode()).hexdigest()
     input_hash = _hash_inputs(user_id, as_of_ts, all_candidates)
     served = record_brief_served(db, user_id, "brief:default", as_of_ts)
+    n_delivered_rollups = len(market_rollups) + len(sector_rollups)
     budget = DeliveryBudgetBlock(
         brief_id=brief_id,
         user_id=user_id,
@@ -239,9 +307,9 @@ def build_digest(
         cursor_ack_ts=served.acknowledged_through_ts,
         n_scored_items=len(scored_items),
         n_corporate_actions=len(notices),
-        n_market_rollups=0,
+        n_market_rollups=len(market_rollups),
         n_sector_rollups=len(sector_rollups),
-        n_total_delivered=len(scored_items) + len(notices) + len(sector_rollups),
+        n_total_delivered=len(scored_items) + len(notices) + n_delivered_rollups,
         n_candidates_evaluated=len(all_candidates),
         n_candidates_delivered=len(scored_items),
         n_suppressed_illiquidity=0,
@@ -259,7 +327,7 @@ def build_digest(
         as_of_ts=as_of_ts,
         cursor_ack_ts=served.acknowledged_through_ts,
         scored_items=scored_items,
-        market_rollups=(),
+        market_rollups=tuple(market_rollups),
         sector_rollups=tuple(sector_rollups),
         corporate_actions=notices,
         total_candidates_evaluated=len(all_candidates),

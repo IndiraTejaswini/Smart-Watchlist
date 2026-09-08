@@ -108,7 +108,15 @@ def compute_abnormality_bundle(
         sar=sar,
         car_3d=car_3d,
         scar_3d=scar_3d,
-        turnover_z=None,
+        turnover_z=(
+            (
+                math.log1p(float(current.turnover))
+                - float(bundle.turnover_baseline.mean_log_turnover)
+            )
+            / float(bundle.turnover_baseline.std_log_turnover)
+            if bundle.turnover_baseline is not None and current.turnover is not None
+            else None
+        ),
         delivery_z=(
             float(bundle.delivery_baseline.delivery_z_score)
             if bundle.delivery_baseline

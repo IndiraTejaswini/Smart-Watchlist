@@ -1,4 +1,4 @@
-"""NSE HTTP client — ARCHITECTURE.md §6.3.
+"""NSE HTTP client — docs/BUILD_SPEC.md §6.3.
 
 NSE endpoints need a browser-like session: realistic headers, a prior GET to
 the homepage for the `nsit` / `nseappid` cookies, and a delay between requests.
@@ -41,9 +41,14 @@ from pathlib import Path
 from typing import Any
 
 from app.constants import (
+    NSE_BACKOFF_BASE_S,
+    NSE_BACKOFF_MAX_S,
     NSE_BREAKER_COOLDOWN_S,
     NSE_BREAKER_FAILURES,
+    NSE_COOKIE_MAX_AGE_S,
+    NSE_INTER_REQUEST_DELAY_S,
     NSE_MAX_ATTEMPTS,
+    NSE_REQUEST_TIMEOUT_S,
 )
 
 log = logging.getLogger(__name__)
@@ -77,13 +82,12 @@ BROWSER_HEADERS: dict[str, str] = {
     "sec-ch-ua-platform": '"Windows"',
 }
 
-# Timeout and pacing. §6.3 fixes the timeout at 30s; the inter-request delay and
-# the backoff base are transport mechanics, not business thresholds.
-REQUEST_TIMEOUT_S = 30.0
-BACKOFF_BASE_S = 1.5
-BACKOFF_MAX_S = 60.0
-INTER_REQUEST_DELAY_S = 0.8
-COOKIE_MAX_AGE_S = 600.0
+# Timeout and pacing — R1: sourced from the registry, not re-declared here.
+REQUEST_TIMEOUT_S = NSE_REQUEST_TIMEOUT_S
+BACKOFF_BASE_S = NSE_BACKOFF_BASE_S
+BACKOFF_MAX_S = NSE_BACKOFF_MAX_S
+INTER_REQUEST_DELAY_S = NSE_INTER_REQUEST_DELAY_S
+COOKIE_MAX_AGE_S = NSE_COOKIE_MAX_AGE_S
 
 BLOCK_STATUSES = frozenset({403, 429})
 AUTH_STATUSES = frozenset({401, 403})

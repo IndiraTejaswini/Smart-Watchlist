@@ -27,7 +27,8 @@ def _engine() -> sa.Engine:
         url = sa.engine.make_url(get_settings().database_url)
         test_url = url.set(database=f"{url.database}_escalationtest")
         maintenance = sa.create_engine(
-            url.set(database="postgres"), isolation_level="AUTOCOMMIT"
+            url.set(database="postgres"), isolation_level="AUTOCOMMIT",
+            connect_args={"connect_timeout": 5},
         )
         with maintenance.connect() as conn:
             exists = conn.execute(
@@ -37,7 +38,9 @@ def _engine() -> sa.Engine:
             if not exists:
                 conn.execute(sa.text(f'CREATE DATABASE "{test_url.database}"'))
         maintenance.dispose()
-        return sa.create_engine(test_url.render_as_string(hide_password=False))
+        return sa.create_engine(
+            test_url.render_as_string(hide_password=False), connect_args={"connect_timeout": 5}
+        )
     except Exception as exc:  # noqa: BLE001
         pytest.skip(f"postgres unreachable ({type(exc).__name__}); run `make up`")
 

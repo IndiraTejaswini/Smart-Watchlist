@@ -417,7 +417,7 @@ def test_no_cached_snapshot_reads_as_absent(tmp_path: Path):
 
 @pytest.fixture(scope="module")
 def engine():
-    engine = sa.create_engine(get_settings().database_url)
+    engine = sa.create_engine(get_settings().database_url, connect_args={"connect_timeout": 5})
     try:
         with engine.connect():
             pass

@@ -16,12 +16,12 @@ import sqlalchemy as sa
 from app.config import get_settings
 from app.db import get_engine
 from app.ingest.announcements import resolve_category
-from app.ingest.nse_client import CircuitOpenError, NSEClient
+from app.ingest.nse_client import CacheMissError, CircuitOpenError, NSEClient
+from app.timeutil import IST
 
 log = logging.getLogger(__name__)
 SOURCE = "announcements"
 ANNOUNCEMENT_URL = "https://www.nseindia.com/api/corporate-announcements"
-ANNOUNCEMENT_POLL_SECONDS = 180
 
 
 @dataclass(frozen=True)
@@ -41,7 +41,9 @@ class Announcement:
 
     @property
     def body_text(self) -> str:
-        value = self.raw_json.get("body_text", self.raw_json.get("body", ""))
+        value = self.raw_json.get(
+            "body_text", self.raw_json.get("body", self.raw_json.get("attchmntText", ""))
+        )
         return "" if value is None else str(value)
 
 
@@ -53,7 +55,14 @@ def _filed_at(raw: Any) -> datetime:
     value = _text(raw)
     if value.endswith("Z"):
         value = value[:-1] + "+00:00"
-    parsed = datetime.fromisoformat(value)
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError:
+        # NSE's own "an_dt" field: "17-Sep-2025 23:49:16", always IST wall time,
+        # never carries an offset — unlike a generic ISO string, this format is
+        # unambiguous, so it is localised rather than rejected as naive.
+        parsed = datetime.strptime(value, "%d-%b-%Y %H:%M:%S").replace(tzinfo=IST)
+        return parsed
     if parsed.tzinfo is None or parsed.tzinfo.utcoffset(parsed) is None:
         raise ValueError("announcement filed_at must be timezone-aware")
     return parsed
@@ -83,7 +92,13 @@ def parse_announcements(payload: bytes | str | dict[str, Any] | list[Any]) -> li
             raise ValueError("announcement item must be an object")
         symbol = _text(item.get("symbol") or item.get("symbolName"))
         subject = _text(item.get("subject") or item.get("desc"))
-        filed_at = _filed_at(item.get("filed_at") or item.get("dt") or item.get("date"))
+        # NSE's own "an_dt" is the well-formed field; "dt" on the same payload
+        # is a compact non-ISO digit string ("17092025234916") that neither
+        # fromisoformat nor the an_dt format can parse, so it must not be
+        # tried first.
+        filed_at = _filed_at(
+            item.get("filed_at") or item.get("an_dt") or item.get("date")
+        )
         resolution = resolve_category(desc=_text(item.get("desc")), subject=subject)
         parsed.append(
             Announcement(
@@ -155,10 +170,11 @@ def poll_once(
     try:
         today = date.today()
         payload = client.fetch(
-            f"{ANNOUNCEMENT_URL}?page={page}",
+            f"{ANNOUNCEMENT_URL}?index=equities&from_date={today:%d-%m-%Y}"
+            f"&to_date={today:%d-%m-%Y}",
             source=SOURCE,
             target_date=today,
-            filename=f"page-{page}.json",
+            filename=f"{today.isoformat()}.json",
             endpoint=SOURCE,
         )
         if payload is None:
@@ -179,23 +195,26 @@ def backfill(
     engine: sa.Engine | None = None,
     client: NSEClient | None = None,
     chunk_days: int = 7,
+    from_cache_only: bool = False,
 ) -> int:
     """Fetch historical announcement pages in bounded date chunks."""
     if end < start:
         raise ValueError("backfill end must not precede start")
     inserted = 0
     cursor = start
-    page = 0
     while cursor <= end:
         chunk_end = min(end, cursor + timedelta(days=chunk_days - 1))
         own_client = client is None
-        active_client = client or NSEClient(cache_root=get_settings().cache_root)
+        active_client = client or NSEClient(
+            from_cache_only=from_cache_only, cache_root=get_settings().cache_root
+        )
         try:
             payload = active_client.fetch(
-                f"{ANNOUNCEMENT_URL}?from={cursor:%d-%m-%Y}&to={chunk_end:%d-%m-%Y}&page={page}",
+                f"{ANNOUNCEMENT_URL}?index=equities&from_date={cursor:%d-%m-%Y}"
+                f"&to_date={chunk_end:%d-%m-%Y}",
                 source=SOURCE,
                 target_date=cursor,
-                filename=f"{cursor.isoformat()}-{chunk_end.isoformat()}-{page}.json",
+                filename=f"{cursor.isoformat()}-{chunk_end.isoformat()}.json",
                 endpoint=SOURCE,
             )
             if payload:
@@ -203,11 +222,14 @@ def backfill(
         except CircuitOpenError:
             log.warning("announcement backfill paused by NSE breaker")
             time.sleep(float(active_client.breaker.snapshot()["cooldown_remaining_s"] or 0))
+        except CacheMissError as exc:
+            log.warning(
+                "announcement chunk %s..%s not cached, skipping: %s", cursor, chunk_end, exc
+            )
         finally:
             if own_client:
                 active_client.close()
         cursor = chunk_end + timedelta(days=1)
-        page += 1
     return inserted
 
 
@@ -215,9 +237,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Backfill NSE corporate announcements.")
     parser.add_argument("--from", dest="start", type=date.fromisoformat, required=True)
     parser.add_argument("--to", dest="end", type=date.fromisoformat, required=True)
+    parser.add_argument("--from-cache-only", action="store_true")
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.INFO)
-    print(backfill(args.start, args.end))
+    print(backfill(args.start, args.end, from_cache_only=args.from_cache_only))
     return 0
 
 

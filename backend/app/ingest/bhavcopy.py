@@ -1,4 +1,4 @@
-"""UDiFF bhavcopy reader — ARCHITECTURE.md §6, BUILD_PLAN tasks 1.4 and 2.1.
+"""UDiFF bhavcopy reader — docs/BUILD_SPEC.md §6, BUILD_PLAN tasks 1.4 and 2.1.
 
 Bytes to typed bars, and nothing else. No database, no validation verdicts, no
 quarantine, no `ingest_runs` — that contract is task 2.1's, and it will be built

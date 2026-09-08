@@ -4,6 +4,7 @@ import json
 from datetime import datetime
 from typing import Any
 
+import redis
 import sqlalchemy as sa
 
 from app.analytics.freshness import evaluate_freshness
@@ -63,7 +64,13 @@ def fetch_quotes_batch(
 ) -> list[QuoteDeltaPayload]:
     ordered = list(dict.fromkeys(symbol.strip().upper() for symbol in symbols if symbol.strip()))
     keys = [f"quotes:{symbol}" for symbol in ordered]
-    cached = redis_client.mget(keys)
+    # Redis holds only a cache in front of Postgres — every value here is
+    # rebuildable from market_quotes (§3.1, docker-compose.yml). An outage
+    # degrades to reading Postgres directly rather than 500ing the endpoint.
+    try:
+        cached = redis_client.mget(keys)
+    except redis.exceptions.RedisError:
+        cached = [None] * len(keys)
     values: dict[str, dict[str, Any]] = {}
     missing: list[str] = []
     for symbol, value in zip(ordered, cached, strict=True):
@@ -73,17 +80,27 @@ def fetch_quotes_batch(
         else:
             values[symbol] = decoded
     if missing:
-        rows = db.execute(
-            sa.text("SELECT * FROM market_quotes WHERE symbol = ANY(:symbols)"),
-            {"symbols": tuple(missing)},
-        ).mappings()
-        for row in rows:
-            values[str(row["symbol"])] = dict(row)
+        try:
+            rows = db.execute(
+                sa.text("SELECT * FROM market_quotes WHERE symbol = ANY(:symbols)"),
+                {"symbols": tuple(missing)},
+            ).mappings()
+            for row in rows:
+                values[str(row["symbol"])] = dict(row)
+        except sa.exc.DBAPIError:
+            # A symbol with neither a cache entry nor a durable row is simply
+            # absent from the response (see the final filter below) rather
+            # than failing the whole batch — the same fail-open posture as
+            # the Redis miss above.
+            pass
         for symbol in missing:
             if symbol in values:
-                redis_client.set(
-                    f"quotes:{symbol}", json.dumps(values[symbol], default=str), ex=60
-                )
+                try:
+                    redis_client.set(
+                        f"quotes:{symbol}", json.dumps(values[symbol], default=str), ex=60
+                    )
+                except redis.exceptions.RedisError:
+                    pass
     return [
         _payload(values[symbol], current_ts, calendar)
         for symbol in ordered

@@ -477,7 +477,7 @@ def test_a_closed_day_raises_a_different_error_than_an_unnotified_one():
 
 @pytest.fixture(scope="module")
 def engine():
-    engine = sa.create_engine(get_settings().database_url)
+    engine = sa.create_engine(get_settings().database_url, connect_args={"connect_timeout": 5})
     try:
         with engine.connect():
             pass

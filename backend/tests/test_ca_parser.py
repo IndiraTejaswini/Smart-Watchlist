@@ -1,4 +1,4 @@
-"""Corporate-action purpose parser — BUILD_PLAN task 1.3, ARCHITECTURE.md §5.3.
+"""Corporate-action purpose parser — BUILD_PLAN task 1.3, docs/BUILD_SPEC.md §5.3.
 
 Written before the implementation, with every factor computed by hand (R11).
 This is the one place in the system where a parse failure is catastrophic:

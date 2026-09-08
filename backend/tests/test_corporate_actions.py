@@ -1,4 +1,4 @@
-"""Corporate-action ingest — BUILD_PLAN task 1.3, ARCHITECTURE.md §5.3.
+"""Corporate-action ingest — BUILD_PLAN task 1.3, docs/BUILD_SPEC.md §5.3.
 
 The parser's own tests are in `test_ca_parser.py`. This file covers the write
 path: what reaches `corporate_actions`, what is quarantined, and the invariant
@@ -274,7 +274,7 @@ def test_the_digest_covers_the_window_as_well_as_the_payloads():
 
 @pytest.fixture(scope="module")
 def engine():
-    engine = sa.create_engine(get_settings().database_url)
+    engine = sa.create_engine(get_settings().database_url, connect_args={"connect_timeout": 5})
     try:
         with engine.connect():
             pass

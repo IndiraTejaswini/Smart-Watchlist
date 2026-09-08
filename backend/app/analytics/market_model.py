@@ -10,17 +10,26 @@ import numpy as np
 import pandas as pd
 import sqlalchemy as sa
 
-WINDOW = 120
-GAP = 5
-MIN_OBS = 60
-RESID_SD_FLOOR = 0.005
+from app.constants import (
+    BETA_GAP_DAYS,
+    BETA_MAX,
+    BETA_MIN,
+    BETA_MIN_OBS,
+    BETA_WINDOW_DAYS,
+    RESID_SD_FLOOR,
+    WINSOR_PCT,
+)
+
+WINDOW = BETA_WINDOW_DAYS
+GAP = BETA_GAP_DAYS
+MIN_OBS = BETA_MIN_OBS
 BENCHMARK = "BENCHMARK"
 
 
 def _winsorize_cross_section(wide_returns: pd.DataFrame) -> pd.DataFrame:
-    """Winsorize each session cross-section at the 1st and 99th percentiles."""
-    lower = wide_returns.quantile(0.01, axis=1)
-    upper = wide_returns.quantile(0.99, axis=1)
+    """Winsorize each session cross-section at the tails set by WINSOR_PCT."""
+    lower = wide_returns.quantile(WINSOR_PCT, axis=1)
+    upper = wide_returns.quantile(1.0 - WINSOR_PCT, axis=1)
     return wide_returns.clip(
         lower=lower.reindex(wide_returns.index),
         upper=upper.reindex(wide_returns.index),
@@ -57,7 +66,7 @@ def estimate_market_model(
 
     symbols = [column for column in returns.columns if column != benchmark]
     beta = covariance[symbols].div(market_var.replace(0.0, np.nan), axis=0)
-    beta = beta.clip(lower=0.0, upper=3.0).fillna(1.0)
+    beta = beta.clip(lower=BETA_MIN, upper=BETA_MAX).fillna(1.0)
     alpha = means[symbols].sub(
         beta.mul(market_mean, axis=0),
     )

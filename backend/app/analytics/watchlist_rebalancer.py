@@ -7,7 +7,9 @@ from typing import Any
 
 import sqlalchemy as sa
 
-LOCK_TTL_SECONDS = 60
+from app.constants import WATCHLIST_REBALANCE_LOCK_TTL_SECONDS
+
+LOCK_TTL_SECONDS = WATCHLIST_REBALANCE_LOCK_TTL_SECONDS
 
 
 def rebalance_watchlist(

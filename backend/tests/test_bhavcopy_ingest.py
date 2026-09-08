@@ -176,7 +176,8 @@ def _make_engine() -> sa.Engine:
         # Use a dedicated test database to avoid touching the working schema.
         test_url = url.set(database=f"{url.database}_bhavtest")
         maint = sa.create_engine(
-            url.set(database="postgres"), isolation_level="AUTOCOMMIT"
+            url.set(database="postgres"), isolation_level="AUTOCOMMIT",
+            connect_args={"connect_timeout": 5},
         )
         with maint.connect() as conn:
             exists = conn.execute(
@@ -186,7 +187,9 @@ def _make_engine() -> sa.Engine:
             if not exists:
                 conn.execute(sa.text(f'CREATE DATABASE "{test_url.database}"'))
         maint.dispose()
-        return sa.create_engine(test_url.render_as_string(hide_password=False))
+        return sa.create_engine(
+            test_url.render_as_string(hide_password=False), connect_args={"connect_timeout": 5}
+        )
     except Exception as exc:  # noqa: BLE001
         pytest.skip(f"postgres unreachable ({type(exc).__name__}); run `make up`")
 

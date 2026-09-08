@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 
 from app.analytics.candidates import Candidate
+from app.constants import BANNED_COPY_CHARS, BANNED_COPY_TERMS
 
 
 class DataStatus(StrEnum):
@@ -25,29 +26,29 @@ class RenderedCopy:
     status: DataStatus
 
 
-BANNED_WORDS: frozenset[str] = frozenset(
-    {
-        "skyrocket", "skyrocketed", "skyrocketing", "plunge", "plunged", "plunging",
-        "soar", "soared", "soaring", "crash", "crashed", "crashing",
-        "tank", "tanked", "tanking", "dump", "dumped", "dumping",
-        "pump", "pumped", "pumping", "moon", "mooning", "bloodbath",
-        "carnage", "rollercoaster", "insane", "crazy", "huge", "massive",
-        "bullish", "bearish", "explosive", "wild",
-        "should", "must", "opportunity", "opportunities", "recommend",
-        "attractive", "undervalued", "overvalued", "target", "buy", "sell",
-        "accumulate", "avoid",
-    }
-)
+# R12: ONE list, imported from the registry — app.constants.BANNED_COPY_TERMS.
+# Single words are checked against the tokenised text; multi-word entries
+# ("target price", "act now", "don't miss") are checked as normalised
+# substrings, since a word-boundary token split can never match a phrase.
+_SINGLE_WORD_TERMS = frozenset(term for term in BANNED_COPY_TERMS if " " not in term)
+_PHRASE_TERMS = tuple(term for term in BANNED_COPY_TERMS if " " in term)
+BANNED_WORDS = _SINGLE_WORD_TERMS  # kept for callers that import this name directly
 
 
 def find_banned_words(text: str) -> frozenset[str]:
-    return frozenset(set(re.findall(r"[A-Za-z]+", text.casefold())) & BANNED_WORDS)
+    normalized = " ".join(text.casefold().split())
+    hits = set(re.findall(r"[A-Za-z']+", text.casefold())) & _SINGLE_WORD_TERMS
+    hits |= {phrase for phrase in _PHRASE_TERMS if phrase in normalized}
+    return frozenset(hits)
 
 
 def assert_copy_is_compliant(text: str) -> None:
     banned = find_banned_words(text)
     if banned:
         raise ValueError(f"banned words in digest copy: {', '.join(sorted(banned))}")
+    for char in BANNED_COPY_CHARS:
+        if char in text:
+            raise ValueError(f"banned character in digest copy: {char!r}")
 
 
 def lint_rendered_text(text: str) -> frozenset[str]:

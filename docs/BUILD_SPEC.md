@@ -1,7 +1,15 @@
-# ARCHITECTURE.md
+# BUILD_SPEC.md
 ## Smart Market Watchlist — "The Brief"
 ### Groww Hiring Challenge · System architecture and design rationale
 ### Revision 2 — incorporates external review. Section 26 is the review ledger.
+
+> This is the pre-build specification, written before implementation and kept
+> current where the build diverged (each divergence recorded in §26). It was
+> written for whoever is deciding what to build and in what order — reviewers
+> looking for the day-to-day reasoning should start at [README.md](../README.md)
+> and [docs/DESIGN.md](DESIGN.md) instead; this document is the full build-time
+> record underneath them, moved here unshortened from its original location at
+> the repository root (`ARCHITECTURE.md`).
 
 ---
 

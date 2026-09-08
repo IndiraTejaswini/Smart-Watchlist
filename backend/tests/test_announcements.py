@@ -1,4 +1,4 @@
-"""Announcement category resolution — ARCHITECTURE.md §9.2.
+"""Announcement category resolution — docs/BUILD_SPEC.md §9.2.
 
 Only `resolve_category` exists yet; the ingest itself is BUILD_PLAN task 2.8.
 These tests are the regex table's own regression suite, anchored on the exact

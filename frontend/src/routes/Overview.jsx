@@ -30,7 +30,7 @@ export default function Overview() {
 
   useEffect(() => {
     if (me?.cursor?.acknowledged_through) {
-      useCursorStore.getState().hydrate(me.cursor.acknowledged_through);
+      useCursorStore.getState().hydrate();
     }
   }, [me]);
 

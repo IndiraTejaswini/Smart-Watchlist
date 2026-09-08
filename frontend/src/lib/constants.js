@@ -1,5 +1,5 @@
 /**
- * constants.js — the frontend mirror of ARCHITECTURE.md §21, the Constants
+ * constants.js — the frontend mirror of docs/BUILD_SPEC.md §21, the Constants
  * Registry.
  *
  * BUILD_PLAN.md A1/R1 makes `backend/app/constants.py` the single source of
@@ -115,8 +115,11 @@ export const BANNED_COPY = [
   "buy",
   "sell",
   "should",
+  "must",
   "consider",
   "opportunity",
+  "opportunities",
+  "target",
   "target price",
   "undervalued",
   "overvalued",
@@ -125,6 +128,42 @@ export const BANNED_COPY = [
   "act now",
   "don't miss",
   "hurry",
+  "recommend",
+  "attractive",
+  "accumulate",
+  "avoid",
+  "skyrocket",
+  "skyrocketed",
+  "skyrocketing",
+  "plunge",
+  "plunged",
+  "plunging",
+  "soar",
+  "soared",
+  "soaring",
+  "crash",
+  "crashed",
+  "crashing",
+  "tank",
+  "tanked",
+  "tanking",
+  "dump",
+  "dumped",
+  "dumping",
+  "pump",
+  "pumped",
+  "pumping",
+  "moon",
+  "mooning",
+  "bloodbath",
+  "carnage",
+  "rollercoaster",
+  "insane",
+  "crazy",
+  "huge",
+  "massive",
+  "explosive",
+  "wild",
 ];
 
 // ─── Freshness states · ARCHITECTURE §14.2 ──────────────────────────────────

@@ -1,4 +1,4 @@
-"""`ingest_runs` bookkeeping — ARCHITECTURE.md §6.2 rules 2 and 3.
+"""`ingest_runs` bookkeeping — docs/BUILD_SPEC.md §6.2 rules 2 and 3.
 
 Every ingest module needs the same three operations: open a run row
 pessimistically, close it with a verdict, and ask whether this exact input was

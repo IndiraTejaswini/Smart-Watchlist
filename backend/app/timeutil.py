@@ -1,4 +1,4 @@
-"""IST and trading-calendar helpers — ARCHITECTURE.md §4.3 and §5.2.
+"""IST and trading-calendar helpers — docs/BUILD_SPEC.md §4.3 and §5.2.
 
 Two separate concerns live here, and the distinction matters:
 

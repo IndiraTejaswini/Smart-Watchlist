@@ -10,10 +10,17 @@ import numpy as np
 import pandas as pd
 import sqlalchemy as sa
 
-WINDOW = 20
-MIN_SHORT = 10
-EPSILON = 1e-4
-STD_FLOOR = 0.05
+from app.constants import (
+    BASELINE_MIN_SHORT_OBS,
+    DELIVERY_LOGIT_EPS,
+    DELIVERY_LOGIT_SD_FLOOR,
+    DELIVERY_WINDOW_DAYS,
+)
+
+WINDOW = DELIVERY_WINDOW_DAYS
+MIN_SHORT = BASELINE_MIN_SHORT_OBS
+EPSILON = DELIVERY_LOGIT_EPS
+STD_FLOOR = DELIVERY_LOGIT_SD_FLOOR
 
 
 def _logit(delivery_pct: pd.Series) -> pd.Series:

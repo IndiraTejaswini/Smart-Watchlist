@@ -4,7 +4,7 @@ import { FRESHNESS_STATES, SESSION_PHASES } from "./constants.js";
 /**
  * schemas.js — Zod, at the API boundary and nowhere else (R8).
  *
- * These describe ARCHITECTURE.md §16 responses. They are validation, not types:
+ * These describe docs/BUILD_SPEC.md §16 responses. They are validation, not types:
  * their job is to make a contract drift fail loudly at the seam instead of
  * silently producing blank cells four components deep.
  */
@@ -80,6 +80,16 @@ export const signalMarksSchema = z.object({
     }),
   ),
 });
+/** GET /api/watchlist/:id — the register a live table renders (12.6). */
+export const watchlistItemsSchema = z.object({
+  items: z.array(
+    z.object({
+      symbol: z.string(),
+      position: z.union([z.string(), z.number()]),
+    }),
+  ),
+});
+
 export const evalFunnelSchema = z.object({
   evaluated: z.number().int(),
   corporate_action: z.number().int(),

@@ -3,7 +3,7 @@
  *
  * `VITE_USE_MOCK` decides whether the API layer talks to the backend or to
  * src/lib/mock. It is a transport switch and nothing more: the mock answers the
- * same function with the same payload shapes from ARCHITECTURE.md §16, so no
+ * same function with the same payload shapes from docs/BUILD_SPEC.md §16, so no
  * component ever knows which one it is talking to. If a component would need to
  * change to accommodate the mock, the mock is wrong.
  */
