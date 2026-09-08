@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useMe } from "../../lib/api/queries.js";
 
 /**
  * NavBar — §4. 52px, --abyss ground, one hairline underneath.
@@ -10,14 +11,23 @@ import { NavLink } from "react-router-dom";
  * icon beside the word "Brief" carries none.
  */
 
-const LINKS = [
-  { to: "/brief", label: "Brief" },
-  { to: "/overview", label: "Overview" },
-  { to: "/watchlist/wl_demo", label: "Lists" },
-  { to: "/eval", label: "Evaluation" },
-];
-
 export default function NavBar() {
+  const { data: me } = useMe();
+  // The route is /watchlist/:id (no bare /watchlist), so "Lists" needs a
+  // real id to link to. A hardcoded mock id here resolves to nothing against
+  // the real API — see /api/me's default_watchlist_id instead. useMe() has
+  // staleTime: Infinity, so this is a cache hit, not a second request, once
+  // any other screen has already fetched it.
+  const links = [
+    { to: "/brief", label: "Brief" },
+    { to: "/overview", label: "Overview" },
+    // Falls back to /brief, not a bare /watchlist/, in the brief window
+    // before /api/me resolves — the route requires :id, so an empty segment
+    // 404s rather than rendering anything.
+    { to: me?.default_watchlist_id ? `/watchlist/${me.default_watchlist_id}` : "/brief", label: "Lists" },
+    { to: "/eval", label: "Evaluation" },
+  ];
+
   return (
     <header className="flex h-nav shrink-0 items-center gap-8 border-b border-hairline bg-abyss px-5">
       <NavLink
@@ -34,7 +44,7 @@ export default function NavBar() {
       </NavLink>
 
       <nav className="flex items-center gap-6" aria-label="Primary">
-        {LINKS.map((link) => (
+        {links.map((link) => (
           <NavLink
             key={link.to}
             to={link.to}

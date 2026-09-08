@@ -23,20 +23,28 @@ export const useCursorStore = create((set, get) => ({
   hydrated: false,
 
   /**
-   * Seed the query cursor once /api/me resolves. Does not overwrite a cursor
-   * the user has already moved.
+   * Seed the query cursor once /api/me resolves, from `me.as_of` — the end
+   * of the last session this dataset actually has bars for. Does not
+   * overwrite a cursor the user has already moved.
    *
-   * Deliberately defaults `cursorIso` to now rather than to the caller's
-   * acknowledged-through argument: the Brief's query window is
-   * (acknowledged_through, cursorIso], so hydrating the query cursor to the
-   * same instant the server already treats as the lower bound always yields
-   * an empty window on first paint, no matter how far back acknowledged_through
-   * is. `acknowledgedIso` (read separately from /api/me by the spine, not
-   * from this store) still carries that value for the "last read" marker.
+   * Deliberately not the caller's acknowledged-through argument and not the
+   * browser's clock:
+   *  - The Brief's query window is (acknowledged_through, cursorIso], so
+   *    hydrating the query cursor to the same instant the server already
+   *    treats as the lower bound always yields an empty window on first
+   *    paint, no matter how far back acknowledged_through is.
+   *    `acknowledgedIso` (read separately from /api/me by the spine, not
+   *    from this store) still carries that value for the "last read" marker.
+   *  - This is a pre-seeded, frozen dataset viewed at an arbitrary real-world
+   *    time (that is the whole point of pre-seeding it), so the browser's
+   *    `new Date()` drifts further past the data's last real session every
+   *    day after deployment and eventually walks past the loaded trading
+   *    calendar entirely. `me.as_of` is stable regardless of when the URL is
+   *    opened.
    */
-  hydrate() {
+  hydrate(asOfIso) {
     if (get().hydrated) return;
-    set({ cursorIso: new Date().toISOString(), hydrated: true });
+    set({ cursorIso: asOfIso, hydrated: true });
   },
 
   /** Called continuously during a drag. Cheap, and does not refetch anything. */

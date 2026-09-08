@@ -1,4 +1,4 @@
-import { DEMO_CURSOR } from "./clock.js";
+import { DEMO_CURSOR, DEMO_NOW } from "./clock.js";
 import { DEMO_WATCHLIST_ID } from "./watchlist.js";
 
 /**
@@ -23,6 +23,7 @@ export function mockMe() {
       is_demo: true,
     },
     default_watchlist_id: DEMO_WATCHLIST_ID,
+    as_of: DEMO_NOW,
     cursor: {
       acknowledged_through: DEMO_CURSOR,
     },

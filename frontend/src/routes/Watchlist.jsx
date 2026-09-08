@@ -5,13 +5,16 @@ import FreshnessDot from "../components/FreshnessDot.jsx";
 import Num from "../components/Num.jsx";
 import Sparkline from "../components/Sparkline.jsx";
 import { Register } from "../lib/register.jsx";
-import { useReorderWatchlistItem, useWatchlistItems } from "../lib/api/queries.js";
-import { GENERATED_QUOTES, LIVE_BY_SYMBOL } from "../lib/mock/liveWatchlist.js";
-import { startMockTickStream } from "../lib/mock/ticks.js";
+import {
+  useMe,
+  useReorderWatchlistItem,
+  useWatchlistItems,
+  useWatchlistQuotes,
+} from "../lib/api/queries.js";
+import { LIVE_BY_SYMBOL } from "../lib/mock/liveWatchlist.js";
 import { useQuoteStore } from "../store/useQuoteStore.js";
 
 const ROW_HEIGHT = 58;
-const DEFAULT_WATCHLIST_ID = "wl_demo";
 
 const QuoteRow = memo(function QuoteRow({
   item,
@@ -95,18 +98,26 @@ function WatchlistSkeleton() {
 
 export default function Watchlist() {
   const { id } = useParams();
-  const watchlistId = id ?? DEFAULT_WATCHLIST_ID;
+  const { data: me } = useMe();
+  // Falls back to the caller's own default watchlist (from /api/me) when no
+  // :id is in the route — this is what "Lists" in the nav links to. A
+  // hardcoded mock id here would resolve to nothing in the real API and the
+  // page would render as empty regardless of what the watchlist holds.
+  const watchlistId = id ?? me?.default_watchlist_id;
   const parentRef = useRef(null);
   const setSubscriptions = useQuoteStore((state) => state.setSubscriptions);
-  const seedQuotes = useQuoteStore((state) => state.seedQuotes);
+  const setQuotes = useQuoteStore((state) => state.setQuotes);
   const feedState = useQuoteStore((state) => state.feedState);
   const itemsQuery = useWatchlistItems(watchlistId);
+  const quotesQuery = useWatchlistQuotes(watchlistId);
   const reorder = useReorderWatchlistItem(watchlistId);
   const [dragState, setDragState] = useState({ draggedSymbol: null, dropTargetSymbol: null });
 
   useEffect(() => {
-    seedQuotes(GENERATED_QUOTES);
-  }, [seedQuotes]);
+    if (quotesQuery.data?.quotes) {
+      setQuotes(quotesQuery.data.quotes);
+    }
+  }, [quotesQuery.data, setQuotes]);
 
   const rows = useMemo(
     () =>
@@ -129,8 +140,6 @@ export default function Watchlist() {
     const handle = setTimeout(() => setSubscriptions(visibleKey ? visibleKey.split("|") : []), 200);
     return () => clearTimeout(handle);
   }, [setSubscriptions, visibleKey]);
-
-  useEffect(() => startMockTickStream(visibleKey ? visibleKey.split("|") : []), [visibleKey]);
 
   const dragHandlers = useMemo(() => ({
     onDragStart: (symbol) => setDragState({ draggedSymbol: symbol, dropTargetSymbol: null }),
@@ -194,7 +203,7 @@ export default function Watchlist() {
           </div>
         ) : null}
         <div className="border-t border-hairline py-3 text-ui text-slate">
-          {feedState === "FEED_DOWN" ? "The quote feed is unavailable. Prices are held as stale." : feedState === "HALTED_MARKET" ? "The market is halted. Prices are held as stale." : "Live quote feed · viewport subscriptions only · drag a row to reorder"}
+          {feedState === "FEED_DOWN" ? "The quote feed is unavailable. Prices are held as stale." : feedState === "HALTED_MARKET" ? "The market is halted. Prices are held as stale." : "Final exchange data · viewport subscriptions only · drag a row to reorder"}
         </div>
       </section>
     </Register>

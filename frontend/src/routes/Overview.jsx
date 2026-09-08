@@ -29,8 +29,8 @@ export default function Overview() {
   const brief = useBrief(me?.default_watchlist_id, cursorIso);
 
   useEffect(() => {
-    if (me?.cursor?.acknowledged_through) {
-      useCursorStore.getState().hydrate();
+    if (me?.as_of) {
+      useCursorStore.getState().hydrate(me.as_of);
     }
   }, [me]);
 

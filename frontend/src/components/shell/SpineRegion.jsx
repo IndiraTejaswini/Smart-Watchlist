@@ -28,10 +28,11 @@ export default function SpineRegion() {
   const commit = useCursorStore((s) => s.commit);
   const cursorIso = useDisplayCursor();
   const acknowledged = me?.cursor?.acknowledged_through ?? null;
+  const asOf = me?.as_of ?? null;
 
   useEffect(() => {
-    if (acknowledged) hydrate();
-  }, [acknowledged, hydrate]);
+    if (asOf) hydrate(asOf);
+  }, [asOf, hydrate]);
 
   // A session date is what the spine yields. It is widened to an instant at the
   // IST end of that day, so that "the cursor is on 20 August" means "everything

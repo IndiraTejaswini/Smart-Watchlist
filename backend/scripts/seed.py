@@ -106,6 +106,18 @@ def main() -> int:
     if result.returncode != 0:
         raise SystemExit(f"run_full_pipeline.py failed with exit code {result.returncode}")
 
+    log("end-to-end demo assertion")
+    result = subprocess.run(
+        [sys.executable, "-m", "pytest", "tests/test_demo_end_to_end.py", "-v"],
+        cwd=REPO_ROOT / "backend",
+    )
+    if result.returncode != 0:
+        raise SystemExit(
+            "the seeded demo failed the end-to-end assertion — a seed that "
+            "produces an empty or broken Brief is worse than no deployment; "
+            "see tests/test_demo_end_to_end.py"
+        )
+
     log("seed complete")
     return 0
 

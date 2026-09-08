@@ -43,8 +43,8 @@ export default function Brief() {
   const brief = useBrief(watchlistId, cursorIso);
 
   useEffect(() => {
-    if (me?.cursor?.acknowledged_through) {
-      useCursorStore.getState().hydrate();
+    if (me?.as_of) {
+      useCursorStore.getState().hydrate(me.as_of);
     }
   }, [me]);
 

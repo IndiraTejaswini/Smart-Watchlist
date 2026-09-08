@@ -51,6 +51,10 @@ export const meSchema = z.object({
     is_demo: z.boolean().default(false),
   }),
   default_watchlist_id: z.string(),
+  // The end of the last session this dataset actually has bars for — the
+  // frontend hydrates its query cursor from this, not from the browser's
+  // clock, so a pre-seeded demo stays populated no matter when it's opened.
+  as_of: z.string(),
   cursor: cursorSchema,
 });
 
@@ -86,6 +90,27 @@ export const watchlistItemsSchema = z.object({
     z.object({
       symbol: z.string(),
       position: z.union([z.string(), z.number()]),
+    }),
+  ),
+});
+
+/**
+ * GET /api/watchlist/:id/quotes — each symbol's own latest daily_bars row.
+ * Not a live tick: this build has no broker feed to poll against a frozen,
+ * pre-seeded dataset, so "final" is the honest freshness for every entry.
+ */
+export const watchlistQuotesSchema = z.object({
+  quotes: z.record(
+    z.string(),
+    z.object({
+      ltp: z.number(),
+      change: z.number(),
+      chp: z.number(),
+      turnover: z.number(),
+      delivery: z.number().nullable(),
+      as_of_date: z.string(),
+      freshness: z.string(),
+      state: z.string(),
     }),
   ),
 });

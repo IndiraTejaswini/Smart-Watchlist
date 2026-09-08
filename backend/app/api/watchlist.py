@@ -121,17 +121,84 @@ def get_watchlist_by_id(
     ).mappings().first()
     if row is None:
         raise HTTPException(status_code=404, detail="Watchlist not found")
+    # The frontend's useWatchlistItems calls this route (not the bare
+    # GET /api/watchlist above) and needs `items` in the same shape that one
+    # returns — without it the Lists page's schema validation fails and the
+    # page renders "could not be loaded" with 0 names, regardless of how many
+    # symbols are actually on the list.
+    item_rows = conn.execute(
+        sa.text(
+            "SELECT symbol, position FROM watchlist_items "
+            "WHERE watchlist_id = :watchlist_id ORDER BY position ASC"
+        ),
+        {"watchlist_id": watchlist_id},
+    ).mappings()
     body = {
         "id": str(row["id"]),
         "user_id": str(row["user_id"]),
         "name": row["name"],
         "version": int(row["version"]),
+        "items": [dict(item) for item in item_rows],
     }
     return Response(
-        content=__import__("json").dumps(body),
+        content=__import__("json").dumps(body, default=str),
         headers={"ETag": f'"{row["version"]}"'},
         media_type="application/json",
     )
+
+
+@router.get("/{watchlist_id}/quotes")
+def watchlist_quotes(watchlist_id: str, conn: Connection) -> dict[str, Any]:
+    """The Lists page's price columns, from the last real session — not a
+    live tick.
+
+    This build has no broker feed and no live NSE session to poll against a
+    frozen, pre-seeded dataset (§19), so there is no honest sense in which a
+    number here is "live." What is real and available is each symbol's own
+    latest daily_bars row, which is exactly what this returns — final,
+    end-of-day figures, the same "Bhavcopy final" data the rest of the app
+    already shows.
+    """
+    symbols = conn.execute(
+        sa.text("SELECT symbol FROM watchlist_items WHERE watchlist_id = :watchlist_id"),
+        {"watchlist_id": watchlist_id},
+    ).scalars().all()
+    if not symbols:
+        return {"quotes": {}}
+
+    rows = conn.execute(
+        sa.text(
+            "WITH latest_bars AS ("
+            "  SELECT DISTINCT ON (symbol) symbol, date, close, prev_close, turnover "
+            "  FROM daily_bars WHERE symbol = ANY(:symbols) "
+            "  ORDER BY symbol, date DESC"
+            ") "
+            "SELECT lb.symbol, lb.date, lb.close, lb.prev_close, lb.turnover, "
+            "ds.delivery_pct "
+            "FROM latest_bars lb "
+            "LEFT JOIN delivery_stats ds ON ds.symbol = lb.symbol AND ds.date = lb.date"
+        ),
+        {"symbols": list(symbols)},
+    ).mappings()
+
+    quotes: dict[str, Any] = {}
+    for row in rows:
+        close = float(row["close"])
+        prev_close = float(row["prev_close"]) if row["prev_close"] is not None else close
+        change = close - prev_close
+        chp = (change / prev_close * 100) if prev_close else 0.0
+        turnover_cr = float(row["turnover"] or 0) / 1e7
+        quotes[row["symbol"]] = {
+            "ltp": close,
+            "change": change,
+            "chp": chp,
+            "turnover": turnover_cr,
+            "delivery": float(row["delivery_pct"]) if row["delivery_pct"] is not None else None,
+            "as_of_date": str(row["date"]),
+            "freshness": "final",
+            "state": "FINAL",
+        }
+    return {"quotes": quotes}
 
 
 @router.get("/{watchlist_id}/signals")

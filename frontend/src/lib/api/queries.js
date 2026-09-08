@@ -11,6 +11,7 @@ import {
   evalCasesSchema,
   evalContinuationSchema,
   watchlistItemsSchema,
+  watchlistQuotesSchema,
 } from "../schemas.js";
 import { apiFetch } from "./client.js";
 
@@ -28,6 +29,7 @@ export const queryKeys = {
   brief: (watchlistId, asOf) => ["brief", watchlistId, asOf],
   explain: (signalEventId) => ["brief", "explain", signalEventId],
   watchlistItems: (watchlistId) => ["watchlist", watchlistId, "items"],
+  watchlistQuotes: (watchlistId) => ["watchlist", watchlistId, "quotes"],
 };
 
 /** Who is signed in, and where their reading cursor sits. */
@@ -89,6 +91,23 @@ export function useWatchlistItems(watchlistId) {
     queryFn: ({ signal }) =>
       apiFetch(`/watchlist/${watchlistId}`, { schema: watchlistItemsSchema, signal }),
     staleTime: 30_000,
+  });
+}
+
+/**
+ * Each watchlist symbol's own latest daily_bars row — not a live tick (see
+ * the endpoint's own docstring). Polled on the same cadence as everything
+ * else that calls itself a quote, purely so a re-seed with fresher data
+ * during a session would still show up without a page reload.
+ */
+export function useWatchlistQuotes(watchlistId) {
+  return useQuery({
+    enabled: Boolean(watchlistId),
+    queryKey: queryKeys.watchlistQuotes(watchlistId),
+    queryFn: ({ signal }) =>
+      apiFetch(`/watchlist/${watchlistId}/quotes`, { schema: watchlistQuotesSchema, signal }),
+    staleTime: POLL_INTERVAL_SECONDS * 1000,
+    refetchInterval: POLL_INTERVAL_SECONDS * 1000,
   });
 }
 

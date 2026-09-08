@@ -18,6 +18,7 @@ from app.crud.read_cursor import upsert_read_cursor
 from app.db import get_engine
 from app.ingest.calendar import load_trading_calendar
 from app.schemas.brief import BriefResponse
+from app.timeutil import IST
 
 router = APIRouter(tags=["phase9"])
 CurrentUser = Annotated[UserContext, Depends(get_current_user)]
@@ -65,12 +66,97 @@ def create_watchlist(payload: WatchlistCreate, user: CurrentUser) -> dict[str, s
     return {"watchlist_id": watchlist_id, "name": payload.name}
 
 
+def _latest_data_anchor(conn: Any) -> datetime:
+    """The end of the last session this dataset actually has bars for.
+
+    Used as the evaluation time whenever a caller omits `as_of` — deliberately
+    *not* wall-clock `now()`. A frozen, pre-seeded demo dataset is viewed at an
+    arbitrary future real-world time (that is the whole point of pre-seeding
+    it — §19), so anchoring to real `now()` means the evaluation window keeps
+    growing after every session boundary the data doesn't actually cover, and
+    eventually walks past the loaded trading calendar entirely. Anchoring to
+    the data's own last date makes "since your last read" a stable question
+    with a stable answer, no matter when the URL is opened.
+    """
+    last_bar_date = conn.execute(sa.text("SELECT max(date) FROM daily_bars")).scalar()
+    if last_bar_date is None:
+        return datetime.now(UTC)
+    return datetime.combine(last_bar_date, datetime.max.time().replace(microsecond=0)).replace(
+        tzinfo=IST
+    )
+
+
+DEMO_USER_ID = "demo_trader"
+# The seeded baseline for the shared demo account — not derived, because a
+# reset that computed "the seeded state" from current data would just be
+# resetting to whatever the last reviewer already left behind. Update these
+# after re-seeding if the intended demo watchlist or lookback changes.
+DEMO_WATCHLIST_SYMBOLS = ("HDFCBANK",)
+DEMO_CURSOR_WEEKS_BACK = 3
+
+
+def _reset_demo_state(conn: Any, user_id: str, watchlist_id: str) -> None:
+    """Reset the shared demo account to its seeded baseline.
+
+    Several reviewers open the same demo login (there is no real auth — see
+    `app/api/auth.py`). If the first one reorders or deletes watchlist
+    symbols, or the cursor gets acknowledged forward, the second reviewer
+    inherits that state instead of the populated Brief the demo exists to
+    show. `/api/me` is fetched with `staleTime: Infinity` on the frontend, so
+    this runs once per browser tab (a fresh visit or a hard refresh) and not
+    on every in-app route change — the natural "login" moment for a client
+    with no real session concept. Scoped to exactly the shared demo user id,
+    never a caller-chosen `X-Demo-User` value, so a distinct ad-hoc identity
+    used for local testing keeps whatever state it built up.
+    """
+    if user_id != DEMO_USER_ID:
+        return
+
+    conn.execute(
+        sa.text("DELETE FROM watchlist_items WHERE watchlist_id = :watchlist_id"),
+        {"watchlist_id": watchlist_id},
+    )
+    conn.execute(
+        sa.text(
+            "INSERT INTO watchlist_items (id, watchlist_id, symbol, position) "
+            "VALUES (:id, :watchlist_id, :symbol, :position)"
+        ),
+        [
+            {
+                "id": str(uuid4()),
+                "watchlist_id": watchlist_id,
+                "symbol": symbol,
+                "position": position,
+            }
+            for position, symbol in enumerate(DEMO_WATCHLIST_SYMBOLS, start=1)
+        ],
+    )
+
+    baseline_ack = _latest_data_anchor(conn) - timedelta(weeks=DEMO_CURSOR_WEEKS_BACK)
+    conn.execute(
+        sa.text(
+            "INSERT INTO brief_cursor_states "
+            "(user_id, feed_id, seen_through_ts, acknowledged_through_ts, updated_at) "
+            "VALUES (:user_id, 'brief:default', :ack, :ack, now()) "
+            "ON CONFLICT (user_id, feed_id) DO UPDATE SET "
+            "seen_through_ts = :ack, acknowledged_through_ts = :ack, updated_at = now()"
+        ),
+        {"user_id": user_id, "ack": baseline_ack},
+    )
+    conn.execute(
+        sa.text("DELETE FROM read_cursors WHERE user_id = :user_id"),
+        {"user_id": user_id},
+    )
+
+
 @router.get("/api/me")
 def me(user: CurrentUser) -> dict[str, Any]:
     with get_engine().begin() as conn:
         watchlist_id = _get_or_create_watchlist(conn, user.user_id)
         db: Any = conn
+        _reset_demo_state(conn, user.user_id, watchlist_id)
         cursor = get_brief_cursor(db, user.user_id)
+        as_of = _latest_data_anchor(conn)
     acknowledged_through = (
         cursor.acknowledged_through_ts.isoformat() if cursor is not None else EPOCH.isoformat()
     )
@@ -84,6 +170,10 @@ def me(user: CurrentUser) -> dict[str, Any]:
             "is_demo": user.is_demo,
         },
         "default_watchlist_id": watchlist_id,
+        # The last date this dataset actually has bars for — see
+        # `_latest_data_anchor`. The frontend hydrates its query cursor from
+        # this, not from the browser's clock.
+        "as_of": as_of.isoformat(),
         "cursor": {
             "acknowledged_through": acknowledged_through,
             "sessions_elapsed": 0,
@@ -232,12 +322,21 @@ def _enrich_items(
 
         mechanism_label = None
         classification = "EXPLAINED" if candidate.is_explained else "UNEXPLAINED"
+        # Matched by (symbol, date), not symbol alone: rollups accumulate
+        # across the whole cursor window, and this same symbol may have been
+        # swept into an unrelated rollup on a different day. A membership
+        # check on symbol name only mislabels a standalone move on its own
+        # date as sector- or market-wide because of that other day's rollup —
+        # the same class of bug fixed in attribution.py's suppression set.
         for market_rollup in payload.market_rollups:
-            if candidate.symbol in market_rollup.symbols:
+            if candidate.date == market_rollup.date and candidate.symbol in market_rollup.symbols:
                 classification = "MARKET_WIDE"
                 mechanism_label = market_rollup.benchmark_symbol
         for sector_rollup in payload.sector_rollups:
-            if candidate.symbol in sector_rollup.affected_symbols:
+            if (
+                candidate.date == sector_rollup.date
+                and candidate.symbol in sector_rollup.affected_symbols
+            ):
                 classification = "SECTOR_WIDE"
                 mechanism_label = sector_rollup.sector
 
@@ -336,7 +435,8 @@ def brief(
     watchlist_id: Annotated[str | None, Query()] = None,
 ) -> BriefResponse:
     del watchlist_id
-    evaluation_time = as_of or datetime.now(UTC)
+    with get_engine().connect() as anchor_conn:
+        evaluation_time = as_of or _latest_data_anchor(anchor_conn)
     with get_engine().begin() as conn:
         calendar = load_trading_calendar(
             conn,

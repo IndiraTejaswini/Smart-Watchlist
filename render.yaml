@@ -1,0 +1,45 @@
+# Render Blueprint — see DEPLOY.md.
+#
+# One service: the Dockerfile builds the SPA and serves it plus /api and /ws
+# from a single FastAPI process (§19.3). Render supplies PORT; the Dockerfile
+# CMD already binds 0.0.0.0:${PORT:-8000}, so nothing here needs to set it.
+#
+# Database and Redis are NOT declared here. Render's own free Postgres
+# deletes itself after 30 days, so this build uses Neon instead (DEPLOY.md);
+# a managed Redis add-on is provisioned separately too. Both connection
+# strings are pasted into the dashboard as secrets, never committed.
+
+services:
+  - type: web
+    name: smart-watchlist
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: ENV
+        value: production
+      # Pooled Neon connection string (host contains "-pooler"). Paste as-is —
+      # config.py rewrites a bare postgres:// scheme and Neon's sslmode /
+      # channel_binding query params work unchanged with psycopg3.
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      # POLLING needs no credentials and is the shipped default; set these
+      # three only if a broker feed is actually being wired up.
+      - key: QUOTE_SOURCE
+        value: POLLING
+      - key: BROKER_API_KEY
+        sync: false
+      - key: BROKER_API_SECRET
+        sync: false
+      - key: BROKER_ACCESS_TOKEN
+        sync: false
+      - key: FROM_CACHE_ONLY
+        value: "true"
+      - key: LOG_LEVEL
+        value: INFO
+
+# `sync: false` means: set the value in the Render dashboard, not here — this
+# file is committed, so nothing secret belongs in it.
