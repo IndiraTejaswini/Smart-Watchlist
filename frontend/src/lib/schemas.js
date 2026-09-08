@@ -54,7 +54,13 @@ export const meSchema = z.object({
   // The end of the last session this dataset actually has bars for — the
   // frontend hydrates its query cursor from this, not from the browser's
   // clock, so a pre-seeded demo stays populated no matter when it's opened.
-  as_of: z.string(),
+  //
+  // Optional on purpose. Everything downstream of /api/me — the watchlist id,
+  // the Brief, the spine, the Lists page — is unreachable if this response
+  // fails to parse, so a field added after the fact must never be able to
+  // take the whole app down when it is absent. Without it the cursor simply
+  // stays unset and the server falls back to its own anchor.
+  as_of: z.string().optional(),
   cursor: cursorSchema,
 });
 

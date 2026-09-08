@@ -72,7 +72,16 @@ export default function CursorSpine({
   );
 
   const index = useMemo(
-    () => (axis && cursorIso ? indexForInstant(cursorIso, axis) : 0),
+    // With no cursor yet, rest the handle on the newest session rather than
+    // index 0. Index 0 is the oldest session on the axis, which reads as "you
+    // last looked ~a year ago" — a confident, wrong claim — where the newest
+    // is the same place the cursor hydrates to a moment later.
+    () => {
+      if (!axis) return 0;
+      const newest = axis.points.length - 1;
+      if (!cursorIso) return newest;
+      return indexForInstant(cursorIso, axis);
+    },
     [axis, cursorIso],
   );
 

@@ -3,18 +3,45 @@ import { dehydrate, hydrate } from "@tanstack/react-query";
 const STORAGE_KEY = "smart-watchlist-query-cache";
 const MAX_AGE = 24 * 60 * 60 * 1000;
 
+/**
+ * Discards snapshots written by a different build. Without this, a deploy
+ * that adds a field to a response replays the *old* shape out of IndexedDB
+ * into code that now requires it: `useMe` holds its data with
+ * `staleTime: Infinity`, so nothing ever refetches it, and every screen
+ * downstream of the missing field renders a permanent skeleton. A hard
+ * refresh does not help, because IndexedDB survives one.
+ *
+ * The cache is a load-time optimisation and nothing more, so throwing it
+ * away on every deploy costs one refetch and removes the whole failure mode.
+ */
+const BUILD_ID = import.meta.env.VITE_BUILD_ID ?? "dev";
+
 export async function restoreQueryCache(queryClient) {
-  const serialized = await readCache();
-  if (!serialized) return;
-  const snapshot = JSON.parse(serialized);
-  if (Date.now() - snapshot.timestamp > MAX_AGE) return;
-  hydrate(queryClient, snapshot.clientState);
+  try {
+    const serialized = await readCache();
+    if (!serialized) return;
+    const snapshot = JSON.parse(serialized);
+    if (snapshot.buildId !== BUILD_ID) {
+      await clearCache();
+      return;
+    }
+    if (Date.now() - snapshot.timestamp > MAX_AGE) {
+      await clearCache();
+      return;
+    }
+    hydrate(queryClient, snapshot.clientState);
+  } catch {
+    // A snapshot we cannot read or parse is a snapshot we do not use. Start
+    // from an empty cache rather than leaving the app wedged on stale state.
+    await clearCache().catch(() => {});
+  }
 }
 
 export async function persistQueryCache(queryClient) {
   const save = async () => {
     const snapshot = JSON.stringify({
       timestamp: Date.now(),
+      buildId: BUILD_ID,
       clientState: dehydrate(queryClient, { shouldDehydrateQuery: () => true }),
     });
     await writeCache(snapshot);
@@ -36,6 +63,21 @@ async function readCache() {
     }
   }
   return window.localStorage.getItem(STORAGE_KEY);
+}
+
+async function clearCache() {
+  if (typeof indexedDB !== "undefined") {
+    try {
+      await idbWrite(null);
+    } catch {
+      // Fall through to localStorage below.
+    }
+  }
+  try {
+    window.localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // Private browsing with storage disabled — nothing to clear.
+  }
 }
 
 async function writeCache(value) {

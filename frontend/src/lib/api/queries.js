@@ -176,7 +176,14 @@ export function useBrief(watchlistId, asOf) {
   if (watchlistId) search.set("watchlist_id", watchlistId);
   if (asOf) search.set("as_of", asOf);
   return useQuery({
-    enabled: Boolean(watchlistId && asOf),
+    // Deliberately not gated on `asOf`. Omitting the param makes the server
+    // evaluate at its own anchor — the last session it actually has bars for
+    // — which is the same instant the cursor hydrates to anyway. Gating on it
+    // meant that anything which left the cursor unresolved (a stale persisted
+    // cache, a cursor that fell outside the loaded calendar) disabled this
+    // query permanently, and the Brief sat on its loading skeleton forever
+    // with no error to explain why.
+    enabled: Boolean(watchlistId),
     queryKey: queryKeys.brief(watchlistId, asOf),
     queryFn: ({ signal }) =>
       apiFetch(`/brief?${search}`, { schema: briefSchema, signal }),

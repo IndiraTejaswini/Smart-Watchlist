@@ -43,7 +43,10 @@ export const useCursorStore = create((set, get) => ({
    *    opened.
    */
   hydrate(asOfIso) {
-    if (get().hydrated) return;
+    // A falsy anchor must not latch `hydrated`, or a single early call with
+    // nothing useful in it would block every later one and leave the cursor
+    // null for the rest of the session.
+    if (get().hydrated || !asOfIso) return;
     set({ cursorIso: asOfIso, hydrated: true });
   },
 

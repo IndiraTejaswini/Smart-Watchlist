@@ -702,6 +702,12 @@ def load(
             "`make backfill` first — the history window is defined by what was "
             "downloaded"
         )
+    # Deliberately measured from `as_of`, not from the cached snapshot: the
+    # calendar has to cover forward sessions from *now* or `session_phase`
+    # and the cursor spine lose the dates they resolve against, which is why
+    # `test_the_window_is_the_history_plus_ninety_days` asserts it. The
+    # corporate-action feed anchors to its snapshot instead, because there
+    # the window only decides which cache filenames are requested.
     end = as_of + timedelta(days=forward_days)
     years = range(start.year, end.year + 1)
 

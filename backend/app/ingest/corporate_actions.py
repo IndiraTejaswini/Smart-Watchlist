@@ -448,7 +448,13 @@ def load(
             f"no cached bhavcopy under {cache_root}; run `make backfill` first — "
             "the history window is defined by what was downloaded"
         )
-    end = as_of + timedelta(days=forward_days)
+    # Anchored to the snapshot, not to `as_of`. `fetch_feed` encodes the
+    # window's chunk boundaries into each cache filename, so a window measured
+    # from today slides one day every day and stops matching the files that
+    # were written when the snapshot was taken — `--from-cache-only` then
+    # fails on a chunk it has, under a name it no longer asks for. Outside
+    # cache-only mode `snapshot` is `as_of`, so live fetches are unchanged.
+    end = snapshot + timedelta(days=forward_days)
 
     with NSEClient(from_cache_only=from_cache_only, cache_root=cache_root) as client:
         payloads = fetch_feed(client, as_of=snapshot, start=start, end=end)

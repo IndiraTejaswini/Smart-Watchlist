@@ -2,7 +2,16 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
+// Changes on every build. The persisted query cache is keyed on this, so a
+// deploy that changes any response shape discards snapshots written by the
+// previous build instead of replaying them into code that no longer expects
+// them — see lib/queryPersistence.js.
+const BUILD_ID = process.env.VITE_BUILD_ID ?? Date.now().toString(36);
+
 export default defineConfig({
+  define: {
+    "import.meta.env.VITE_BUILD_ID": JSON.stringify(BUILD_ID),
+  },
   plugins: [react(), tailwindcss()],
   server: {
     port: 5173,
